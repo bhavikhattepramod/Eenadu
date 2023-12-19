@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_application_wizard_form" model="ir.ui.view">
+        <field name="name">application.letter.report</field>
+        <field name="model">hrms.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="report_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_application_report_wizard" model="ir.actions.act_window">
+        <field name="name">HRMS Application Form</field>
+        <field name="res_model">hrms.application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_application_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+     <menuitem id="employee_life_cycle_application_menu"
+              name="Employee Application"
+              parent="hr.hr_menu_hr_reports"
+              action="action_application_report_wizard"
+              sequence="99"/>
+</odoo>

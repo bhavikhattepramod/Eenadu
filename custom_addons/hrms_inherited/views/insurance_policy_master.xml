@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="insurance_policy_master_details_form" model="ir.ui.view">
+        <field name="name">Insurance Policy Master Details Form</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_code"/>
+                            <field name="total_sum_values"/>
+                        </group>
+                        <group>
+                            <field name="employee_name"/>
+                        </group>
+                    </group>
+                    <field name="insurance_policy_master">
+                        <tree editable="bottom">
+                            <field name="service_company" options='{"no_open": True}'/>
+                            <field name="policy_no"/>
+                            <field name="policy_amt"/>
+                            <field name="premium_amt"/>
+                            <field name="insurance_applicable"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="insurance_policy_master_tree" model="ir.ui.view">
+        <field name="name">Insurance Policy Master Tree</field>
+        <field name="model">insurance.policy</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_code"/>
+                <field name="employee_name"/>
+                <field name="total_sum_values"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="insurance_value_payslip_form" model="ir.ui.view">
+        <field name="name">insurance.value.payslip.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="Itax_calculation_master.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//page/group/group/field[@name='other_deductions']" position="after">
+            <field name="insurance_field"/>
+<!--            <field name="amount_da" invisible="0"/>-->
+<!--            <field name="notice_period_amount" invisible="0"/>-->
+<!--            <field name="insurance_1"/>-->
+        </xpath>
+        </field>
+    </record>
+
+     <record id="service_provider_master_details_form" model="ir.ui.view">
+        <field name="name">Service Provider Master Details Form</field>
+        <field name="model">service.provider</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="service_provider_name" />
+                                <field name="contact_person"/>
+                                <field name="contact_no"/>
+                            </group>
+                            <group>
+                                <field name="branch_name"/>
+                                <field name="branch_address"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+     </record>
+     <record id="service_provider_master_details_tree" model="ir.ui.view">
+        <field name="name">Service Provider Master Details Tree</field>
+        <field name="model">service.provider</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="service_provider_name"/>
+                    <field name="contact_person"/>
+                    <field name="contact_no"/>
+                </tree>
+        </field>
+     </record>
+
+    <record id="insurance_policy_details_action" model="ir.actions.act_window">
+        <field name="name">Insurance Policy Master Details</field>
+        <field name="res_model">insurance.policy</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <record id="service_provider_details_action" model="ir.actions.act_window">
+        <field name="name">Service Provider Master Details</field>
+        <field name="res_model">service.provider</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="insurance_policy_master_details_menu"
+              name="Insurance Policy Master Details"
+              parent="om_hr_payroll.menu_hr_payroll_root"
+              sequence="105"/>
+
+    <menuitem id="insurance_policy_menu"
+              name="Insurance Policy Master"
+              parent="insurance_policy_master_details_menu"
+              action="insurance_policy_details_action"
+              sequence="105"/>
+
+     <menuitem id="service_provider_menu"
+              name="Service Provider Master"
+              parent="insurance_policy_master_details_menu"
+              action="service_provider_details_action"
+              sequence="105"/>
+</odoo>

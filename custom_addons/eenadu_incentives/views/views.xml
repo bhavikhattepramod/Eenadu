@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="inherit_hr_employee_incentive_form" model="ir.ui.view">
+        <field name="name">hr.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="Itax_calculation_master.hr_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='salary_info']" position="after">
+                <group name="incentive_info" string="Incentive Info">
+                    <field name="incentive_type"/>
+                    <field name="incentive_amt" attrs="{'invisible':[('incentive_type', '=', 'percentage')]}"/>
+                    <field name="incentive_percent" attrs="{'invisible':[('incentive_type', '=', 'fixed_amt')]}"/>
+                    <!--                    <field name="target_amt"/>-->
+                    <!--                    <field name="achieved_amt"/>-->
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="incentive_action_window" model="ir.actions.act_window">
+        <field name="name">Incentives</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.incentive</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('reta','=',True)]</field>
+        <field name="context">{'default_reta':True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <h1>Incentives</h1>
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id='incentives_tree_view'>
+        <field name="name">Incentives</field>
+        <field name="model">partner.incentive</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="unit_name"/>
+                <field name="target_amt"/>
+                <field name="so_total"/>
+                <field name="payment_total"/>
+                <field name="from_date"/>
+                <field name="to_date"/>
+                <field name="incentive_state" widget="badge" decoration-success="incentive_state == 'paid'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id='incentives_form_view'>
+        <field name="name">Incentives</field>
+        <field name="model">partner.incentive</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="incentive_state" widget="statusbar"/>
+                    <button type="object"
+                            name="action_running"
+                            string="Process Incentive"
+                            attrs="{'invisible': [('incentive_state', 'not in', ['draft'])]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                name="action_make_payment"
+                                string="Disperse Payment"
+                                class="oe_stat_button" icon="fa-rupee"
+                                attrs="{'invisible': [('incentive_state', 'not in', ['running'])]}"/>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                name="action_view_payment"
+                                string="View Payment"
+                                class="oe_stat_button" icon="fa-rupee"
+                                attrs="{'invisible': [('incentive_state', 'not in', ['paid'])]}"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="classified" invisible="1"/>
+                            <field name="reta" invisible="1"/>
+                            <field name="unit_name" attrs="{'readonly': [('incentive_state', '=', 'paid')]}"
+                                   required="1"/>
+                            <field name="from_date" attrs="{'readonly': [('incentive_state', '=', 'paid')]}"
+                                   required="1"/>
+                            <field name="to_date" attrs="{'readonly': [('incentive_state', '=', 'paid')]}"
+                                   required="1"/>
+                        </group>
+                        <group>
+                            <field name="target_amt" attrs="{'readonly': [('incentive_state', '=', 'paid')]}"/>
+                            <field name="achieved_amt" attrs="{'readonly': [('incentive_state', '=', 'paid')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Incentive Order Lines" name="incentive_order_line"
+                              attrs="{'invisible':[('reta','!=',True)]}">
+                            <field name="incentive_line">
+                                <tree editable="bottom">
+                                    <field name="employee_id" readonly="1"/>
+                                    <field name="target_amt"/>
+                                    <field name="so_total_amt" readonly="1"/>
+                                    <field name="recieved_payment" readonly="1"/>
+                                    <field name="incentive_amt" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Incentive Order Lines" name="incentive_order_line"
+                              attrs="{'invisible':[('classified','!=',True)]}">
+                            <field name="classified_line">
+                                <tree editable="bottom">
+                                    <field name="employee_id" readonly="1"/>
+                                    <field name="target_amt"/>
+                                    <field name="so_total_amt" readonly="1"/>
+                                    <field name="recieved_payment" readonly="1"/>
+                                    <field name="incentive_amt" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="vendor_bill_incentive" model="ir.ui.view">
+        <field name="name">Deposit Orders</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="incentive_ref"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="employee_incentive_action_window" model="ir.actions.act_window">
+        <field name="name">Employee Incentives</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.incentive.line</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <h1>Employee Incentives</h1>
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id='employee_incentives_tree_view'>
+        <field name="name">Employee Incentives</field>
+        <field name="model">partner.incentive.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="employee_id"/>
+                <field name="target_amt"/>
+                <field name="so_total_amt"/>
+                <field name="recieved_payment"/>
+                <field name="incentive_amt"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="incentive_menu_reta"
+              name="Incentives"
+              parent="eenadu_reta.parent_reta_application"
+              sequence="30"/>
+
+    <menuitem id="unit_incentive_reta" name="Unit Incentives" action="incentive_action_window" parent="incentive_menu_reta" sequence="1"/>
+
+    <menuitem id="employee_incentive_reta" name="Employee Incentives" action="employee_incentive_action_window" parent="incentive_menu_reta" sequence="2"/>
+
+    <!--    for Classified module-->
+
+    <record id="employee_incentive_classifieds_action_window" model="ir.actions.act_window">
+        <field name="name">Employee Incentives</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.incentive.line.classified</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <h1>Employee Incentives</h1>
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id='employee_incentives_classifieds_tree_view'>
+        <field name="name">Employee Incentives</field>
+        <field name="model">partner.incentive.line.classified</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="employee_id"/>
+                <field name="target_amt"/>
+                <field name="so_total_amt"/>
+                <field name="recieved_payment"/>
+                <field name="incentive_amt"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="incentive_action_window_classified" model="ir.actions.act_window">
+        <field name="name">Incentives</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.incentive</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('classified','=',True)]</field>
+        <field name="context">{'default_classified':True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <h1>Incentives</h1>
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="incentive_menu_classified"
+              name="Incentive"
+              parent="eenadu_classified.parent_classified_sale_order"
+              sequence="30"/>
+
+    <menuitem id="unit_incentive_classifeds" name="Unit Incentives" action="incentive_action_window_classified" parent="incentive_menu_classified" sequence="1"/>
+
+    <menuitem id="employee_incentive_classifieds" name="Employee Incentives" action="employee_incentive_classifieds_action_window" parent="incentive_menu_classified" sequence="2"/>
+
+    <record id="action_reta_dashboard_incentive" model="ir.actions.server">
+        <field name="name">Incentives</field>
+        <field name="model_id" ref="model_partner_incentive_line"/>
+        <field name="state">code</field>
+        <field name="code">action = model.reta_dashboard_incentive()</field>
+    </record>
+    <record id="action_classified_dashboard_incentive" model="ir.actions.server">
+        <field name="name">Incentives</field>
+        <field name="model_id" ref="model_partner_incentive_line"/>
+        <field name="state">code</field>
+        <field name="code">action = model.classifier_dashboard_incentive()</field>
+    </record>
+
+
+</odoo>

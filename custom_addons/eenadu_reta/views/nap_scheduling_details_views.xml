@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="nap_scheduling_details_tree" model="ir.ui.view">
+        <field name="name">nap.scheduling.details.tree</field>
+        <field name="model">nap.scheduling.details</field>
+        <field name="arch" type="xml">
+            <tree  create="0">
+                <field name="source"/>
+                <field name="ad_sequence"/>
+                <field name="product_id"/>
+                <field name="name" invisible="1"/>
+                <field name="length" invisible="1"/>
+                <field name="width" invisible="1"/>
+                <field name="size"/>
+                <field name="publication_ids"/>
+                <field name="page" invisible="1"/>
+                <field name="page_no"/>
+                <field name="ad_position"/>
+                <field name="publish_date"/>
+                <field name="scheduling_status"/>
+<!--                <field name="rejected_reason"/>-->
+                <field name="scheduling_line_id"/>
+                <field name="region_ids"/>
+                <field name="publication_id"/>
+                <field name="scheduling_lines" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="nap_scheduling_details_form" model="ir.ui.view">
+        <field name="name">nap.scheduling.details.form</field>
+        <field name="model">nap.scheduling.details</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                     <field name="scheduling_status" widget="statusbar" statusbar_visible="approved,rejected"/>
+                    <button name="action_approve_schedule" string="Approve" type="object" icon='fa-check'/>
+                    <button name="%(action_update_schedule_view)d" string="Update Schedule" type="action"
+                            icon='fa-pencil-square-o'/>
+                    <button name="open_position_help" string='Position Help' type='object' icon='fa-info'/>
+
+                </header>
+                <sheet>
+                    <group col="2">
+                        <group col="1">
+                            <field name="ad_sequence" readonly="1"/>
+                            <field name="customer_id" force_save="1" readonly="1"/>
+                            <field name="publication_id" />
+                            <field name="product_id"/>
+                            <field name="name"/>
+                            <field name="length" invisible="1"/>
+                            <field name="width" invisible="1"/>
+                            <field name="size" readonly="1"/>
+                            <field name="publication_ids" widget='many2many_tags' readonly="1"/>
+                            <field name="region_ids" widget='many2many_tags' readonly="1"/>
+                            <field name="page_no"/>
+                            <field name="ad_position"/>
+                            <field name="publish_date"/>
+                            <field name="rejected_reason"/>
+                            <field name="scheduling_line_id" readonly="1"/>
+                            <field name="scheduling_lines" readonly="1" invisible="1"/>
+                        </group>
+                        <group col="2">
+                            <field name="agent_id" force_save="1" readonly="1"/>
+                            <field name="page" invisible="1"/>
+                            <field name="max_credit_limit" readonly="1"/>
+                            <field name="agent_type_id" readonly="1"/>
+                            <field name="ins_code" readonly="1"/>
+                            <field name="ins_region" readonly="1"/>
+                            <field name="agency_start_date" readonly="1"/>
+                            <field name="deposit_amount" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_nap_scheduling_details" model="ir.actions.act_window">
+        <field name="name">NewsPaper Advertisement Program</field>
+        <field name="res_model">nap.scheduling.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_application_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_application_wizards" model="ir.actions.report">
+        <field name="name">Application Report</field>
+        <field name="model">hrms.application</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.application_report</field>
+        <field name="report_file">employee_life_cycle.application_report</field>
+        <field name="binding_model_id" ref="model_hrms_application"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_extension_report"/>
+    </record>
+
+    <data>
+        <template id="application_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify; border-color:1px solid black;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="width:60%; text-align:right; font-size:130%; border:none; border-collapse:collapse;"
+                                        rowspan="2" colspan="2">
+                                        <b>APPLICATION FORM</b>
+                                    </td>
+                                    <td style="width:30%; text-align:left; font-size:130%;"><span style="margin-left:10px;">Post Applied for:</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:30%; text-align:left; font-size:130%;"><span style="margin-left:10px;">Reference No:</span></td>
+                                </tr>
+                            </table>
+                            <style>
+                                tr
+                                {
+                                height:50px;
+                                }
+                            </style>
+                            <div class="page">
+                                <table style="width:100%;border:1px solid block;">
+                                    <tr>
+                                        <td colspan="4" style="width:70%;">
+                                            <span style="margin-left:4px;">Name in Block Letters:</span>
+                                            <span style="margin-left:60px;">First Name</span>
+                                            <span style="margin-left:60px;">Last Name</span>
+                                        </td>
+                                        <td rowspan="4" >
+                                            <span style="margin-left:10px;">Affix Latest<br/>Photograph<br/>(3.5X2.5cm)</span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="width:70%;">
+                                            <span style="margin-left:4px;">Date Of Birth:</span>
+                                            <span style="margin-left:80px;">Age:</span>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="width:70%;">
+                                            <span style="margin-left:4px;">Place Of Birth:</span>
+                                            <span style="margin-left:80px;">Place Of Origin:</span>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td >
+                                            <span style="margin-left:8px;">Sex:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Male:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Female:</span>
+                                        </td>
+                                        <td >
+                                            <span style="margin-left:8px;">Marital Status:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Single:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Married:</span>
+                                            <br/>
+                                        </td>
+                                        <td >
+                                            <span style="margin-left:8px;">Height:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Weight:</span>
+                                            <br/>
+                                        </td>
+                                        <td >
+                                            <span style="margin-left:8px;">Eye Sight:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Left:</span>
+                                            <br/>
+                                            <span style="margin-left:8px;">Right:</span>
+                                            <br/>
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                </table>
+                                <table style="width:100%; ">
+                                    <tr>
+                                        <td style="width:50%;  ">
+                                            <span style="margin-left:6px;">Permanent Address:</span>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <span style="margin-left:6px;">Phone:</span>
+                                        </td>
+                                        <td style="width:50%; ">
+                                            <span style="margin-left:6px;">Present Address:</span>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <span style="margin-left:6px;">Phone:</span>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <span style="margin-left:6px;">Email:</span>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <table style="width:100%; ">
+                                    <tr>
+                                        <td style="font-size:90%; margin-left:4px;"><span style="margin-left:10px;">Particulars of Family
+                                            Members:</span>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                                <head>
+                                    <style>
+                                        table,th,td {
+                                        border:1px solid black;
+                                        font-size:90%;
+                                        width:100px;
+                                        height:20px;
+
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <table style="align:center; width:100%; height:10px;">
+                                        <tr style="height:40px;">
+                                            <th rowspan="2" style="width:8%; padding: 10px; ">Members
+                                            </th>
+                                            <th rowspan="2" style="width:40%; ">Name</th>
+                                            <th rowspan="2" style="width:15%; ">Date Of Birth</th>
+                                            <th rowspan="2" style="width:10%; ">Occupation</th>
+                                            <th rowspan="2" style="width:15%; ">Monthly Income</th>
+                                            <th rowspan="2" style="width:12%; ">Residing Place</th>
+                                        </tr>
+                                    </table>
+
+                                    <table style="align:center; width:100%; height:400px;">
+                                        <tr>
+                                            <td rowspan="2" style="width:10%;   margin-left:10px;"><br/><br/>Spouse
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                Children
+                                                <br/>
+                                                <br/>1<br/><br/>2<br/><br/>3
+                                                <br/><br/>
+                                                Father
+                                                <br/>
+                                                <br/>Mother<br/><br/>Brothers
+                                                <br/><br/>
+                                                <br/>1<br/><br/>2<br/><br/>3
+                                                <br/><br/>
+                                                Sisters
+                                                <br/><br/>
+                                                <br/>1<br/><br/>2<br/><br/>3
+                                                <br/><br/>
+                                            </td>
+                                            <td rowspan="2" style="width:38%;"></td>
+                                            <td rowspan="2" style="width:14%;"></td>
+                                            <td rowspan="2" style="width:12%;"></td>
+                                            <td rowspan="2" style="width:13%;"></td>
+                                            <td rowspan="2" style="width:13%;"></td>
+                                        </tr>
+                                    </table>
+                                </body>
+                            </div>
+                            <p style="page-break-before:always"/>
+                            <head>
+                                <style>
+                                    table{
+                                    width:100%;
+                                    border-color:1px solid black;
+                                    height:20px;
+                                    padding:11px;
+                                    text-align:center;
+                                    }
+                                    tr,td{
+                                    height:15px;
+                                    padding:11px;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <table>
+                                    <tr style="text-align:left;">
+                                        <td colspan="2">Details of self/joint property and annual income derived from
+                                            them:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>House/Flat/Plot:</td>
+                                        <td style="text-align:left;">Agriculture Land:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Other
+                                            sources,if any:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:100px;"></td>
+                                        <td style="height:100px;"></td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>Languages Known</td>
+                                        <td>Speak</td>
+                                        <td>Read</td>
+                                        <td>Write</td>
+                                        <td>Blood Group</td>
+                                        <td>Marks of Identification</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">1.</td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="text-align:left; margin-right:30px;">1.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left; margin-right:15px;">2.</td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left; margin-right:15px;">3.</td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="height:20px;"></td>
+                                        <td style="text-align:left; margin-right:15px;">2.</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">4.</td>
+                                        <td style="height:30px;"></td>
+                                        <td style="height:30px;"></td>
+                                        <td style="height:30px;"></td>
+                                        <td style="height:30px;"></td>
+                                        <td style="height:30px;"></td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr style="text-align:left; padding-top:10px;">Acadamic Qualifications(Including
+                                        Professional and Technical):
+                                    </tr>
+                                    <td rowspan="2">Course(s)<br/>studied
+                                    </td>
+                                    <td rowspan="2">Name &amp; place of the<br/>Institution
+                                    </td>
+                                    <td rowspan="2">Affiliated to<br/>Board/University
+                                    </td>
+                                    <td colspan="2">Period of Study</td>
+                                    <td rowspan="2">Year of<br/>passing
+                                    </td>
+                                    <td rowspan="2">%<br/>Marks
+                                    </td>
+                                    <td rowspan="2">Optional<br/>Subject(s)
+                                    </td>
+                                    <tr>
+                                        <td>From</td>
+                                        <td>To</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                        <td style="height:250px;"></td>
+                                    </tr>
+                                </table>
+
+
+                                <div style="width:100%; height:80px; border:1px solid black; padding:3px;">If any of the
+                                    was/were done in parts,or if any break occurred in Educational career,give details
+                                    and reasons there of:
+                                </div>
+                                <div style="width:100%; height:80px; border:1px solid black; padding:3px;">Give details
+                                    of Prizes,Medals,Scholarships, If any,received during your Educational career.
+                                </div>
+                                <div style="width:100%; height:80px; border:1px solid black; padding:3px;">Details of
+                                    Extra cultural activities, both past and present.
+                                </div>
+                                <table>
+                                    <tr style="text-align:left; height:40px;">Particulars of previous
+                                        Employment(Including Sandwich Training):
+                                    </tr>
+                                    <td rowspan="2">Name &amp; Address of the<br/>Organisation or Establishment
+                                    </td>
+                                    <td rowspan="2">Designation</td>
+                                    <td colspan="2">Period of Employment</td>
+                                    <td rowspan="2">Last salary<br/>drawn
+                                    </td>
+                                    <td rowspan="2">Deatils of<br/>duties
+                                    </td>
+                                    <tr>
+                                        <td>From</td>
+                                        <td>To</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:300px;"></td>
+                                        <td style="height:300px;"></td>
+                                        <td style="height:300px;"></td>
+                                        <td style="height:300px;"></td>
+                                        <td style="height:300px;"></td>
+                                        <td style="height:300px;"></td>
+                                    </tr>
+                                </table>
+                                <div style="width:100%; height:100px; border:1px solid black; padding:6px;">Were there
+                                    any noticeable achievements in your employment career?
+                                </div>
+                                <div style="width:100%; height:100px; border:1px solid black; padding:6px;">Was any
+                                    disciplinary action taken against you? Were you ever discharged or dismissed?
+                                </div>
+                                <div style="width:100%; height:100px; border:1px solid black; padding:6px;">If you are
+                                    engaged in any trade,business,profession or part-time job,give details
+                                </div>
+                                <div style="width:100%; height:100px; border:1px solid black; padding:6px;">Reason for
+                                    seeking job with us:
+                                </div>
+                                <div style="width:100%; height:110px; border:1px solid black; padding:6px;">Do you have
+                                    any relations or friends in our organisation.
+                                    <br/>
+                                    <br/>
+                                    <input type="checkbox" id="a1">
+                                        <label for="a1">Yes</label>
+                                    </input>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<input
+                                            type="checkbox" id="a2">
+                                        <label for="a2">No</label>
+                                    </input>
+                                    <br/>
+                                    <br/>If yes,Give details
+                                </div>
+                            </body>
+                            <table style="height:40px;">
+                                <td style="width:50%; text-align:left; height:40px; padding-top:10px;">
+                                    Minimum salary acceptable:
+                                </td>
+                                <td style="width:50%; text-align:center; height:40px; padding-top:10px;">
+                                    Time required to join duty:
+                                </td>
+                            </table>
+                            <p style="page-break-before:always"/>
+                            <div style="width:100%; height:110px; border:1px solid black; padding:6px;">Are you
+                                associated with a member or A member of any professional body? If yes, Give details.
+                            </div>
+                            <div style="width:100%; height:110px; border:1px solid black; padding:6px;">If you are
+                                associated with any cultural,social,literary or religious organisation or
+                                association,give details.
+                            </div>
+                            <div style="width:100%; height:110px; border:1px solid black; padding:6px;">Have you ever
+                                been prosecuted / Involved i court proceedings? if yes,give details.
+                            </div>
+                            <div style="width:100%; height:110px; border:1px solid black; padding:6px;">Did you suffer
+                                from any serious illness? Do you have any physical defects?
+                            </div>
+                            <table>
+                                <tr style="padding-top:5px;">Give two references:(preferably outsiders )</tr>
+                                <td>s.no</td>
+                                <td>Name</td>
+                                <td>Occupation &amp; Address</td>
+                                <td>Years known</td>
+                                <tr>
+                                    <td style="height:120px;"></td>
+                                    <td style="height:120px;"></td>
+                                    <td style="height:120px;"></td>
+                                    <td style="height:120px;"></td>
+                                </tr>
+                            </table>
+                            <div style="width:100%; height:140px; border:1px solid black; padding:6px;">Any additional
+                                facts about yourself or your family background which you would like to furnish.
+                            </div>
+                            <div style="width:100%; height:140px; border:1px solid black; padding:6px;">I hereby declare
+                                that the information given in this form is true and nothing is withheld . i further
+                                agree that if I am employed by the company and if it is found subsequently that any of
+                                the details furnished herein are found to be false and/or that i have suppressed any
+                                information, the company has every right to terminate my services at once.
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div>Date:
+                                    <b>...........</b>
+                                    <span style="padding-left:200px;">Signature:
+                                        <b>................</b>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template_supervisor" xml:space="preserve">
+    <t t-name="DashboardSupervisor">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+        </div>
+    </t>
+
+    <t t-name="DashboardMain">
+        <section class="dashboard_main" id="main_section">
+       <div class="col-sm-12 mb-4">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-8">
+                   <h2 class="section-header">Dashboard</h2>
+               </div>
+               <!--      Tiles    -->
+               <div class='row spacer_row'>
+
+                    <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_total'>
+                            <div>
+                                <div class="card_header hdr1_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-book" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Total Requisitions YTOD</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_no_records"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_new'>
+                            <div>
+                                <div class="card_header hdr2_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-save" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">No. of New Requisitions Raised</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_news"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_submit'>
+                            <div>
+                                <div class="card_header hdr3_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-user" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Requisitions pending for HOD Approval</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_submits"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_hod'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Requisitions pending for Finance Approval</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_hods"> </div>
+                            </div>
+                        </div>
+                   </div>
+               </div>
+
+               <div class="row spacer_row">
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_fin'>
+                            <div>
+                                <div class="card_header hdr5_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-male" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Requisitions pending for HR Approval</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_finances"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+
+
+                       <!--                       <div class="col-md-3 col-sm-5 req_hr oh-data" style="font-size:40px">-->
+                       <!--                           <div class="oh-card" style="width: 288px;background:lightgrey;cursor: pointer;">-->
+                       <!--                               <div class="oh-card-body">-->
+                       <!--                                   <div class="stat-widget-one">-->
+                       <!--                                       <div class="stat-icon">-->
+                       <!--                                           <i class="fa fa-male" style="font-size:30px"/>-->
+                       <!--                                       </div>-->
+                       <!--                                       <div class="stat-content">-->
+                       <!--                                           <div class="stat-head" style="font-size: 20px;text-align:center;font-weight: bold;">Total Requisitions HR Submitted</div>-->
+                       <!--                                           <div class="stat_count" style="font-size: 20px;text-align:center;">-->
+                       <!--                                               <span id="total_hrs">-->
+                       <!--                                                   <div id="total_hr"/>-->
+                       <!--                                               </span>-->
+                       <!--                                           </div>-->
+                       <!--                                       </div>-->
+                       <!--                                   </div>-->
+                       <!--                               </div>-->
+                       <!--                           </div>-->
+                       <!--                       </div>-->
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_approve'>
+                            <div>
+                                <div class="card_header hdr6_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-check-square-o" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Total Requisitions Approved</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_no_approved"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_reject'>
+                            <div>
+                                <div class="card_header hdr4_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-times-circle-o" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Total Requisitions Rejected</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_rejects"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_fin_exempt'>
+                            <div>
+                                <div class="card_header hdr8_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-minus-square" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Requisitions Exempted from Finance Approval</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_finance_exempts"> </div>
+                            </div>
+                        </div>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+   </section>
+    </t>
+    <!--                               <div class="oh-card-body">-->
+    <!--                                   <div class="stat-widget-one">-->
+    <!--                                       <div class="stat-icon" style="background:lightblue;">-->
+    <!--                                           <i class="fa fa-book" style="font-size:15px;font-weight: bold;"/>  <span style="font-size:15px;font-weight:bold;text-align:center;">Total Requisitions YTOD</span>-->
+    <!--                                       </div>-->
+    <!--                                       <div class="stat-content">-->
+    <!--&lt;!&ndash;                                           <div class="stat-head" style="font-size: 20px;text-align:center;font-weight: bold;"></div>&ndash;&gt;-->
+    <!--                                           <div class="stat_count" style="font-size: 20px;text-align:center;">-->
+    <!--                                               <span id="total_records">-->
+    <!--                                                   <div id="total_no_records"/>-->
+    <!--                                               </span>-->
+    <!--                                           </div>-->
+    <!--                                       </div>-->
+    <!--                                   </div>-->
+    <!--                               </div>-->
+</templates>

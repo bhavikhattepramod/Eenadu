@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="publication_details_form_view" model="ir.ui.view">
+		<field name="name">publication.details.form</field>
+		<field name="model">publication.details</field>
+		<field name="arch" type="xml">
+			<form string="Publication Details">
+				<sheet>
+					<group>
+						<group>
+							<field name = 'name' required="1"/>
+							<field name = 'is_default_publication'/>
+						</group>
+						<group>
+							<field name = 'related_publications' widget='many2many_tags'/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="publication_details_tree_view" model="ir.ui.view">
+		<field name="name">publication.details.tree</field>
+		<field name="model">publication.details</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'name' />
+				<field name = 'related_publications' widget='many2many_tags'/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_publication_details_view" model="ir.actions.act_window">
+		<field name="name">Publication Details</field>
+		<field name="res_model">publication.details</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Publications" id="menu_publication_details" parent="sales_person_target.menu_reta_configuration_scheme" action="action_publication_details_view" sequence="20"/>
+
+	
+
+</odoo>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="stock_picking_transport" model="ir.ui.view">
+        <field name="name">stock.picking.inheritance</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='operations']" position="after">
+                <page name="transport_route" string="Transport Route"
+                      attrs="{'invisible':[('picking_type_code','!=','outgoing')]}">
+                    <field name="transport_route">
+                        <tree editable="bottom">
+                            <field name="src_location"/>
+                            <field name="des_location"/>
+                            <field name="distance"/>
+                            <field name="hours"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="transporter_details" string="Transport Entry Details"
+                      attrs="{'invisible':[('picking_type_code','!=','outgoing')]}">
+                    <field name="transport_entry_details">
+                        <tree editable="bottom">
+                            <field name="picking"/>
+                            <field name="vehicle"/>
+                            <field name="transporter"/>
+                            <field name="location"/>
+                            <field name="src_location"/>
+                            <field name="des_location"/>
+                            <field name="distance"/>
+                            <field name="hours"/>
+                            <field name="hand_off_id"/>
+                            <field name="hand_off_date_time"/>
+                            <field name="no_of_parcels"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="transport_entry_action">
+        <field name="name">Transport Routes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transport.entry.details</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p id="view_no_content">
+                Transport Entry Details
+            </p>
+        </field>
+    </record>
+
+    <record id="transport_entry_tree" model="ir.ui.view">
+        <field name="name">Transport Routes tree</field>
+        <field name="model">transport.entry.details</field>
+        <field name="arch" type="xml">
+            <tree create="0" decoration-success="state=='drop'" decoration-danger="state=='waiting'"
+      decoration-info="state=='picked'">
+<!--                <field name="picking" invisible="1"/>-->
+                <field name="agent_name" readonly="1"/>
+                <field name="agent_number" readonly="1"/>
+                <field name="vehicle" readonly="1"/>
+                <field name="transporter" string="Unit" readonly="1"/>
+                <field name="location" string="Drop Location" readonly="1"/>
+                <field name="route_type" readonly="1"/>
+                <field name="src_location" readonly="1"/>
+                <field name="des_location" readonly="1"/>
+                <field name="hand_off_id" readonly="1"/>
+                <field name="hand_off_date_time" readonly="1"/>
+                <field name="distance" readonly="1"/>
+                <field name="hours" readonly="1"/>
+                <field name="no_of_parcels"/>
+                <field name="state" readonly="True" decoration-success="state=='drop'"
+                       decoration-danger="state=='waiting'"
+                       decoration-info="state=='picked'" widget="badge"/>
+                <button name="waiting_to_picked" type="object" string="Picked"
+                        attrs="{'invisible':[('state','!=','waiting')]}" class="btn-primary"/>
+                <button name="picked_to_drop" type="object" string="Drop"
+                        attrs="{'invisible':[('state','!=','picked')]}" class="btn-primary"/>
+                <!--                <field name="parcels_no"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="transport_entry_form" model="ir.ui.view">
+        <field name="name">Transport Routes tree</field>
+        <field name="model">transport.entry.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+<!--                        <field name="picking" readonly="1"/>-->
+                        <field name="agent_name" readonly="1"/>
+                        <field name="agent_number" readonly="1"/>
+                        <field name="vehicle" readonly="1"/>
+                        <field name="transporter" string="Unit" readonly="1"/>
+                        <field name="location" string="Drop Location" readonly="1"/>
+                        <field name="route_type" readonly="1"/>
+                        <field name="src_location" readonly="1"/>
+                        <field name="des_location" readonly="1"/>
+                        <field name="hand_off_id" readonly="1"/>
+                        <field name="hand_off_date_time" readonly="1"/>
+                        <field name="distance" readonly="1"/>
+                        <field name="hours" readonly="1"/>
+                        <field name="no_of_parcels"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="transport_entry_main_menu"
+              parent="transportation_main_menu"
+              name="Picking Transport Entry"
+              sequence="0"/>
+
+    <menuitem id="transport_entry_details"
+              parent="transport_entry_main_menu"
+              name="Picking Transport Entry"
+              action="transport_entry_action"
+              sequence="0"/>
+
+
+    <record id="res_partner_form_transport" model="ir.ui.view">
+        <field name="name">res.partner.inheritance</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='from_place']" position="replace">
+                <field name="from_place_id"/>
+            </xpath>
+            <xpath expr="//field[@name='to_place']" position="replace">
+                <field name="to_place_id"/>
+            </xpath>
+            <xpath expr="//field[@name='segment_agents']" position="after">
+                <field name="agent_loc" attrs="{'invisible':[('is_newsprint_agent','!=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="printing_unit" model="ir.ui.view">
+        <field name="name">custom.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="res_unit" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}"/>
+                <field name="vehicle_id" attrs="{'invisible':[('picking_type_code','!=','outgoing')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_confirm_hand_off" model="ir.actions.server">
+        <field name="name">Hand Off</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="binding_model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">records.hand_off_sequence()</field>
+    </record>
+
+    <record id="hand_off_sequence" model="ir.sequence">
+        <field name="name">Hand Off</field>
+        <field name="code">hand.off.sequence</field>
+        <field name="prefix">/Hand-off/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record model="ir.ui.view" id="view_stock_picking_vehicle_tree_inherit">
+        <field name="name">Stock Picking Inherit View</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_stock_picking_vehicle_search_inherit">
+        <field name="name">Stock Picking Inherit View</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="vehicle_id" string="Vehicle"/>
+                <filter name="group_by_vehicle_id" string="Vehicle" context="{'group_by':'vehicle_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock.action_picking_tree_all" model="ir.actions.act_window">
+        <field name="search_view_id" ref="stock.view_picking_internal_search"></field>
+        <!--        use the name of filter to default group-->
+        <field name="context">{'search_default_group_by_vehicle_id': 1,'contact_display': 'partner_address',
+            'default_company_id': allowed_company_ids[0]}
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_stock_picking_vehicle_tree_inherit">
+        <field name="name">Stock Picking Inherit View</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

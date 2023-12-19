@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--form-->
+    <record id="form_dev_job_position_request" model="ir.ui.view">
+        <field name="name">form.dev.job.position.request</field>
+        <field name="model">job.position.request</field>
+        <field name="arch" type="xml">
+            <form string="Job Position Request Form">
+                <header>
+                    <button name="form_submit" type="object" string="Submit" states="new" class="oe_highlight"/>
+                    <button name="hod_approve_request_wizard" type="object" string="Hod Approve" states="submit"
+                            class="oe_highlight" groups="hide_menu.view_hod_group"/>
+                    <button name="reject_request_wizard" type="object" string="Reject" states="submit"
+                            groups="hide_menu.view_hod_group"/>
+                    <button name="approve_finance_wizard" type="object" string="Finance Approve" states="hod_approve"
+                            class="oe_highlight" groups="hide_menu.view_head_and_finance_group"/>
+                    <button name="reject_request_wizard" type="object" string="Reject" states="hod_approve"
+                            groups="hide_menu.view_head_and_finance_group"/>
+                    <button name="hr_approve_request_wizard" type="object" string="Hr Approve" states="finance_approve"
+                            class="oe_highlight"
+                            groups="hide_menu.view_hr_admin_group"/>
+                    <button name="reject_request_wizard" type="object" string="Reject" states="finance_approve"
+                            groups="hide_menu.view_hr_admin_group"/>
+                    <button name="hr_approve_request_wizard" type="object" string="Hr Approve" states="finance_exempt"
+                            class="oe_highlight" groups="hide_menu.view_hr_admin_group"/>
+                    <button name="reject_request_wizard" type="object" string="Reject" states="finance_exempt"
+                            groups="hide_menu.view_hr_admin_group"/>
+                    <button name="set_to_new" type="object" string="Set to New" states="rejected"
+                            groups="hide_menu.view_hod_group,hide_menu.view_head_and_finance_group,hide_menu.view_hr_admin_group,hr_recruitment.group_hr_recruitment_manager"/>
+
+                    <field name="state" widget="statusbar"/>
+<!--                    <field name="state1" widget="statusbar" attrs="{'invisible': [('finance_exempted', '=', False)]}"/>-->
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box_job">
+                        <button name="view_job_position"
+                                type="object"
+                                string="Job Position"
+                                class="oe_stat_button"
+                                icon="fa-external-link"
+                                attrs="{'invisible':[('job_id', '=', False)]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                        </h1>
+                        <h2 class="o_row">
+                            <div>
+                                <field name="sequence" style="width: 30%%"/>
+                            </div>
+                        </h2>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"
+                                   attrs="{'readonly': [('state','in', ['approved','rejected'])]}"/>
+                            <field name="expected_new_employees"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="emp_type"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="unit_place_ids"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"
+                                   widget="many2many_tags"/>
+                            <field name="department_id" groups="hr_recruitment.group_hr_recruitment_manager"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="expected_date"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="job_experience"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="multiple_skill_ids"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"
+                                   widget="many2many_tags"/>
+                            <field name="contract_type"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <!--                            # attrs="{'readonly': [('state', '!=', 'new')]}"/>-->
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="finance_badge" widget="badge" invisible="1"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="finance_exempted"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <label for="employee_id" string="Requested By Employee Code"/>
+                            <div class="address_format">
+                                <field name="employee_id" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"
+                                  style="width: 40%" attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                                <field name="employee_name_val" style="width: 60%"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            </div>
+                            <label for="onrefer_id" string="Requested (On Behalf) Employee Code"/>
+                            <div class="address_format">
+                                <field name="onrefer_id" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"
+                                  style="width: 40%" attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                                <field name="onrefer_name" style="width: 60%"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            </div>
+
+                            <!--                            <field name="employment_type" attrs="{'readonly': [('state', '!=', 'new')]}"/>-->
+                            <field name="request_emp"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="reason_require"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                            <field name="descrip"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])],'invisible': [('reason_require', '!=', 'others')]}"/>
+                            <field name="qualifications_ids"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"
+                                   widget="many2many_tags"/>
+                            <field name="type_hours"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','!=','hourly')] }" widget="radio"/>
+                            <field name="amount"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','!=','hourly')] }"/>
+                            <label for="salary_min_range" string="Minimum (₹)" attrs="{'invisible': [('contract_type','=','hourly')]}"/>
+                            <div class="address_format">
+                                <field name="salary_min_range"
+                                       attrs="{'readonly': [('state', 'in', ['approved','rejected'])], 'invisible': [('contract_type','=','hourly')]}"
+                                       style="width:90px;"/>
+                                <field name="salary_type_min" style="width:110px;" placeholder="Salary Type"
+                                       nolabel="1" attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','=','hourly')] }"/>
+                                <field name="wages_min" style="width:90px;" nolabel="1" attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','=','hourly')] }"/>
+                            </div>
+                            <label for="salary_max_range" string="Maximum (₹)" attrs="{'invisible': [('contract_type','=','hourly')]}"/>
+                            <div class="address_format">
+                                <field name="salary_max_range"
+                                       attrs="{'readonly': [('state', 'in', ['approved','rejected'])], 'invisible': [('contract_type','=','hourly')]}"
+                                       style="width:90px;"/>
+                                <field name="salary_type_max" style="width:110px;" placeholder="Salary Type" attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','=','hourly')] }"/>
+                                <field name="wages_max" style="width:90px;" attrs="{'readonly': [('state', 'in', ['approved','rejected'])],
+                                   'invisible': [('contract_type','=','hourly')] }"/>
+                            </div>
+                            <field name="job_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                        </page>
+                        <page name="remarks" string="Additional Remarks">
+                            <field name="remarks"
+                                   attrs="{'readonly': [('state', 'in', ['approved','rejected'])]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh' : 'recipients'}" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--Tree-->
+    <record id="tree_dev_job_position_request" model="ir.ui.view">
+        <field name="name">tree.dev.job.position.request</field>
+        <field name="model">job.position.request</field>
+        <field name="arch" type="xml">
+            <tree string="Job Position Request Tree"
+                  decoration-muted="state == 'new'"
+                  decoration-warning="state in  ('hr_approve', 'hod_approve','finance_approve')"
+                  decoration-success="state in ('approved')"
+                  decoration-danger="state == 'rejected'">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'new'"
+                       decoration-warning="state in ('hr_approve', 'hod_approve','finance_approve')"
+                       decoration-success="state in ('approved')"
+                       decoration-danger="state=='rejected'"/>
+                <field name="finance_badge" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--search view-->
+    <record id="search_dev_job_position_request" model="ir.ui.view">
+        <field name="name">search.dev.job.position.request</field>
+        <field name="model">job.position.request</field>
+        <field name="arch" type="xml">
+            <search string="Job Position Request Search">
+                <field name="employee_id"/>
+                <filter string="New" domain="[('state', '=', 'new')]" name="new_filter"/>
+                <filter string="Submit" domain="[('state', '=', 'submit')]" name="submit_filter"/>
+                <filter string="Hod Approve" domain="[('state', '=', 'hod_approve')]" name="hod_approve_filter"/>
+                <filter string="Finance Approve" domain="[('state', '=', 'finance_approve')]"
+                        name="finance_approve_filter"/>
+                <filter string="Hr Approve" domain="[('state', '=', 'hr_approved')]" name="hr_approve_filter"/>
+                <filter string="Approved" domain="[('state', '=', 'approved')]" name="approved_filter"/>
+                <filter string="Rejected" domain="[('state', '=', 'rejected')]" name="rejected_filter"/>
+                <group expand="0" string="Group By">
+                    <filter name="employee_id" string="Employee" context="{'group_by':'employee_id'}"/>
+                </group>
+                <group expand="0" string="Group By">
+                    <filter name="job_status" string="Status" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <!--Action-->
+    <record id="action_dev_job_position_request" model="ir.actions.act_window">
+        <field name="name">Manpower Requisition</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--Menus-->
+    <menuitem name="Manpower requisition"
+              id="menu_job_position_request"
+              parent="hr_recruitment.menu_hr_recruitment_root"
+              action="action_dev_job_position_request"
+              sequence="3"/>
+</odoo>

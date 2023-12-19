@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="mrv_template_form_view" model="ir.ui.view">
+        <field name="name">MRV Template</field>
+        <field name="model">mrv.template</field>
+        <field name="arch" type="xml">
+            <form string=" MRV Template">
+                <sheet>
+                    <group>
+                        <field name='agency_code' required="1"/>
+                        <field name='agency_name' required="1"/>
+                        <field name='previous_arrears' required="1"/>
+                        <field name='classified_advt'/>
+                        <field name='display_advt'/>
+                        <field name='digital'/>
+                        <field name='receipts'/>
+                        <field name='late_payments'/>
+                        <field name='disputed_amounts'/>
+                        <field name='cheque_dishonoured_amount'/>
+                        <field name='next_month'/>
+                        <field name='next_to_nextmonth'/>
+                        <field name='cash_carry_billing'/>
+                        <field name='upto_3_months'/>
+                        <field name='upto_6_months'/>
+                        <field name='upto_12_months'/>
+                        <field name='over_one_year'/>
+                        <field name='member_code'/>
+                        <field name='member_name'/>
+                        <field name='mrv_no'/>
+                        <field name='record_date'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="mrv_template_tree_view" model="ir.ui.view">
+        <field name="name">MRV Template</field>
+        <field name="model">mrv.template</field>
+        <field name="arch" type="xml">
+            <tree string=" MRV Template">
+                <field name='agency_code' required="1"/>
+                <field name='agency_name' required="1"/>
+                <field name='previous_arrears' required="1"/>
+                <field name='classified_advt'/>
+                <field name='display_advt'/>
+                <field name='digital'/>
+                <field name='receipts'/>
+                <field name='late_payments'/>
+                <field name='disputed_amounts'/>
+                <field name='cheque_dishonoured_amount'/>
+                <field name='next_month'/>
+                <field name='next_to_nextmonth'/>
+                <field name='cash_carry_billing'/>
+                <field name='upto_3_months'/>
+                <field name='upto_6_months'/>
+                <field name='upto_12_months'/>
+                <field name='over_one_year'/>
+                <field name='member_code'/>
+                <field name='member_name'/>
+                <field name='mrv_no'/>
+                <field name='record_date'/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="ir_cron_delete_records" model="ir.cron">
+        <field name="name">Delete Expired Records</field>
+        <field name="model_id" ref="model_mrv_template"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="code">model.cron_delete_records()</field>
+    </record>
+    <record id="action_mrv_template_view" model="ir.actions.act_window">
+        <field name="name">MRV Template</field>
+        <field name="res_model">mrv.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="MRV Template" id="menu_mrv_template" parent="eenadu_reta.parent_reta_application"
+              action="action_mrv_template_view"
+              sequence="28"/>
+
+
+</odoo>

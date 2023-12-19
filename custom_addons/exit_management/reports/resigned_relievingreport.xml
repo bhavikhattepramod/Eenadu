@@ -1,0 +1,213 @@
+<odoo>
+    <data>
+        <template id="service_and_relieving_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <style>
+                                .font{
+                                font-size:25px
+                                }
+                                .pad{
+                                padding-left:30px;
+                                }
+                            </style>
+                            <center style="padding-top:130px;">
+                                <h3>
+                                    <u>
+                                        <b>RESIGNED RELIEVING LETTER</b>
+                                    </u>
+                                </h3>
+                            </center>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="margin-left:400px;" class="font">
+                                <span t-esc="doc.date.strftime('%d,%B,%Y')"/>
+                            </p>
+                            <p class="font">Mr&#160;<span t-field="doc.name_id.employee_id"/>
+                            </p>
+                            <br/>
+                            <p class="font">
+                                <span t-field="doc.name_id.employee_id.street_emp"/>
+                                <span t-field="doc.name_id.employee_id.city_emp"/>
+                                <span t-field="doc.name_id.employee_id.state_id_emp"/>
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="font">Dear Mr
+                                <span t-field="doc.name_id.employee_id"/>
+                            </p>
+                            <br/>
+
+                            <p class="font">This refers to your letter
+                                <span t-field="doc.name_id.date_of_resignation"/>
+                                tendering your resignation
+                                from the services of our Organisation.
+
+                            </p>
+                            <br/>
+                            <p class="font">Under the instructions of Managing Director your resignation has been
+                                accepted and you are relieved of your duties with effect from today i.e.
+                                <span t-esc="doc.date.strftime('%d,%B,%Y')"/>
+                                after the close of working hours.
+
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="font">The Accounts Department has been advised to settle your account.
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p class="font" style="padding-top:30px;">
+                                <b>
+                                    Authorised By :
+                                </b>
+                                <br/>
+                                <b>
+                                    <span t-field="doc.name_id.company_id.director_id"/>
+                                </b>
+                            </p>
+                            <!--                            <&#45;&#45;!! 2 pAGE &ndash;&gt;>-->
+
+                            <p style="margin-left:400px;padding-top:200px;" class="font">
+                                <span t-esc="doc.date.strftime('%d,%B,%Y')"/>
+                            </p>
+                            <h3 style="padding-left:150px;padding-top:35px;">
+                                <b>
+                                    <u>SERVICE CERTIFICATE</u>
+                                </b>
+                            </h3>
+                            <br/>
+                            <p style="padding-top:30px;">
+                                <span class="font pad">
+                                    1. Name
+                                </span>
+                                <span class="font" style="padding-left:160px;">&#8758;</span>
+                                <span class="font" style="padding-left:20px;">
+                                    <span t-field="doc.name_id.employee_id"/>
+                                </span>
+                            </p>
+                            <p>
+                                <span class="font  pad">
+                                    2. Date of Joining
+                                </span>
+                                <span class="font" style="padding-left:62px;">&#8758;</span>
+                                <span class="font" style="padding-left:20px;">
+                                    <span t-field="doc.name_id.date_of_joining"/>
+                                </span>
+                            </p>
+
+                            <p>
+
+                                <span class="font pad">3. Designation at the
+                                </span>
+                                <span class="font" style="padding-left:29px;">&#8758;</span>
+
+                                <span class="font" style="padding-left:20px;">
+                                    <span t-field="doc.name_id.employee_id.job_id"/>
+                                </span>
+                                <br/>
+                                <span class="font" style="padding-left:55px;">Time of joining</span>
+                            </p>
+                            <p>
+                                <span class="font pad">4. Stipend at the
+                                </span>
+                                <span class="font" style="padding-left:77px;">&#8758;</span>
+                                <!--                                <span class="font" style="padding-left:20px;">Rs.945.10 (Rupees Nine Hundred-->
+                                <!--                                </span>-->
+                                <!--                                <br/>-->
+                                <!--                                <span class="font" style="padding-left:20px;">Forty Five and Paise Ten only)</span>-->
+                                <!--                                <br/>-->
+                                <!--                                <span class="font" style="padding-left:20px;">per month</span>-->
+                                <br/>
+                                <span class="font" style="padding-left:55px;">time of Joining</span>
+                            </p>
+                            <p>
+                                <span class="font pad">5. Date of Leaving
+                                </span>
+                                <span class="font" style="padding-left:63px;">&#8758;</span>
+                                <span class="font" style="padding-left:20px;">
+                                    <span t-field="doc.name_id.emp_relieving_date"/>
+                                </span>
+                            </p>
+                            <p>
+                                <span class="font pad">6. Designation at the
+                                </span>
+                                <span class="font" style="padding-left:36px;">&#8758;</span>
+                                <span class="font" style="padding-left:20px;">
+                                    <span t-field="doc.name_id.employee_id.job_id"/>
+                                </span>
+                                <br/>
+                                <span class="font" style="padding-left:55px;">Time of leaving</span>
+                            </p>
+                            <p>
+                                <span class="font pad">7. Salary at the time
+
+                                </span>
+                                <span class="font" style="padding-left:50px;">&#8758;</span>
+                                <!--                                <span class="font" style="padding-left:20px;">Rs.118257.15 (Rupees One Lakh Eighteen-->
+                                <!--                                    Thousand Two Hundred Fifty Seven and Paise Fifteen only) per month-->
+                                <!--                                </span>-->
+                                <br/>
+                                <span class="font" style="padding-left:55px;">of Leaving</span>
+                            </p>
+                            <p>
+                                <span class="font" style="padding-left:26px;">8. Reasons for Leaving
+                                </span>
+                                <span class="font" style="padding-left:30px;">&#8758;</span>
+                            </p>
+                            <p>
+                                <span class="font" style="padding-left:22px;">
+                                    9. Conduct &amp; Character
+                                </span>
+                                <span class="font" style="padding-left:20px;">&#8758;</span>
+                            </p>
+                            <br/>
+                            <p class="font" style="padding-top:40px;">
+                                <b>
+                                    Authorised By :
+                                </b>
+                                <br/>
+                                <b>
+                                    <span t-field="doc.name_id.company_id.director_id"/>
+                                </b>
+                            </p>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="paper_resigned_relieving_letter" model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">28</field>
+            <field name="margin_right">28</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="report_resigned_relieving" model="ir.actions.report">
+            <field name="name">Resigned Relieving</field>
+            <field name="model">resigned.relieving</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">exit_management.resigned_and_relieving_report</field>
+            <field name="report_file">exit_management.resigned_and_relieving_report</field>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paper_resigned_relieving_letter"/>
+        </record>
+    </data>
+</odoo>

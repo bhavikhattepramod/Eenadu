@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_probation_discharge_wizard_form" model="ir.ui.view">
+        <field name="name">Probation.Discharge.Letter</field>
+        <field name="model">probation.discharge.letter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="probation_discharge_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_probation_discharge_report_wizard" model="ir.actions.act_window">
+        <field name="name">Probation Discharge Letter</field>
+        <field name="res_model">probation.discharge.letter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_probation_discharge_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+   <menuitem id="probation_discharge_sub_menu"
+              name="Probation Discharge Letter"
+              parent="employee_life_cycle.employee_life_cycle_menu"
+              action="action_probation_discharge_report_wizard"
+              sequence="100"/>
+</odoo>

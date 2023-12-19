@@ -1,0 +1,36 @@
+<odoo>
+    <data>
+
+        <record id="electronic_department_wizard" model="ir.ui.view">
+            <field name="name">Electronic Department</field>
+            <field name="model">electronic.department</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="namees_id" required="1"/>
+                            </group>
+                            <footer>
+                                <button name="action_print" string="Print" class="btn-primary" type="object"/>
+                                <button string="Cancel" class="btn-default" special="cancel"/>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_electronic_department" model="ir.actions.act_window">
+            <field name="name">Electronic Department</field>
+            <field name="res_model">electronic.department</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="electronic_department_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="electronic_department_menu" name="Electronic Department" action="action_electronic_department" sequence="12" parent="certificates_from_different_departments_menu"/>
+
+    </data>
+</odoo>

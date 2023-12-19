@@ -1,0 +1,142 @@
+<odoo>
+    <data>
+        <template id="report_dcr_template">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <style>
+                        .dashed-line {
+                        border: 1px dashed white;
+                        width: 100%;
+                        height: 0;
+                        }
+                        .table1 {
+                        border: 1px solid black;
+                        }
+                    </style>
+                    <div class="page">
+                        <table width="100%">
+                            <tr>
+                                <td width="30%;" style="text-align:center">
+                                    Zone: HYDERABAD
+                                    <br/>
+                                    RUN DATE:
+                                    <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </td>
+                                <td width="40%;">
+                                    <center>
+                                        USHODAYA PUBLICATIONS
+                                        <br/>
+                                        <span style="padding-right:10px;">ADVERTISEMENT DEPARTMENT
+                                        </span>
+                                        <br/>
+                                        HYDERABAD
+                                    </center>
+                                </td>
+                                <td width="30%;" style="text-align:center;">
+                                    <div style="padding-left:150px;">
+                                        RUN TIME:
+                                        <span t-esc="time.strftime('%H:%M:%S')"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <center>Classified Coll. Register from Retail Ads for :
+                            <span t-esc="time.strftime('%Y-%m-%d')"/>
+                        </center>
+                        <br/>
+                        <br/>
+                        <div class="dashed-line"></div>
+                        <br></br>
+                        <table class="table1" style="border: 1px solid black;">
+                            <tr class="table1">
+                                <table class="innerTable1" style="width:100%;border: 1px solid black;">
+                                    <thead class="table1">
+                                        <th class="table1">Sl.No</th>
+                                        <th class="table1">RcpNo</th>
+                                        <th class="table1">RO/CIO No</th>
+                                        <th class="table1">Ref ID</th>
+                                        <th class="table1">Payment Types</th>
+                                        <th class="table1">Mobile Number</th>
+                                        <th class="table1">PUB</th>
+                                        <th class="table1">SIZE</th>
+                                        <th class="table1">INSDATE</th>
+                                        <th class="table1">RATE</th>
+                                        <th class="table1">GROSS</th>
+                                        <th class="table1">COMM</th>
+                                        <th class="table1">NETAMT</th>
+                                        <th class="table1">COLLAMT</th>
+                                    </thead>
+                                    <t t-foreach="docs" t-as="docc">
+                                        <tr style="text-align:center;" class="table1">
+                                             <td class="table1">
+                                                <t t-esc="docc.id"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.rcp_no"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.ro_cio_no"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.ref.id"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.payment_mode"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.payee_mobile"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.pu_name"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.no_of_lines"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.payment_datetime"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.amount_total"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.payment_amount"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.agent_commission_amount"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.final_amount"/>
+                                            </td>
+                                            <td class="table1">
+                                                <t t-esc="docc.cio_paid_amount"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <record id="dcr_report" model="ir.actions.report">
+            <field name="name">Classified DCR Report</field>
+            <field name="model">dcr.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">eenadu_reports.report_dcr_template</field>
+            <field name="report_file">eenadu_reports.report_dcr_template</field>
+            <field name="binding_model_id" ref="model_dcr_report"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="paperformat_dcr_reportt" model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+        </record>
+    </data>
+</odoo>
+

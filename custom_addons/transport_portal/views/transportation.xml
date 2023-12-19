@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="Printing_units_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Printing Units</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">res.partner</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="view_id" ref="res_partner_tree_printing_unit"/>-->
+<!--        <field name="domain">[('is_printing_unit','=',True)]</field>-->
+<!--        <field name="context">{'default_is_printing_unit':True,'default_is_company':True}</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                <h1>Create Printing Units</h1>-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <menuitem id="transportation_main_menu"
+              name="Transport"
+              sequence="0"/>
+<!--              web_icon="sales_circulation,static/description/icon.png"-->
+<!--              action="sales_circulation_dashboard_action"-->
+<!--              groups="group_sales_circulation_agent,group_sales_circulation_segment_incharge,group_sales_circulation_circulation_incharge,group_sales_circulation_staff_deposit,group_sales_circulation_staff_billing,group_sales_circulation_unit_manager,group_sales_circulation_admin,group_sales_circulation_marketing,group_sales_circulation_billing,group_sales_circulation_head"-->
+    <menuitem id="Transportation_menu"
+              name="Units"
+              sequence="0"
+              parent="transportation_main_menu"
+              action="sales_circulation.Printing_units_action"/>
+<!--              groups="group_sales_circulation_agent,group_sales_circulation_segment_incharge,group_sales_circulation_circulation_incharge,group_sales_circulation_staff_deposit,group_sales_circulation_staff_billing,group_sales_circulation_unit_manager,group_sales_circulation_admin,group_sales_circulation_marketing,group_sales_circulation_billing,group_sales_circulation_head"-->
+
+</odoo>

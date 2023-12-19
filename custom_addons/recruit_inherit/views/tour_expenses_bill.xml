@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="self_service_tour_tree" model="ir.ui.view">
+        <field name="name">tour.expenses.bill.tree</field>
+        <field name="model">tour.expenses.bill</field>
+        <field name="arch" type="xml">
+            <tree string="Tour Expenses Bill">
+                <field name="e_name_tour"/>
+                <field name="e_code_tour"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="self_service_tour_form" model="ir.ui.view">
+        <field name="name">tour.expenses.bill.form</field>
+        <field name="model">tour.expenses.bill</field>
+        <field name="arch" type="xml">
+            <form string="Tour Expenses Bill">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_tour"/>
+                            <field name="designation_tour"/>
+                            <field name="place_of_tour"/>
+                            <field name="started_on"/>
+                            <field name="started_time" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="e_code_tour"/>
+                            <field name="department_tour"/>
+                            <field name="purpose_of_tour"/>
+                            <field name="returned_on"/>
+                            <field name="returned_time" widget="float_time"/>
+                        </group>
+                    </group>
+                    <field name="tour_line_ids">
+                        <tree editable="bottom">
+                            <field name="date_tour"/>
+                            <field name="dep_time" widget="float_time"/>
+                            <field name="place_from"/>
+                            <field name="place_to"/>
+                            <field name="arrival_time" widget="float_time"/>
+                            <field name="mode_of_travel"/>
+                            <field name="fare_tour"/>
+                            <field name="local_tour"/>
+                            <field name="living_tour"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_application_tour_form" model="ir.actions.act_window">
+        <field name="name">Tour Expenses Bill</field>
+        <field name="res_model">tour.expenses.bill</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="self_service_application_tour_menu"
+          name="Tour Expenses Bill"
+          parent="self_service_application_sub_menu_forms"
+          action="action_self_service_application_tour_form"
+          sequence="65"/>
+</odoo>

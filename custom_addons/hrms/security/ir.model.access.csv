@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pf_esi_settings,pf_esi_settings,model_pf_esi_settings,,1,1,1,1
+access_professional_tax,professional_tax,model_professional_tax,,1,1,1,1
+access_shift_management,shift_management,model_shift_management,,1,1,1,1
+access_res_state_line,res_state_line,model_res_state_line,,1,1,1,1
+access_cpi_points,cpi_points,model_cpi_points,,1,1,1,1
+access_cpi_points_line,cpi_points_line,model_cpi_points_line,,1,1,1,1
+
+
+
+
+

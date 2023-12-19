@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="claim_domestic_insurance_form_view" model="ir.ui.view">
+		<field name="name">claim.domestic.insurance.form</field>
+		<field name="model">claim.domestic.insurance</field>
+		<field name="arch" type="xml">
+			<form string="Claim Domestic Insurance">
+				<header>
+					<field name="state" widget="statusbar" />
+					<button name="send_for_claim" string = "Send for Claim" class="btn-primary" type="object" attrs="{'invisible': [('state', '!=', 'new')]}" />
+					<button name="approve_claim" string = "Approve Claim" class="btn-primary" type="object" attrs="{'invisible': [('state', '!=', 'waiting_for_claim')]}" />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name = 'policy_number_id' required="1" />
+							<field name = 'delivery_challan_no_id' required="1" />
+						</group>
+						<group>
+							<field name = 'agent_partner_id' required="1" />
+							<field name = 'vendor_partner_id' required="1" />
+						</group>
+					</group>
+					<notebook>
+						<page string = 'Insurance Details' name = 'insurance_details'>
+							<field name = 'claim_insurance_line_ids'>
+								<tree editable='bottom'>
+									<field name = 'product_id' required="1" />
+									<field name = 'product_qty' required="1" />
+									<field name = 'product_uom_id' required="1" />
+									<field name = 'unit_price' required="1" />
+									<field name = 'price_subtotal' required="1" />
+									<!-- <field name = 'damage_percentage' />
+									<field name = 'damage_description' />
+									<field name = 'policy_amount' />
+									<field name = 'premium_amount' /> -->
+									<field name = 'claim_amount' />
+									<field name = 'currency_id' invisible="1"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="claim_domestic_insurance_tree_view" model="ir.ui.view">
+		<field name="name">claim.domestic.insurance.tree</field>
+		<field name="model">claim.domestic.insurance</field>
+		<field name="arch" type="xml">
+			<tree string="Claim Insurance">
+				<field name='delivery_challan_no_id'/>
+				<field name='agent_partner_id'/>
+				<field name='vendor_partner_id'/>
+				<field name='state'/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_claim_domestic_insurance_view" model="ir.actions.act_window">
+		<field name="name">Claim Domestic Insurance</field>
+		<field name="res_model">claim.domestic.insurance</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Domestic Insurance Claims" id="menu_domestic_insurance_claim" parent="menu_claim_parent" action="action_claim_domestic_insurance_view" groups='custom_purchase.group_newsprint_insurance_user,custom_purchase.group_newsprint_purchase_manager' sequence="1"/>
+
+</odoo>

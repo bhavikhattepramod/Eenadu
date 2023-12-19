@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="extension_of_training_factory_view" model="ir.ui.view">
+            <field name="name">Employee Letter form</field>
+            <field name="model">extension.of.training.factory</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="names_id" required="1"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions window-->
+        <record id="extension_of_training_factory_id" model="ir.actions.act_window">
+            <field name="name">Extension of Training Factory</field>
+            <field name="res_model">extension.of.training.factory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="extension_of_training_factory_view"/>
+            <field name="target">new</field>
+        </record>
+
+          <menuitem id="extension_of_training"
+              name="Extension of Training Factory"
+              parent="employee_life_cycle.employee_life_cycle_menu"
+              action="extension_of_training_factory_id"
+              sequence="100"/>
+
+    </data>
+</odoo>

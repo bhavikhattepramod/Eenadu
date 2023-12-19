@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="wizard_picking_entry_form" model="ir.ui.view">
+        <field name="name">Wizard Picking Entries</field>
+        <field name="model">wizard.picking.entry.dup</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="src_location"/>
+                        <field name="des_location"/>
+                        <field name="route_type"/>
+                        <field name="hand_off_date_times"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_reports" string="Print Report" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!--    <record id="wizard_picking_entry_dup_action" model="ir.actions.act_window">-->
+    <!--        <field name="name">Wizard picking Entries</field>-->
+    <!--        <field name="res_model">wizard.picking.entry.dup</field>-->
+    <!--        <field name="view_mode">form</field>-->
+    <!--        <field name="target">new</field>-->
+    <!--    </record>-->
+
+    <record id="wizard_picking_dup_action" model="ir.actions.act_window">
+        <field name="name">wizard picking Entries</field>
+        <field name="res_model">wizard.picking.entry.dup</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="transport_entry_details_dup_report"
+              parent="transport_entry_main_menu"
+              name="Picking Transport Entry Reports"
+              action="wizard_picking_dup_action"
+              sequence="1"/>
+</odoo>

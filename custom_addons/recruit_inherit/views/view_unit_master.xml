@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_unit_master_tree" model="ir.ui.view">
+        <field name="name">unit.master.tree</field>
+        <field name="model">unit.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="unit_code"/>
+                <field name="name"/>
+                <field name="unit_address"/>
+                <field name="pincode"/>
+                <field name="unit_incharge1"/>
+                <field name="unit_incharge2"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_unit_master_form" model="ir.ui.view">
+        <field name="name">unit.master.form</field>
+        <field name="model">unit.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="unit_code"/>
+                        <field name="name"/>
+                        <field name="unit_address"/>
+                        <field name="pincode"/>
+                        <field name="unit_incharge1"/>
+                        <field name="unit_incharge2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_unit_master" model="ir.actions.act_window">
+        <field name="name">Unit Master</field>
+        <field name="res_model">unit.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="menu_view_unit_master"
+            name="Unit Master"
+            action="action_unit_master"
+            parent="hr.menu_config_employee"
+            sequence="15"/>
+</odoo>

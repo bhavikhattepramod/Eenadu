@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="trainee_discharge_wizard" model="ir.ui.view">
+        <field name="name">trainee.wizard</field>
+        <field name="model">trainee.discharge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" requied="1"/>
+                            <field name="cur_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="trainee_discharge_action" model="ir.actions.act_window">
+        <field name="name">Trainee Discharge</field>
+        <field name="res_model">trainee.discharge</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="trainee_discharge_wizard"/>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="trainee_discharge_menu"
+              name="Trainee Discharge"
+              parent="superannuation_reporting"
+              action="trainee_discharge_action"
+              sequence="10"/>
+
+</odoo>

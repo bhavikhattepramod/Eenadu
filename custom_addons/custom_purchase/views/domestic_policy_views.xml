@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="domestic_policy_form_view" model="ir.ui.view">
+		<field name="name">domestic.policy.form</field>
+		<field name="model">domestic.policy</field>
+		<field name="arch" type="xml">
+			<form string="Domestic Insurance Policy">
+				<header>
+					<field name="state" widget="statusbar" options="{'clickable': '1'}" />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name = 'name' required="1"/>
+							<field name = 'policy_start_date' required="1"/>
+							<field name = 'policy_amount' required="1"/>
+						</group>
+						<group>
+							<field name = 'policy_provider_id' required="1"/>
+							<field name = 'policy_end_date' required="1"/>
+							<field name = 'balance_amount' />
+							<field name = 'currency_id' invisible="1"/>
+						</group>
+					</group>
+					<notebook>
+						<page string='Claim Information' name='claim_info'>
+							<field name = 'domestic_policy_line_ids'>
+								<tree editable='bottom'>
+									<field name = 'delivery_challan_no_id' required="1"/>
+									<field name = 'shipment_value' required="1"/>
+									<field name = 'currency_id' invisible="1"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" name="total_shipment_value">
+								<field name="total_shipment_value" class="oe_subtotal_footer_separator"/>
+							</group>
+							<div class="oe_clear"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="domestic_policy_tree_view" model="ir.ui.view">
+		<field name="name">domestic.policy.tree</field>
+		<field name="model">domestic.policy</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'name' />
+				<field name = 'policy_provider_id' />
+				<field name = 'policy_start_date' />
+				<field name = 'policy_end_date' />
+				<field name = 'policy_amount' />
+				<field name = 'total_shipment_value' />
+				<field name = 'balance_amount' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_domestic_policy_view" model="ir.actions.act_window">
+		<field name="name">Domestic Policy</field>
+		<field name="res_model">domestic.policy</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Domestic Policy" id="menu_domestic_policy" parent="menu_policies_parent" action="action_domestic_policy_view" groups='custom_purchase.group_newsprint_insurance_user,custom_purchase.group_newsprint_purchase_manager' sequence="2"/>
+
+</odoo>

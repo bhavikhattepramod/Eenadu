@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_letter_wizard_arrangement_form" model="ir.ui.view">
+        <field name="name">letter.arrangement.report</field>
+        <field name="model">letter.arrangement</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="invoice_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_letter_arrangement_report_wizard" model="ir.actions.act_window">
+        <field name="name">Letter Of Arragement</field>
+        <field name="res_model">letter.arrangement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_letter_wizard_arrangement_form"/>
+        <field name="target">new</field>
+    </record>
+   <menuitem id="employee_life_cycle_sub_menu"
+              name="Letter Of Arrangement"
+              parent="hr.hr_menu_hr_reports"
+              action="action_letter_arrangement_report_wizard"
+              sequence="100"/>
+</odoo>

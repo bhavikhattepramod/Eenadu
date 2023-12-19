@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_letter_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">18</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">12</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_letter_confirmation_wizards" model="ir.actions.report">
+        <field name="name">Letter Of Employment</field>
+        <field name="model">employment.confirmation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.confirmation_letter_report</field>
+        <field name="report_file">employee_life_cycle.confirmation_letter_report</field>
+        <field name="binding_model_id" ref="model_employment_confirmation"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_letter_report"/>
+    </record>
+
+    <data>
+        <template id="confirmation_letter_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <t class="page">
+                            <div class="container" style="text-align:justify;">
+                                <head>
+                                    <style>
+                                        #border_remove {
+                                        border-collapse: collapse;
+                                        border:none;
+                                        }
+
+                                        .tab{
+                                        border:none;
+                                        padding:5px;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <table id="border_remove" style="width:100%; border:1px solid white; padding:5px;">
+                                        <td class="tab" style="font-size:100%;  width:70%; text-align:left; ">
+                                            Mr/Miss.
+                                            <span t-field="doc.name.name"/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            Dear Mr/Miss.
+                                            <span t-field="doc.name.name"/>
+                                        </td>
+                                        <td class="tab"
+                                            style="font-size:100%; width:30%; text-align:center; border:1px solid white; padding:5px; margin-right:650px; ">
+                                            <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                                        </td>
+
+                                    </table>
+
+                                    <br/>
+                                    <h4 style="text-align:center; text-decoration:underline;">
+                                        <b>LETTER OF EMPLOYMENT</b>
+                                    </h4>
+                                    <br/>
+                                    <p>With reference to your application and the subsequent interview you had with us,
+                                        the
+                                        Management is pleased to offer you an appointment as MANAGER at our Eenadu
+                                        Corporate Office, Ramoji Film City on the following terms and conditions:
+                                    </p>
+                                    <p>
+                                        1.Your total remuneration as CTC shall be<b>Rs._____________________</b>(Rupees
+                                        only) per annum. All allowances/reimbursement as applicable
+                                        will be subject to tax deduction at source. The Break-up particulars is enclosed
+                                        herewith in Annexure |.
+                                    </p>
+                                    <p>
+                                        2.You are responsible for such duties and functions as detailed by the
+                                        Management
+                                        or
+                                        by any other person nominated by the Management to allocate work to you from
+                                        time
+                                        to time.
+                                    </p>
+                                    <p>
+                                        3.Your designation may be changed as per the job entrusted and performed by you
+                                        from
+                                        time to time at the discretion of the management.
+                                    </p>
+                                    <p>
+                                        4.The terms set out in this letter are not comprehensive. In all matters related
+                                        to service
+                                        conditions, conduct and discipline your services will be governed by the Service
+                                        Rules
+                                        of the Company or any other rules framed by the Company from time to time.
+                                    </p>
+                                    <p>
+                                        5.You are liable to be transferred from one Branch/Office/ Section/Division/Job
+                                        to
+                                        another either in existence or which may come into existence anywhere in India.
+                                        You
+                                        shall also be liable to be deputed from one Unit to another Unit or to any of
+                                        the group
+                                        organizations, either temporarily or permanently. You will not be entitled to
+                                        any
+                                        additional remuneration on account of such transfer or deputation. However, your
+                                        pay
+                                        and allowances will be protected without any adverse effect.
+                                    </p>
+                                    <p>
+                                        6.You will be entitled to such Leave/Holidays with pay as may be prescribed by
+                                        the rules
+                                        and orders of the company for the time being in force.
+                                    </p>
+                                    <p>
+                                        7.You will retire on reaching the age of superannuation which shall be 58 years
+                                        unless
+                                        you are otherwise disqualified due to continued ill health, physical or mental
+                                        disability and the like in which case you shall be relieved earlier
+                                        compulsorily.
+                                        The date of birth furnished in your SSC certificate and recorded in the service
+                                        record
+                                        shall be final and binding upon you for all purposed of service with the
+                                        company.
+                                    </p>
+                                    <p>
+                                        9. During the period of employment with the Company or thereafter, you should
+                                        not
+                                        divulge to any other person, orally or in writing or in any manner whatsoever,
+                                        directly or
+                                        indirectly, any information, knowledge or skill, relating to the affairs of the
+                                        Company, or
+                                        its allied/associated/subsidiary Companies, which may come to your notice or
+                                        knowledge by reason of your employment with the company.
+                                    </p>
+                                    <p>
+                                        10. It is understood and agreed that all trademarks/copyrights/
+                                        patents/intellectual property
+                                        rights developed by you in either in full or part in the course of your
+                                        employment in the company shall get automatically assigned to and shall remain
+                                        the sole property
+                                        of the company.
+                                    </p>
+                                    <p>
+                                        11. Upon termination or resignation from your employment with the company, you
+                                        shall
+                                        forthwith return to the company all the assets work in progress and property of
+                                        the
+                                        company, documents, files, soft copies, books, papers, memos or any other
+                                        property of
+                                        the company, in your possession or under your control. Your full and final
+                                        settlement of
+                                        account shall be done only on submission of no dues certificate, on your handing
+                                        over
+                                        of the company’s property.
+                                    </p>
+                                    <p>
+                                        12. While in employment of our company you shall not join in any political party
+                                        or support
+                                        the same either directly or indirectly and you shall not contest in any election
+                                        to be held
+                                        to the local bodies, assembly or parliament etc., or canvass in any such
+                                        elections to
+                                        any contesting candidates without the prior written permission of the
+                                        management.Violation of this clause is a serious lapse on your part and your
+                                        services are liable to be
+                                        terminated without any notice.
+                                    </p>
+                                    <p>
+                                        13. You should adhere to the code of conduct/code of ethics as specified and
+                                        notified by the management from time to time.
+
+                                    </p>
+                                    <p>
+                                        14. It shall be your duty to inform your employer immediately if you are
+                                        affected with any.
+                                        major health issues and you shall submit yourself to such medical examination as
+                                        you
+                                        may be required by the Management. Failure to submit to such medical examination
+                                        renders you liable for termination of service immediately without any notice.
+                                    </p>
+                                    <p>
+                                        15. Your services are liable to be terminated by either side, on giving one
+                                        month's notice or
+                                        payment of one month's salary in lieu of notice period.
+                                    </p>
+                                    <p>
+                                        16. For breach of terms of employment on your part, the Company may terminate
+                                        your
+                                        employment with the Company without notice or assessing any reasons thereof.
+                                    </p>
+                                    <p>
+                                        17. You will be responsible for the safe-keeping and return in good condition
+                                        and order of
+                                        all the Company's property which may be in your use, custody and charge at the
+                                        time of leaving the Company.
+
+                                    </p>
+                                    <p>
+                                        18. Any notice, order, communication or intimation sent to the postal addresses/
+                                        e-mail id
+                                        furnished by you in your application/ service record shall be deemed to have
+                                        been
+                                        served on you and received for all purposes of service of such notice/
+                                        communication
+                                        etc. If any change takes place in your addresses or e-mail id, it shall be
+                                        intimated to
+                                        the Office immediately.
+                                    </p>
+                                    <p>
+                                        If the above terms and conditions are acceptable to you, please report to The H
+                                        R
+                                        Department, Eenadu Corporate Office, Ramoji Film City, Anajpur (V),
+                                        Abdullapurmet (M),
+                                        R R Dist on 1% July, 2022 at 9.00 AM along with the signed duplicate copy of
+                                        this letter of
+                                        employment enclosed herewith in acceptance of the offer, failing which the offer
+                                        of
+                                        appointment will stand automatically cancelled on the expiry of the date
+                                        mentioned above.
+                                    </p>
+                                    <br/>
+                                    <p>For
+                                        <b>USHODAYA ENTERPRICES PVT LTD</b>
+                                    </p>
+                                    <div style="font-size:100%; width:100%; text-align:right; border:1px solid white; padding:8px; margin-right:1000px;">
+                                        <p style="text-align:right; text-decoration:underline;">ACCEPTANCE</p>
+                                        <p style="text-align:right;">I accept the terms and conditions setout above.
+                                        </p>
+                                    </div>
+                                    <p style="text-align:left;">
+                                        <b>
+                                            Authorised By :
+                                        </b>
+                                        <br></br>
+                                        <b>
+                                            <span t-field="doc.name.company_id.director_id"/>
+                                        </b>
+                                    </p>
+                                    <br/>
+                                    <p style="text-align:right;">
+                                        <b>SIGNATURE</b>
+                                    </p>
+                                    <br/>
+                                </body>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="employee_disciplinary_tree" model="ir.ui.view">
+        <field name="name">Employee Disciplinary tree</field>
+        <field name="model">employee.disciplinary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="incident_date"/>
+                <field name="incident_type"/>
+                <field name="incident_sub_type" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="employee_disciplinary_form" model="ir.ui.view">
+        <field name="name">Employee Disciplinary form</field>
+        <field name="model">employee.disciplinary</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="incident_date"/>
+                        <field name="incident_type" options="{'no_open': True,}"/>
+                        <field name="incident_sub_type" widget="many2many_tags" readonly="0"
+                               options="{'no_open': True}"/>
+                        <label for="employee_code" string="Reported By Employee Code"/>
+                        <div class="address_format">
+                            <field name="employee_code" style="width: 50%" options="{'no_open': True,}"/>
+                            <field name="employee_name" style="width: 50%"/>
+                        </div>
+                        <field name="incident_details"/>
+                        <field name="seized_items"/>
+                        <field name="incident_summary"/>
+                        <field name="attach" widget="many2many_binary" options="{'preview_image': True}"/>
+                        <field name="emp_many_disp" widget="many2many_tags" context="{'new_custom_name': True}"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh' : 'recipients'}" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="manage_incident_tree" model="ir.ui.view">
+        <field name="name">Manage Incident tree</field>
+        <field name="model">manage.incident</field>
+        <field name="arch" type="xml">
+            <tree create="0">
+                <field name="employee_code_list1" widget="many2many_tags" context="{'new_custom_name': True}"/>
+<!--                <field name="incident_dat"/>-->
+                <field name="incident_typ"/>
+                <field name="incident_sub_typ" widget="many2many_tags"/>
+                <field name="incident_sum"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="manage_incident_form" model="ir.ui.view">
+        <field name="name">Manage Incident form</field>
+        <field name="model">manage.incident</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button name="button_in_progress" string="In Progress" class="oe_highlight" type="object"
+                            states="pending_inquiry"
+                            attrs="{'invisible' : ('state','!=','pending_inquiry')}"/>
+                    <button name="button_closed" string="Closed" class="oe_highlight" type="object" states="in_progress"
+                            attrs="{'invisible' : ('state','!=','in_progress')}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_code_list1" widget="many2many_tags"
+                                   context="{'new_custom_name': True}"/>
+                            <field name="employee_by_code" options="{'no_open': True,}"/>
+<!--                            <field name="incident_dat"/>-->
+                        </group>
+                        <group>
+                            <field name="incident_typ" options="{'no_open': True,}"/>
+                            <field name="incident_sub_typ" widget="many2many_tags"/>
+                            <field name="incident_sum"/>
+                        </group>
+                    </group>
+                    <field name="employee_inquiry" string="Manage Incident">
+                        <tree>
+                            <field name="inquiry_date"/>
+                            <field name="corrective_action_id"/>
+                            <field name="due_date"/>
+                            <field name="last_action_date"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="inquiry_date"/>
+                                <field name="venue"/>
+                                <field name="internal_panel" widget="many2many_tags" context="{'new_custom_name': True}"/>
+                                <field name="external_panel"/>
+                                <field name="inquiry_summary"/>
+                                <field name="is_guilty" widget="radio" options="{'horizontal':true}"/>
+                                <field name="corrective_action_id" options="{'no_open': True,}"/>
+                                <field name="recommendation"/>
+                                <field name="due_date"/>
+                                <field name="last_action_date"/>
+                            </group>
+                        </form>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="career_history_tab_sub_menu" model="ir.ui.view">
+        <field name="name">Career History Tab Sub Menu</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="employee_life_cycle.career_history_tab_menu"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field[@name='career_history_field']" position="after">
+<!--                <group name="career_hist_sub_menu" string="Disciplinary Actions">-->
+                    <field name="employee_name_ids1" string="Manage Incident">
+                        <tree editable="0" create="0">
+                            <field name="incident_date"/>
+                            <field name="incident_type"/>
+                            <field name="incident_sub_type"/>
+<!--                            <field name="corrective_action_id"/>-->
+                        </tree>
+                    </field>
+<!--                </group>-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="incident_employee_tree" model="ir.ui.view">
+        <field name="name">incident Employee tree</field>
+        <field name="model">incident.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="sub_type" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="incident_employee_form" model="ir.ui.view">
+        <field name="name">incident Employee form</field>
+        <field name="model">incident.employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <form>
+                        <group>
+                            <field name="name"/>
+                            <field name="sub_type" widget="many2many_tags"/>
+                        </group>
+                    </form>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="employee_disciplinary_action" model="ir.actions.act_window">
+        <field name="name">Incident Reporting</field>
+        <field name="res_model">employee.disciplinary</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="manage_incident_action" model="ir.actions.act_window">
+        <field name="name">Manage Incident</field>
+        <field name="res_model">manage.incident</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="incident_employee_action" model="ir.actions.act_window">
+        <field name="name">Incident Type</field>
+        <field name="res_model">incident.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="employee_disciplinary_menu"
+              name="Employee Disciplinary Management"
+              parent="hr.menu_hr_root"
+              action="employee_disciplinary_action"
+              sequence="105"/>
+
+    <menuitem id="manage_incident_employee"
+              name="Incident Type"
+              parent="employee_disciplinary_menu"
+              action="incident_employee_action"
+              sequence="3"/>
+
+    <menuitem id="manage_incident_sub_menu"
+              name="Manage Incident"
+              parent="employee_disciplinary_menu"
+              action="manage_incident_action"
+              sequence="2"/>
+
+    <menuitem id="employee_disciplinary_sub_menu"
+              name="Incident Reporting"
+              parent="employee_disciplinary_menu"
+              action="employee_disciplinary_action"
+              sequence="1"/>
+
+</odoo>

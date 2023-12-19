@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template_supervisor" xml:space="preserve">
+    <t t-name="DashboardHod">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+        </div>
+    </t>
+
+    <t t-name="DashboardSecond">
+        <section class="dashboard_main" id="main_section">
+       <div class="col-sm-12 mb-4">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-8">
+                   <h2 class="section-header">Dashboard HOD</h2>
+               </div>
+
+               <!--      Tiles    -->
+               <div class='row spacer_row'>
+
+                    <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_pending_hod'>
+                            <div>
+                                <div class="card_header hdr3_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-user" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Requisitions pending for Approval</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_hod_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_pending_hod'>
+                            <div>
+                                <div class="card_header hdr6_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-check-square-o" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Total Requisitions Approved</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_no_hod_approved"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-3 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card req_hod_reject'>
+                            <div>
+                                <div class="card_header hdr4_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-times-circle-o" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Total Requisitions Rejected</span></div></div>
+                                    <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_hod_rejects"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+               </div>
+           </div>
+       </div>
+   </section>
+    </t>
+</templates>

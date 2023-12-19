@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="nomination_and_declaration_report">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <div class="header"/>
+                        <p align="left" style="font-size:15px;">THIS FORM IS SUPPLIED FREE OF COST.
+                            <span style="align:center;padding-left:150px">
+                                <img class="logo" src="/employee_life_cycle/static/description/EPFO_Logo.png"
+                                     height="70"
+                                     align="top"/>
+                            </span>
+                            <span style="padding-left:190px">
+                                <span style="border: 1px solid black; padding: 5px; ">FORM-2
+                                    <span style="padding-left:4px;">(Revised)</span>
+                                </span>
+                            </span>
+                        </p>
+                        <div class="text-center">
+
+                            <h4>
+                                <strong>NOMINATION AND DECLARATION FORM</strong>
+                            </h4>
+                            <h8>FOR UNEXEMPTED/EXEMPTED ESTABLISHMENTS</h8>
+                        </div>
+                        <p align="center" style="font-size:15px;">Declaration and Nomination Form under the Employees'
+                            Provident Funds &amp;
+                            Employees' Pension Scheme
+                            <br>[Paragraph 33 &amp; 61(1) of the Employee's Provident Fund Scheme,1952 and Paragraph 18
+                                of the
+                                Employees' Pension Scheme,1995]
+                            </br>
+                        </p>
+                    </div>
+                    <div>
+                        <div>
+                            <style>
+                                .horizontal-line {
+                                border-top: 2px solid black;
+                                margin-top: 2px;
+                                margin-bottom: 5px;
+                                margin-left: 5px;
+                                }
+                            </style>
+                            <br></br>
+                            <table style="border-color:white;">
+                                <tr>
+                                    <td  style="width:40%;"><span>1. Name (in Block Letters)</span>
+                                        <span style="padding-left:30px;">:</span><br/>
+                                            <span style="width: 620px;float:right;" class="horizontal-line"></span>
+                                    </td>
+                                </tr>
+                                    <td>2. Name of the Parent/Spouse<span style="padding-left:10px;">:</span><br/>
+                                        <span><div style="width: 610px;float:right;padding-left:90px;" class="horizontal-line"></div></span>
+                                    </td>
+                            </table>
+                        </div>
+                        <div style="padding:5px;"/>
+                        <div>
+                            <style>
+                                .horizontal1-line {
+                                border-top: 2px solid black;
+                                width : 100%;
+                                }
+                            </style>
+                            <table style="width:100%;border-color:white;">
+                                <tr>
+                                    <td style="width:40%;">
+                                        <span>3.Date of Birth</span>
+                                        <span style="padding-left:30px;">:</span>
+                                        <br/>
+                                        <span style="width:60%;float:right;" class="horizontal1-line"></span>
+                                        <br/>
+                                        <span>4.Sex</span>
+                                        <span style="padding-left:96px;">:</span>
+                                        <br/>
+                                        <span style="width:60%;float:right;" class="horizontal1-line"></span>
+                                        <br/>
+                                        <span>5.Marital Status</span>
+                                        <span style="padding-left:23px;">:</span>
+                                        <br/>
+                                        <span style="width:60%;float:right;" class="horizontal1-line"></span>
+                                        <br/>
+                                        <span>6.P.F Account No.</span>
+                                        <span style="padding-left:13px;">:</span>
+                                        <br/>
+                                        <span style="width:60%;float:right;" class="horizontal1-line"></span>
+                                        <br/>
+                                    </td>
+                                    <td style="width:50%;">
+                                        <span style="padding-left:10%">7.Permanent
+                                            <span style="padding-left:25px;">:</span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                            <span style="padding-left:12%;">Address</span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                        </span>
+                                        <br/>
+                                        <span style="padding-left:12%">Temporary
+                                            <span style="padding-left:27px;">:</span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                            <span style="padding-left:12%;">Address</span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                            <br/>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                        </span>
+                                        <br/>
+                                        <span style="padding-left:10%">8.Date of Joining
+                                            <span style="padding-left:5px;">:</span>
+                                            <br/>
+                                            <span style="padding-left:12%;">the Fund</span>
+                                            <span style="width:64%;float:right;" class="horizontal1-line"></span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="padding:5px;"/>
+                            <p style="color:solid black;font-size:20px;text-align:center;">
+                                <b>PART-A<span style="padding-left:4px;text-align:center;">(EPF)</span></b>
+                            </p>
+                            <div style="padding:3px;"/>
+                            <span>I hereby nominate the person(s)/cancel the nomination made by me previously and nominate
+                                the
+                                person(s),mentioned below to receive the amount standing to my credit in the Employees'
+                                Provident Fund,in the event of my death.
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <table style="border-collapse: collapse;width: 100%;">
+                            <thead>
+                                <tr style="border: 1px solid black;padding: 10px;text-align: center; ">
+                                    <th style="border: 1px solid black;padding: 14px;text-align:center;width: 30%;vertical-align: middle;">
+                                        Name &amp; Address of the Nominee / Nominees
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 15%;vertical-align: middle;">
+                                        Nominees' relationship with Member
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 15%;vertical-align: middle;">
+                                        Date of Birth
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center">Total amount or
+                                        share of accumulations in Provident Fund to be paid to each nominee.
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center">If the Nominee is
+                                        a minor,name,relationship &amp; Address of the guardian who may receive the
+                                        Amount during the minority of nominee.
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border: 1px solid black;padding: 10px;">
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 30%;">1
+                                    </td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;">2
+                                    </td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;">3
+                                    </td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center">4</td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center">5</td>
+                                </tr>
+                                <tr style="border: 1px solid black;padding: 10px;height: 250px;">
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 30%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span style="width:55%;">1.* Certified that I have no family as defined in papa 2(g) of the
+                            Employees' Provident Fund Scheme,1952 and should I acquire a family hereafter the above
+                            nomination should be declared as cancelled.
+                        </span>
+                        <div style="padding:5px;"/>
+                        <span>2.* Certified that my father/mother is/are dependent upon me.</span><br/>
+                        <span>* Strike out whichever is not applicable.
+                            <span style="padding-left:320px">Signature or Thumb impression of the Subscriber</span>
+                        </span>
+                    </div>
+                    <div>
+                        <p align="center" style="color:solid black;font-size:20px">
+                            <b>PART-B
+                                <span style="padding-left:4px;">(EPS)</span>
+                                <span style="padding-left:4px;">(Para 18)</span>
+                            </b>
+                        </p>
+                        <span>I hereby furnish below particulars of the members of my family who would be eligible to
+                            receive widow/children pension in the event of my death.
+                        </span>
+                    </div>
+                    <div>
+                        <table style="border-collapse: collapse;
+                        width: 100%;">
+                            <thead>
+                                <tr style="border: 1px solid black;padding: 10px;text-align: center; ">
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 10%;vertical-align: middle;">
+                                        S.No.
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 25%;vertical-align: middle;">
+                                        Name of the family members
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 25%;vertical-align: middle;">
+                                        Address
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 15%;vertical-align: middle;">
+                                        Date of Birth
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 25%;vertical-align: middle;">
+                                        Relationship with Member
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border: 1px solid black;padding: 10px;height: 220px;">
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 10%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 25%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 25%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span>** Certified that I have no family,as defined in para 2(vii)of the Employees' Pension
+                            Scheme,1995 and should I acquire a family hereafter I shall furnish particulars thereon in
+                            the above form.
+                        </span>
+                        <div style="padding:2px;"/>
+                        <span>I hereby nominate the following person for receiving the monthly pension (admissible under
+                            para 16 2(a) (i) &amp; (ii) in the event of my death without leaving any eligible family
+                            member for receiving pension.
+                        </span>
+                    </div>
+                    <div style="padding:5px;"/>
+                    <div>
+                        <table style="border-collapse: collapse;
+                        width: 100%;">
+                            <thead>
+                                <tr style="border: 1px solid black;padding: 10px;text-align: center;">
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 30%;vertical-align: middle;">
+                                        Name &amp; Address of the nominee
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 15%;vertical-align: middle;">
+                                        Date of Birth
+                                    </th>
+                                    <th style="border: 1px solid black;padding: 8px;text-align:center;width: 25%;vertical-align: middle;">
+                                        Relationship with Member
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border: 1px solid black;padding: 10px;height: 220px;">
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 30%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 15%;"></td>
+                                    <td style="border: 1px solid black;padding: 14px;text-align:center;width: 25%;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <p>Date:</p>
+                        <p>** Strike out which is not applicable.
+                            <span style="padding-left:200px">Signature or thumb impression of the subscriber</span>
+                        </p>
+                        <div style="padding:3px;"/>
+                        <p align="center" style="color:solid black;font-size:20px">
+                            <strong>CERTIFICATE BY EMPLOYER</strong>
+                        </p>
+                        <div style="padding:3px;"/>
+                        <p>Certified that the above declaration and nomination has been signed / thumb impressed before
+                            me by Shri/Smt./Kum
+                            <span style="width:60%;float:left;margin-top: 14px;margin-right: 4px"
+                                  class="horizontal1-line"></span>
+                            <br/>employed in my establishment after he/she has read the entries/entries have been read
+                            over to him/her by me and got confirmed by him/her.
+                        </p>
+                        <div style="padding:6px;"/>
+                        <p>Place :
+                            <span style="padding-left:260px;">Signature of the employer or other authorised Officers of
+                                the establishment.
+                            </span>
+                        </p>
+                        <span>Date :
+                            <span style="padding-left:275px;">Designation:</span>
+                            <br/>
+                            <span style="padding-left:320px;">Name &amp; Address of the Factory/Establishment or Rubber
+                                Stamp thereof.
+                            </span>
+                        </span>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+
+     <record id="paperformat_nomination" model="report.paperformat">
+        <field name="name">A4 Nomination</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="nomination_and_declaration_report_action" model="ir.actions.report">
+        <field name="name">Nomination and Declaration Report</field>
+        <field name="model">nomination.declaration</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.nomination_and_declaration_report</field>
+        <field name="report_file">employee_life_cycle.nomination_and_declaration_report</field>
+        <field name="paperformat_id" ref="paperformat_nomination"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

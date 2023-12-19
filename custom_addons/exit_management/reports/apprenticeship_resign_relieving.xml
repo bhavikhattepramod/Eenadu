@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="apprenticeship_resign_relieving_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .page_break{
+                            padding-top:400px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;font-size:20px;">
+                            <h1 align="middle" style="font-size:24px; padding-top:100px;">
+                                <b>
+                                    <u>Apprenticeship Resign Relieving
+                                    </u>
+                                </b>
+                            </h1>
+                            <p align="right" style="padding-left:70px; padding-right:70px; padding-top:40px;">
+                                <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                <span t-field="doc.name_id.employee_id"/>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                <span>Dear Mr/Ms&#160;<span t-field="doc.name_id.employee_id"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                This refers to your letter dated 31.07.2023 tendering resignation from Apprenticeship
+                                training in our Organisation.
+                                i.e&#160;
+                                <span t-field="doc.name_id.service_years"/>&#160; years.
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                As requested by you, your resignation has been accepted and you are relieved of your
+                                apprenticeship training with effect from today i.e. 31st July, 2023 after the close of
+                                working hours.
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                You are advised to collect your dues if any, from the Accounts Department.
+                            </p>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px; padding-top:80px;">
+                                <span>
+                                    <b>
+                                        Authorised By :
+                                    </b>
+                                    <br></br>
+                                    <b>
+                                        <span t-field="doc.name_id.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:70px; padding-top:230px; padding-right:70px;"
+                               align="right">
+                                <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <h1 align="middle" style="font-size:24px; padding-top:30px;">
+                                <b>
+                                    <u>APPRENTICESHIP CERTIFICATE
+                                    </u>
+                                </b>
+                            </h1>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>1.</span>
+                                <span style="padding-left:10px;">Name</span>
+                                <span style="padding-left:195px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.name_id.employee_id"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>2.</span>
+                                <span style="padding-left:10px;">Designation</span>
+                                <span style="padding-left:140px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.name_id.employee_id.job_id"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>3.</span>
+                                <span style="padding-left:10px;">Date of Joining</span>
+                                <span style="padding-left:114px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.name_id.date_of_joining"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>4.</span>
+                                <span style="padding-left:10px;">Stipend at the time</span>
+                                <span style="padding-left:80px;">:</span>
+                                <span style="padding-left:60px;">
+                                </span>
+                                <br></br>
+                                <span style="padding-left:29px;">of Joining</span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>5.</span>
+                                <span style="padding-left:10px;">Date of Leaving</span>
+                                <span style="padding-left:110px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.name_id.emp_relieving_date"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>6.</span>
+                                <span style="padding-left:10px;">Stipend at the time</span>
+                                <span style="padding-left:82px;">:</span>
+                                <span style="padding-left:60px;">
+                                </span>
+                                <br></br>
+                                <span style="padding-left:29px;">of Leaving</span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>7.</span>
+                                <span style="padding-left:10px;">Reasons for Leaving</span>
+                                <span style="padding-left:73px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.name_id.reason"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>8.</span>
+                                <span style="padding-left:10px;">Conduct &amp; Character</span>
+                                <span style="padding-left:63px;">:</span>
+                                <span style="padding-left:60px;"></span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px; padding-top:100px;">
+                                <span>
+                                    <b>
+                                        Authorised By :
+                                    </b>
+                                    <br></br>
+                                    <b>
+                                        <span t-field="doc.name_id.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <record id="paperformat_apprenticeship_resign_relieving" model="report.paperformat">
+        <field name="name">Apprenticeship Resign Relieving</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="apprenticeship_resign_relieving_action" model="ir.actions.report">
+        <field name="name">Apprenticeship Resign Relieving</field>
+        <field name="model">apprenticeship.resign.relieving</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.apprenticeship_resign_relieving_report</field>
+        <field name="report_file">exit_management.apprenticeship_resign_relieving_report</field>
+        <field name="paperformat_id" ref="paperformat_apprenticeship_resign_relieving"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

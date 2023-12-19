@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_disciplinary,employee_disciplinary,model_employee_disciplinary,,1,1,1,1
+access_incident_employee,incident_employee,model_incident_employee,,1,1,1,1
+access_incident_sub_employee,incident_sub_employee,model_incident_sub_employee,,1,1,1,1
+access_employee_disciplinary_line,employee_disciplinary_line,model_employee_disciplinary_line,,1,1,1,1
+access_manage_incident,manage_incident,model_manage_incident,,1,1,1,1
+access_manage_incident_line,manage_incident_line,model_manage_incident_line,,1,1,1,1
+access_corrective_actions,corrective_actions,model_corrective_actions,,1,1,1,1
+

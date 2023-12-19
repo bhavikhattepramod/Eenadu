@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="customer_sequence_code" model="ir.sequence">
+        <field name="name">Customer Sequence Code</field>
+        <field name="code">customer.sequence.code</field>
+        <field name="prefix">CUST</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+
+    <record id="inherit_res_partner_form_reta" model="ir.ui.view">
+        <field name="name">Reporting Manager</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='is_clearing_agent']" position="after">
+                <field name="hr_employee_id" groups="eenadu_reta.reta_Head_group"/>
+                <field name="unit" groups="eenadu_reta.reta_Head_group"/>
+                <field name="is_nap_agent"/>
+<!--                 <field name="alternative_mobile_number" widget="phone"/>-->
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="NAP Agent Details" attrs="{'invisible':[('is_nap_agent','!=',True)]}">
+                    <group>
+                        <group>
+                            <field name="agent_type_id"/>
+                            <field name="max_credit_limit"/>
+                            <field name="agency_start_date"/>
+                            <field name="deposit_amount"/>
+                        </group>
+                        <group>
+                            <field name="receipt_number"/>
+                            <field name="ins_code"/>
+                            <field name="ins_region"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!--    <record id="inherit_res_partner_alternative_number" model="ir.ui.view">-->
+    <!--        <field name="name">Alternative Number</field>-->
+    <!--        <field name="model">res.partner</field>-->
+    <!--        <field name="inherit_id" ref="base.view_partner_form"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//field[@name='mobile']" position="after">-->
+    <!--                <field name="alternative_phone_number"/>-->
+    <!--            </xpath>-->
+    <!--        </field>-->
+    <!--    </record>-->
+</odoo>

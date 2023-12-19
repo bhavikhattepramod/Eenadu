@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="nomination_electronic_department_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify; font-size:18px;">
+                            <p align="middle" style="padding-top:180px;">
+                                <span style=" font-size:28px;">
+                                    <b>
+                                        <u>CLEARANCE&#160; CERTIFICATE</u>
+                                    </b>
+                                </span>
+                                <br></br>
+                                <span>
+                                    Clearance Certificate from Electronics Department
+                                </span>
+                            </p>
+                            <p style="padding-top:30px; margin-right:100px;" align="right">
+                                Date :
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                <span>To</span>
+                                <span style="padding-left:10px;">:</span>
+                                <span style="padding-left:20px;">Sri&#160; E&#160; Mahender&#160; Garu
+                                </span>
+                                <br></br>
+                                <span style="padding-left:60px;">General&#160; Manager&#160; Electronics
+                                </span>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                <span>Mr/Ms&#160; &#160;<span t-field="doc.namees_id.employee_id"/>&#160;(
+                                    <span t-field="doc.namees_id.employee_id.identification_id"/>),&#160; Manager&#160;
+                                    of&#160;
+                                    <span t-field="doc.namees_id.employee_id.parent_id.department_id"/>&#160; Department&#160;
+                                    has&#160;
+                                    tendered&#160; her&#160;
+                                    resignation&#160; and&#160; will&#160; be&#160; relieved&#160; on&#160;
+                                    <span t-field="doc.namees_id.emp_relieving_date"/>.&#160; Please&#160; inform&#160;
+                                    us&#160;whether&#160; she&#160; has&#160; handed&#160; over&#160; all&#160; the&#160;
+                                    devices&#160; which&#160; are&#160; in&#160; her&#160; possession.
+                                </span>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                <span style="margin-left:50px;">1.&#160;&#160;&#160;&#160; Handed&#160; over&#160; the&#160;
+                                    devices&#160; and&#160; may&#160; be&#160;
+                                    relieved.
+                                </span>
+                                <br></br>
+                                <span style="margin-left:50px;">2.&#160;&#160;&#160;&#160; She/He&#160; is&#160; to&#160; handover&#160; the&#160;
+                                    following:
+                                </span>
+                                <br></br>
+                                <span style="margin-left:80px;">&#160;&#160;&#160;a)</span>
+                                <br></br>
+                                <span style="margin-left:80px;">&#160;&#160;&#160;b)</span>
+                                <br></br>
+                                <span style="margin-left:80px;">&#160;&#160;&#160;c)</span>
+                            </p>
+                            <p style="padding-top:80px;">
+                                <b>
+                                    Authorised By :
+                                </b>
+                                <br></br>
+                                <b>
+                                    <span t-field="doc.namees_id.company_id.director_id"/>
+                                    <span style="margin-left:320px;">
+                                        <b>(SIGNATURE)</b>
+                                    </span>
+                                </b>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <record id="paperformat_electronic_department" model="report.paperformat">
+        <field name="name">Electronic Department</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">30</field>
+        <field name="margin_right">30</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="electronic_department_report_action" model="ir.actions.report">
+        <field name="name">Electronic Department</field>
+        <field name="model">electronic.department</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.nomination_electronic_department_report</field>
+        <field name="report_file">exit_management.nomination_electronic_department_report</field>
+        <field name="paperformat_id" ref="paperformat_electronic_department"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

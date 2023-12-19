@@ -1,0 +1,14 @@
+<odoo>
+    <data noupdate="1">
+        <record id="update_page_values" model="ir.cron">
+            <field name="name">Update Page Information</field>
+            <field name="model_id" ref="eenadu_reta.model_newspaper_page_details"/>
+            <field name="state">code</field>
+            <field name="code">model.update_page_info()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>

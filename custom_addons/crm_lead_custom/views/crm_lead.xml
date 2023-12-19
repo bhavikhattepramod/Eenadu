@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_crm_lead_form" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='lead']" position="after">
+                <page name="personal_details" string="Personal Details">
+                    <group name="personal_details_group_1" class="oe_left oe_form_group">
+                        <field name="profile_id" placeholder="EP000002"/>
+                        <field name="personal_name" placeholder="K. Narasimha Chary"/>
+                        <field name="personal_mobile_num" placeholder="9908157910"/>
+                        <field name="personal_mail" placeholder="kncharyms@gmail.com"/>
+                        <field name="cast" placeholder="Viswabrahmin"/>
+                        <field name="sub_cast" placeholder="Goldsmith"/>
+                        <field name="religion" placeholder="Hindu"/>
+
+                    </group>
+                    <group name="personal_details_group_2" class="oe_right oe_form_group">
+                        <field name="age" placeholder="26"/>
+                        <field name="gender"/>
+                        <field name="date_reg" placeholder="14-11-2008"/>
+                        <field name="marital_status" />
+                        <field name="register_by" placeholder="Parents or Self"/>
+                        <field name="location" placeholder="India"/>
+                        <field name="designation" placeholder="Government"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_crm_lead_tree" model="ir.ui.view">
+        <field name="name">crm.lead.tree</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='city']" position="after">
+                <field name="personal_name" optional="hide"/>
+                <field name="personal_mobile_num" optional="hide"/>
+                <field name="personal_mail" optional="hide"/>
+                <field name="cast" optional="hide"/>
+                <field name="sub_cast" optional="hide"/>
+                <field name="religion" optional="hide"/>
+                <field name="date_reg" optional="hide"/>
+                <field name="age" optional="hide"/>
+                <field name="gender" optional="hide"/>
+                <field name="profile_id" optional="hide"/>
+                <field name="marital_status" optional="hide"/>
+                <field name="register_by" optional="hide"/>
+                <field name="location" optional="hide"/>
+                <field name="designation" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

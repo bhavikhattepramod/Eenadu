@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="inherit_hr_employee_form_reta" model="ir.ui.view">
+        <field name="name">Reporting Manager</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+
+                <button type="object"
+                        name="display_reta_agents"
+                        string="Reta Agent"
+                        class="oe_stat_button" icon="fa-user"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value" widget="statinfo">
+                            <field name="agent_count" widget="statinfo" nolabel="1" class="mr4"/>
+                        </span>
+                        <span class="o_stat_text">Reta Agents</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_analytic_distribution_reta" model="ir.ui.view">
+        <field name="name">analytic Distribution</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']"  position="after">
+                <field name="is_advertisement" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="family_members_form" model="ir.ui.view">
+            <field name="name">Family Members Form</field>
+            <field name="model">family.members</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions window-->
+
+        <record id="family_members_action" model="ir.actions.act_window">
+            <field name="name">Family Members Policy</field>
+            <field name="res_model">family.members</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="family_members_form"/>
+            <field name="target">new</field>
+        </record>
+
+<!--        <record id="view_menu_employee_family_policy" model="ir.ui.view">-->
+<!--            <field name="name">menu.employee.family.policy</field>-->
+<!--            <field name="model">ir.ui.menu</field>-->
+<!--            <field name="inherit_id" ref="web.menu_secondary"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <menuitem id="policy_report_sub_main" name="Employee And Family Members Policy"-->
+<!--                          parent="hr.hr_menu_hr_reports" sequence="103"/>-->
+<!--                <menuitem id="policy_report_sub_1" name="Family Members Policy" parent="policy_report_sub_main"-->
+<!--                          action="family_members_action" sequence="103"/>-->
+<!--                <xpath expr="//menuitem[@id='policy_report_sub_main']" position="inside">-->
+<!--                    <select>-->
+<!--                        <option value="employee_policy">Employee Policy</option>-->
+<!--                        <option value="family_members_policy">Family Members Policy</option>-->
+<!--                    </select>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+                <menuitem id="policy_report_sub_main" name="Employee And Family Members Policy" parent="hr.hr_menu_hr_reports"
+                          sequence="103"/>
+
+                <menuitem id="policy_report_sub_1" name="Family Members Policy" parent="policy_report_sub_main"
+                          action="family_members_action" sequence="103"/>
+
+    </data>
+</odoo>

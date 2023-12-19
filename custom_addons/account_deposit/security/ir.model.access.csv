@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_deposit,access_account_deposit,model_account_deposit,base.group_user,1,1,1,1
+access_deposit_outstanding,access_deposit_outstanding,model_deposit_outstanding,base.group_user,1,1,1,1
+access_account_deposit_history,access_account_deposit_history,model_account_deposit_history,base.group_user,1,1,1,1
+access_account_deposit_wizard,access_account_deposit_wizard,model_deposit_payment_wizard,,1,1,1,1
+access_deposit_wizard,access_deposit_wizard,model_deposit_wizard,,1,1,1,1

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="nap_tree_view" model="ir.ui.view">
+        <field name="name">CIO Tree View</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nap_seq"/>
+                <field name="nap_ro_seq"/>
+                <field name="date_order"/>
+                <field name="partner_id"/>
+                <field name="agent_name"/>
+                <field name="user_id"/>
+                <field name="activity_ids"/>
+                <field name="amount_total"/>
+                <field name="reta_state"/>
+                <field name="invoice_status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_reta_cio_orders_nap" model="ir.actions.act_window">
+        <field name="name">CIO</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="nap_tree_view"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', '=', 'draft'),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reta_scheduling_orders_nap" model="ir.actions.act_window">
+        <field name="name">Secheduling</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="nap_tree_view"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', '=', 'sent'),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reta_ro_nap" model="ir.actions.act_window">
+        <field name="name">Release Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="nap_tree_view"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', 'in', ('sale', 'done')),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reta_rejected_orders_nap" model="ir.actions.act_window">
+        <field name="name">Rejected</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_id" ref="nap_tree_view"/>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', '=', 'cancel'),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reta_waiting_for_approval_orders_nap" model="ir.actions.act_window">
+        <field name="name">Waiting For Approval</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <!--        <field name="view_id" ref="reta_tree_view"/>-->
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', '=', 'waiting_for_approval'),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <record id="action_reta_published_orders_nap" model="ir.actions.act_window">
+        <field name="name">Published Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <!--        <field name="view_id" ref="reta_tree_view"/>-->
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_nap_bool_field":True}</field>
+        <field name="domain">[('reta_state', '=', 'print'),("nap_bool_field","=",True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create NAP orders
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="nap_application_quotation" name="CIO" parent="nap_order" sequence="1"
+              action="action_reta_cio_orders_nap"/>
+
+    <menuitem id="nap_application_scheduling" name="Scheduling" parent="nap_order" sequence="2"
+              action="action_reta_scheduling_orders_nap"/>
+
+    <menuitem id="nap_application_sale_order" name="Release Orders" parent="nap_order" sequence="4"
+              action="action_reta_ro_nap"/>
+
+    <menuitem id="nap_application_rejected" name="Rejected" parent="nap_order" sequence="6"
+              action="action_reta_rejected_orders_nap"/>
+
+    <menuitem id="nap_application_publish" name="Published" parent="nap_order" sequence="5"
+              action="action_reta_published_orders_nap"/>
+
+    <menuitem id="nap_application_waiting_approval" name="Waiting For Approval" parent="nap_order"
+              sequence="3" action="action_reta_waiting_for_approval_orders_nap"/>
+
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.payroll.payslip,access_payroll_payslip,hrms_inherited.model_payroll_payslip_wizard,,1,1,1,1
+access.income.tax,access_income_tax,hrms_inherited.model_income_tax_wizard,,1,1,1,1
+access_insurance_policy,access_insurance_policy,hrms_inherited.model_insurance_policy,,1,1,1,1
+access_service_provider,access_service_provider,hrms_inherited.model_service_provider,,1,1,1,1
+access_insurance_policy_line,access_insurance_policy_line,hrms_inherited.model_insurance_policy_line,,1,1,1,1
+access_hr_contract_line,hr_contract_line,hrms_inherited.model_hr_contract_line,,1,1,1,1

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="target_scheme_form_view" model="ir.ui.view">
+		<field name="name">target.scheme.form</field>
+		<field name="model">target.scheme</field>
+		<field name="arch" type="xml">
+			<form string="Target Scheme">
+				<sheet>
+					<group>
+						<field name="name" required="1"/>
+						<field name="is_reta_scheme" invisible="1"/>
+						<field name="is_classifieds_scheme" invisible="1"/>
+					</group>
+					<notebook>
+						<page string = 'Products' name = 'products_lines'>
+							<field name = 'scheme_product_line_ids'>
+								<tree editable='bottom'>
+									<field name="product_id" required="1"/>
+									<field name="product_uom_id" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="target_scheme_tree_view" model="ir.ui.view">
+		<field name="name">target.scheme.tree</field>
+		<field name="model">target.scheme</field>
+		<field name="arch" type="xml">
+			<tree string="Target Scheme">
+				<field name = 'name' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_reta_target_scheme_view" model="ir.actions.act_window">
+		<field name="name">Reta Target Scheme</field>
+		<field name="res_model">target.scheme</field>
+		<field name="view_mode">tree,form</field>
+		<field name="domain">[("is_reta_scheme","=",True)]</field>
+        <field name="context">{"default_is_reta_scheme":True}</field>
+	</record>
+
+	<record id="action_classifieds_target_scheme_view" model="ir.actions.act_window">
+		<field name="name">Classifieds Target Scheme</field>
+		<field name="res_model">target.scheme</field>
+		<field name="view_mode">tree,form</field>
+		<field name="domain">[("is_classifieds_scheme","=",True)]</field>
+        <field name="context">{"default_is_classifieds_scheme":True}</field>
+	</record>
+
+<!--	<menuitem name="Schemes" id="menu_reta_target_scheme" parent="eenadu_reta.parent_reta_application" action="action_reta_target_scheme_view" sequence = '100'/>-->
+
+<!--	<menuitem name="Schemes" id="menu_classifieds_target_scheme" parent="eenadu_classified.parent_classified_sale_order" action="action_classifieds_target_scheme_view" sequence = '100'/>-->
+
+	<menuitem name="Configuration" id="menu_reta_configuration_scheme" parent="eenadu_reta.parent_reta_application" sequence = '100'/>
+		<menuitem name="Schemes" id="menu_reta_target_scheme" parent="menu_reta_configuration_scheme" action="action_reta_target_scheme_view" sequence = '100'/>
+
+	<menuitem name="Configuration" id="menu_classifieds_configuration_scheme" parent="eenadu_classified.parent_classified_sale_order" action="action_classifieds_target_scheme_view" sequence = '100'/>
+	<menuitem name="Schemes" id="menu_classifieds_target_scheme" parent="menu_classifieds_configuration_scheme" action="action_classifieds_target_scheme_view" sequence = '100'/>
+
+</odoo>

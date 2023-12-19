@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payroll_summary_report_wizard,access.payroll.summary.report.wizard,model_payroll_summary_report_wizard,,1,1,1,1
+access_payroll_lic_report_wizard,access.payroll.lic.report.wizard,model_payroll_lic_report_wizard,,1,1,1,1
+access_policy_model_info,access.policy.model.info,model_policy_model_info,,1,1,1,1
+
+
+

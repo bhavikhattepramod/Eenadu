@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_extension_probation_form" model="ir.ui.view">
+        <field name="name">extension.probation.report</field>
+        <field name="model">extension.probation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="current_date" invisible="1"/>
+                            <field name="no_of_months" required="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="report_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_extension_probation_wizard" model="ir.actions.act_window">
+        <field name="name">Extension Probation Letter</field>
+        <field name="res_model">extension.probation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_extension_probation_form"/>
+        <field name="target">new</field>
+    </record>
+     <menuitem id="employee_life_cycle_probation_menu"
+              name="Extension Of Probation"
+              parent="employee_life_cycle_menu"
+              action="action_extension_probation_wizard"
+              sequence="105"/>
+</odoo>
+
+

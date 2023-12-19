@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="self_service_lta_tree" model="ir.ui.view">
+        <field name="name">self.service.lta.tree</field>
+        <field name="model">lta.form</field>
+        <field name="arch" type="xml">
+            <tree string="LTA Form">
+                <field name="e_name_lta"/>
+                <field name="e_code_lta"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="self_service_lta_form" model="ir.ui.view">
+        <field name="name">self.service.lta.form</field>
+        <field name="model">lta.form</field>
+        <field name="arch" type="xml">
+            <form string="LTA Form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,submitted"/>
+                    <button string="Submit" type="object" name="action_submit_lta" class="btn-primary" attrs="{'invisible': [('status', '!=', 'draft')]}"/>
+                    <button string="Cancel" type="object" name="action_cancel_lta" class="btn-secondary" attrs="{'invisible': [('status', '!=', 'submitted')]}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_lta"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"
+                                   options="{'no_open': True}"/>
+                            <field name="designation_lta"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_lta_emp" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="lta_place"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="lta_tour_from"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="lta_tour_to"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="lta_tour_days"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="lta_amount"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                        <group>
+                            <field name="e_code_lta"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_lta"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_lta" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="leave_ids" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" widget="one2many_list" >
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="leave_type"/>
+                                </tree>
+                            </field>
+                            <field name="lta_el_balance" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="lta_amount_words" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+
+                            <!--                            <field name="rect_remarks"-->
+                            <!--                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>-->
+                        </group>
+                    </group>
+                    <group>
+                        <field name="lta_family_details">
+                            <tree editable="bottom">
+<!--                                <field name="lta_opt" widget="radio"/>-->
+                                <field name="lta_relation"/>
+                                <field name="lta_name"/>
+                                <field name="lta_age"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <separator style="height: 2px;background-color:black;"/>
+                    <field name="spouse_elgiblity" widget="radio" options="{'horizontal': true}" style="padding-left:30%"/>
+                    <separator style="height: 2px;background-color:black;"/>
+                    <div class="address_format">
+                        <field style="width:20%;padding-left:18%;" name="ack_lta" widget="Boolean" string="ack" />
+                    <field  style="width:80%" name="ack_default"/>
+                    </div>
+
+                    <group>
+                        <!-- Add a Note field to the form view -->
+                        <field name="lta_note_field" widget="text" string="Note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_application_details_lta_form" model="ir.actions.act_window">
+        <field name="name">LTA Form</field>
+        <field name="res_model">lta.form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="self_service_application_lta_menu"
+          name="LTA  Form"
+          parent="self_service_application_sub_menu_forms"
+          action="action_self_service_application_details_lta_form"
+          sequence="64"/>
+</odoo>

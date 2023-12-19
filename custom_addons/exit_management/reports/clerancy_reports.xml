@@ -1,0 +1,118 @@
+<odoo>
+    <record id="paperformat_clerancy_certficate" model="report.paperformat">
+        <field name="name">Custom Paper</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40.00</field>
+        <field name="margin_bottom">40.00</field>
+        <field name="margin_left">30</field>
+        <field name="margin_right">30</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">125</field>
+    </record>
+    <record id="clerancy_cerficate_exit_hr" model="ir.actions.report">
+        <field name="name">clearance_certificates</field>
+        <field name="model">clearance_certificates.exit</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.clerancy_certifcate_management</field>
+        <field name="report_file">exit_management.clerancy_certifcate_management</field>
+        <!--        <field name="binding_model_id" ref="model_letter_of_employment_probationary"/>-->
+        <field name="paperformat_id" ref="exit_management.paperformat_clerancy_certficate"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="clerancy_certifcate_management">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <head>
+                            <style>
+                                body{
+                                text-align:justify;
+                                font-size:28px;
+                                }
+
+                                .date{
+                                text-align:right;
+                                }
+                                .title{
+                                text-align:center;
+                                }
+                                .para1{
+                                text-align:justify;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <H2 class="title"><b><u>CLEARANCE &#160; CERTIFICATE</u></b></H2>
+
+                            <P style="text-align:center;">Clearance certficate from Head of the Department</P>
+                            <p class="date">Date:</p>
+                            <p>To :</p>
+                            <div class="para1">
+                                <p style="line-height:2.0;">
+                                    Mr/Mrs
+                                    <span t-field="doc.name_id"/>-
+                                    <span t-field="doc.name_id.employee_id.identification_id"/>
+                                    Manager of your Department has tendered her resignation with effect from
+                                    <span t-field="doc.name_id.emp_relieving_date"/>.
+                                    Please inform us whether she has handed over all the files, records, and articles
+                                    etc.,
+                                    which are in her possession so as to enable us to settle her account at the
+                                    earliest.
+
+                                    <ol type="1">
+                                        <li>
+                                            Handed over the charge and may be relieved.
+                                        </li>
+                                        <br/>
+                                        <li>
+                                            He/She is to hand over the following:
+                                        </li>
+                                        <br/>
+                                        <li>
+                                            <b>DUES IF ANY FROM CLIENTS/AGENTS</b>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            a)
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            b)
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            c)
+                                            <br/>
+                                        </li>
+                                    </ol>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <table width="100%" style="border-color:white;">
+                                        <tr>
+                                            <b>Authorised by:</b>
+                                            <td width="30%">
+                                                <span t-field="doc.name_id.company_id.director_id"/>
+                                            </td>
+                                            <td width="70%"  style="padding-left:490px;">
+                                                <b>(SIGNATURE)</b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            </div>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

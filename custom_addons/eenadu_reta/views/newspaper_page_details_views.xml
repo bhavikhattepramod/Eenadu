@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="newspaper_page_details_form_view" model="ir.ui.view">
+		<field name="name">newspaper.page.details.form</field>
+		<field name="model">newspaper.page.details</field>
+		<field name="arch" type="xml">
+			<form string="Newspaper Page Details">
+				<sheet>
+					<group>
+						<group>
+							<field name = 'page_name' required="1"/>
+							<field name = 'name' required="1"/>
+							<field name = 'length' required="1"/>
+							<field name = 'size'/>
+						</group>
+						<group>
+							<field name = 'width' required="1"/>
+							<field name = 'currency_id' invisible="1"/>
+							<field name = 'base_price' required="1"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="newspaper_page_details_tree_view" model="ir.ui.view">
+		<field name="name">newspaper.page.details.tree</field>
+		<field name="model">newspaper.page.details</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name='page_name' />
+				<field name = 'name' />
+				<field name = 'length' />
+				<field name = 'width' />
+				<field name = 'size' />
+				<field name = 'base_price' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_newspaper_page_details_view" model="ir.actions.act_window">
+		<field name="name">Newspaper Page Details</field>
+		<field name="res_model">newspaper.page.details</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Page" id="menu_newspaper_page_details" parent="sales_person_target.menu_reta_configuration_scheme" action="action_newspaper_page_details_view" sequence="20"/>
+
+	
+
+</odoo>

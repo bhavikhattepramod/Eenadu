@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="report_wizard_view">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <t class="page">
+                            <table class="table table-borderless" width="100%;">
+                                <tr>
+                                    <th colspan="6" style="text-align:center; font-size:27px;">
+                                        <b>
+                                            <u>
+                                                <strong>PHYSICAL FITNESS CERTIFICATE</strong>
+                                            </u>
+                                        </b>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6" style="text-align:left; font-size:22px;">
+                                        I do hereby certify that I have examined Mr/Ms
+                                        "<span t-esc="o.name"/>"
+                                        a Candidate for employment in
+                                        <b>USHODAYA PUBLICATIONS</b>
+                                        (A Division of Ushodaya Enterprises Pvt Ltd) and found
+                                        that He/She has not
+                                        any deformity / contageous / chronic diseases or bodily infirmity. He/She is
+                                        free
+                                        from communicable diseases and fit to perform his/her duties.
+                                    </th>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>1. He/She has marks of
+                                            <br/>
+                                            Small-Pox/Vaccination
+                                        </b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:YES / NO</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>2. Height</b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>3. Weight</b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>4. CHEST
+                                            <br/>
+                                            a) Inspiration
+                                            <br/>
+                                            b) Expiration
+                                            <br/>
+                                            c)Difference
+                                        </b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>5. VISION
+                                            <br/>
+                                            a)Left
+                                            <br/>
+                                            b)Right
+                                        </b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>6. Hearing</b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>7. Blood Group</b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>:</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>8. IDENTIFICATION MARKS</b>
+                                    </td>
+                                    <td colspan="5">
+                                        <b>a)_____________________________________________</b>
+                                        <br/>
+                                        <br/>
+                                        <b>b)_____________________________________________</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td colspan="5" style="text-align:right;">
+                                        <b>EXAMINED BY</b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td colspan="5" style="text-align:right;">
+                                        <b>SEAL WITH NAME<br/>AND DESIGNATION
+                                        </b>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>PLACE:</b>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <br/>
+                                <br/>
+                                <tr colspan="6" style="font-size:22px;">
+                                    <td colspan="1">
+                                        <b>DATE:</b>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+        <record id="report_hrms_wizards" model="ir.actions.report">
+        <field name="name">Physical Fitness Certificate</field>
+        <field name="model">physical.fitness</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">physical_report.report_wizard_view</field>
+        <field name="report_file">physical_report.report_wizard_view</field>
+        <field name="binding_model_id" ref="model_physical_fitness"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

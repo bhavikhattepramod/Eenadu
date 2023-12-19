@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_superannuation_letter_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">25</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_superannuation_letter_wizards" model="ir.actions.report">
+        <field name="name">Superannuation Intimation Letter</field>
+        <field name="model">superannuation.intimation.letter</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.report_superannuation_letter_report</field>
+        <field name="report_file">exit_management.report_superannuation_letter_report</field>
+        <field name="binding_model_id" ref="model_superannuation_intimation_letter"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_superannuation_letter_report"/>
+    </record>
+
+    <data>
+        <template id="report_superannuation_letter_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            table, tr, th,td {
+                            border:1px solid black;
+                            }
+                            .row1{
+                            margin:10px;
+                            height:40px;
+                            }
+                            .column{
+                            padding:10px;
+                            }
+                            .column_td{
+                            padding:5px;
+                            }
+                        </style>
+                        <div class="page1" style="text-align: justify;">
+                            <div style="float: right;">
+                                <span t-field="doc.current_date"></span>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            Mr
+                            <span t-field="doc.resignation_id.employee_id"/>
+                            <br/>
+                            <span t-field="doc.resignation_id.employee_id.son_dot_of"></span>
+
+                            <br/>
+                            <span t-field="doc.resignation_id.employee_id.street_emp"/>
+                            <br/>
+                            <span t-field="doc.resignation_id.employee_id.street2_emp"/>
+                            <span t-field="doc.resignation_id.employee_id.city_emp"/>
+                            <span t-field="doc.resignation_id.employee_id.state_id_emp"/>
+                            <span t-field="doc.resignation_id.employee_id.zip_emp"/>
+                            <span t-field="doc.resignation_id.employee_id.country_id_emp"/>
+                            <br/>
+                            <br/>
+                            Dear Mr
+                            <span t-field="doc.resignation_id.employee_id"/>
+                            <br/>
+                            <br/>
+                            <p>We wish to inform you that as per the records, you will be completing the age of
+                                <span t-field="doc.resignation_id.company_id.retire_age"/>
+                                Years
+                                on <span t-field="doc.resignation_id.employee_id.retired_age"/>. Accordingly, you will be
+                                superannuated and relieved from the services of the Organization.
+                                This information is being given to you in advance so as to enable you
+                                to plan for your future.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p>Regards</p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <b>
+                                Authorized By :
+                            </b>
+                            <br/>
+                            <b>
+                                <span t-field="doc.resignation_id.company_id.director_id"/>
+                            </b>
+
+                        </div>
+                        <div class="page2" style="text-align: justify;margin-top:630px;">
+                            <center>
+                                <b>USHODAYA PUBLICATIONS</b>
+                                <br/>
+                                (A Division of Ushodaya Enterprises Pvt Ltd)
+                                <br/>
+                                Eenadu Corp. Office, RFC, Anajpur, Abdullapurmet
+                                <br/>
+                                <br/>
+                                <b>INTER OFFICE COMMUNICATION</b>
+                            </center>
+                            <div style="float: right;">
+                                <span t-esc="doc.current_date.strftime('%d %B, %Y')"></span>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <span>To</span>
+                            <p>
+                                <b>The General Manager - Accounts</b>
+                            </p>
+                            <br/>
+                            <br/>
+                            <p>This is to bring to your notice that the colleagues mentioned below of your
+                                Department will be attaining the age of Superannuation on the dates mentioned
+                                against their names and accordingly they will be relieved from the services of the
+                                Organisation.
+                            </p>
+                            <br/>
+                            <br/>
+                            <table width="100%" id="table1" class="table1">
+                                <tr style="height:60px;" align="center">
+                                    <th class="column">
+                                        Code
+                                    </th>
+                                    <th class="column">
+                                        Name
+                                    </th>
+                                    <th class="column">
+                                        Designation
+                                    </th>
+                                    <th class="column">
+                                        Working At
+                                    </th>
+                                    <th class="column">
+                                        Date of Retirement
+                                    </th>
+
+                                </tr>job_id
+                                <tr class="row1">
+                                    <td class="column_td">
+                                        1026434
+                                    </td>
+                                    <td class="column_td">
+                                        MV Rama Rao
+                                    </td>
+                                    <td class="column_td">
+
+                                        Sr Executive
+                                    </td>
+                                    <td class="column_td">
+                                        General Accounts
+
+                                    </td>
+                                    <td class="column_td">
+                                        04.03.2024
+
+                                    </td>
+
+
+                                </tr>
+                                <tr class="row1">
+
+                                    <td class="column_td">
+                                        1035716
+                                    </td>
+                                    <td class="column_td">
+                                        G Subba Raju
+                                    </td>
+                                    <td class="column_td">
+                                        Jr Executive
+                                    </td>
+                                    <td class="column_td">
+                                        General Accounts
+
+                                    </td>job_id
+                                    <td class="column_td">
+                                        30.04.2024
+                                    </td>
+                                    DY GENERAL MANAGER - HR
+
+                                </tr>
+                                <tr class="row1">
+
+                                    <td class="column_td">
+                                        1047284
+                                    </td>
+                                    <td class="column_td">
+                                        NVBN Muktamba
+                                    </td>
+                                    <td class="column_td">
+                                        Assistant
+                                    </td>
+                                    <td class="column_td">
+                                        General Accounts
+
+                                    </td>
+                                    <td class="column_td">
+                                        14.06.2024
+                                    </td>
+
+
+                                </tr>
+
+                            </table>
+                            <br/>
+                            <p>This is for your information.</p>
+                            <p>Regards</p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <b>
+                                Authorized By :
+                            </b>
+                            <br/>
+                            <b>
+                                <span t-field="doc.resignation_id.company_id.director_id"/>
+                            </b>
+
+                        </div>
+                        <!--                        <div class="page3" style="text-align: justify;margin-top:440px;">-->
+                        <!--                            <center>-->
+                        <!--                                <b>USHODAYA PUBLICATIONS</b>-->
+                        <!--                                <br/>-->
+                        <!--                                (A Division of Ushodaya Enterprises Pvt Ltd)-->
+                        <!--                                <br/>-->
+                        <!--                                Eenadu Corp. Office, RFC, Anajpur, Abdullapurmet-->
+                        <!--                                <br/>-->
+                        <!--                                <br/>-->
+                        <!--                                <b>INTER OFFICE COMMUNICATION</b>-->
+                        <!--                            </center>-->
+                        <!--                            <div style="float: right;">-->
+                        <!--                                <span t-field="doc.current_date"></span>-->
+                        <!--                            </div>-->
+                        <!--                            <br/><br/><br/>-->
+                        <!--                            <span>To</span>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>The General Manager - Accounts</b>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <p>This is to bring to your notice that Mr G V Ramana (1021785), Sr Executive of your-->
+                        <!--                                Department will be attaining the age of Superannuation on 19th May, 2024 and-->
+                        <!--                                accordingly he will be relieved from the services of the Organisation.-->
+                        <!--                            </p>-->
+                        <!--                            <p>This is for your information.</p>-->
+                        <!--                            <p>Regards</p>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>L VIJAY</b>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>DY GENERAL MANAGER - HR</b><br/><br/>-->
+                        <!--                            <p>CC Ms A Kavitha, Newsprint</p>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <center>-->
+                        <!--                                <b>USHODAYA PUBLICATIONS</b>-->
+                        <!--                                <br/>-->
+                        <!--                                (A Division of Ushodaya Enterprises Pvt Ltd)-->
+                        <!--                                <br/>-->
+                        <!--                                Eenadu Corp. Office, RFC, Anajpur, Abdullapurmet-->
+                        <!--                                <br/>-->
+                        <!--                                <br/>-->
+                        <!--                                <b>INTER OFFICE COMMUNICATION</b>-->
+                        <!--                            </center>-->
+                        <!--                            <div style="float: right;">-->
+                        <!--                                <span t-field="doc.current_date"></span>-->
+                        <!--                            </div>-->
+                        <!--                            <br/><br/><br/>-->
+                        <!--                            <span>To</span>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>The General Manager - Accounts</b>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <p>This is to bring to your notice that Mr G V Ramana (1021785), Sr Executive of your-->
+                        <!--                                Department will be attaining the age of Superannuation on 19th May, 2024 and-->
+                        <!--                                accordingly he will be relieved from the services of the Organisation.-->
+                        <!--                            </p>-->
+                        <!--                            <p>This is for your information.</p>-->
+                        <!--                            <p>Regards</p>-->
+                        <!--                            <br/>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>L VIJAY</b>-->
+                        <!--                            <br/>-->
+                        <!--                            <b>DY GENERAL MANAGER - HR</b><br/><br/>-->
+                        <!--                            <p>CC Ms A Kavitha, Newsprint</p>-->
+
+
+                        <!--                        </div>-->
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

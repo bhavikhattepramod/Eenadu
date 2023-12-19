@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <t t-name="classified_ads_report">
+        <div class="oh_classified_ads_report">
+            <div class="container-fluid o_classified_ads_report"></div>
+        </div>
+    </t>
+
+    <t t-name="classified_ads_report_data">
+        <div class="all-pages">
+            <div class="page" id="page_id" style="border:2px solid Tomato;height:3040px;margin:38px;">
+                <div class="header" style="height:100px:width:100%:">
+                    <img src="/eenadu_reta/static/description/classifieds(52x33)_page-0001.jpg"
+                         style="width:100%; height:75px;"/>
+                </div>
+                <t t-esc="widget.name"/>
+                <t t-foreach="widget.got_values" t-as="line">
+                    <div class='col' style="width:174px; border:solid 2px black; word-wrap: break-word; margin:5px;">
+                        <img id="cols" src="/eenadu_reta/static/description/4_AVILALA.jpg" style="width:100%;"/>
+                        <span>------------ Values ------------</span>
+                    </div>
+                </t>
+<!--                <t t-foreach="widget.got_values" t-as="line">-->
+<!--                    &lt;!&ndash;                    <div class="row">&ndash;&gt;-->
+<!--                    <div class="col" id="col_id" style="width:174px; border:solid 2px black; word-wrap: break-word;">-->
+<!--                        <img id="cols" src="/eenadu_reta/static/description/classifieds(52x33)_page-0001.jpg"-->
+<!--                             style="width:100%;"/>-->
+<!--                        jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj-->
+<!--                    </div>-->
+<!--                </t>-->
+            </div>
+        </div>
+    </t>
+</odoo>

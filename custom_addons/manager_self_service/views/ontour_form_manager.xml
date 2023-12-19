@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="self_service_manager_on_tour_tree" model="ir.ui.view">
+        <field name="name">self.service.tour.tree</field>
+        <field name="model">on.tour.form</field>
+        <field name="arch" type="xml">
+            <tree string="Tour Form">
+                <field name="e_name_on_tour"/>
+                <field name="e_code_on_tour"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="self_service_manager_on_tour_form" model="ir.ui.view">
+        <field name="name">self.service.tour.form</field>
+        <field name="model">on.tour.form</field>
+        <field name="arch" type="xml">
+            <form string="On Tour Form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,approved,reject"/>
+                    <button string="Approve" type="object" name="approve_ontour_manager" class="btn-primary"/>
+                    <button string="Reject" type="object" name="reject_ontour_manager" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_on_tour" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"
+                                   options="{'no_open': True}"/>
+                            <field name="designation_on_tour" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_on_tour_emp" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="instructed_by" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="tour_starts_from" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" widget='radio'
+                                   options="{'horizontal': true}"/>
+                            <field name="on_tour_from_date" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="on_tour_from_time" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"
+                                   widget="float_time"/>
+                            <field name="purpose" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="amount_in_words" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                        <group>
+                            <field name="e_code_on_tour"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_on_tour"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_on_tour" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="tour_place"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="tour_ends_on"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" widget='radio'
+                                   options="{'horizontal': true}"/>
+                            <field name="on_tour_to_date"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="on_tour_days"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="advance_amount"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Add a Note field to the form view -->
+                        <field name="on_tour_note_field" widget="text" string="Note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_manager_application_details_on_tour" model="ir.actions.act_window">
+        <field name="name">On Tour Form</field>
+        <field name="res_model">on.tour.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('status', 'in', ['submitted','approved','reject']),('e_name_on_tour.parent_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record id="self_service_manager_application_details_ontour_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="self_service_manager_on_tour_tree"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_on_tour"/>
+    </record>
+
+    <record id="self_service_manager_application_details_ontour_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="self_service_manager_on_tour_form"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_on_tour"/>
+    </record>
+
+    <menuitem id="self_service_application_on_tour_menu"
+          name="On Tour Form"
+          parent="menu_employee_self_service_child"
+          action="action_self_service_manager_application_details_on_tour"
+          sequence="61"/>
+</odoo>

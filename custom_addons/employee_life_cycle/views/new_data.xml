@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="new_data_form" model="ir.ui.view">
+            <field name="name">New Members Data</field>
+            <field name="model">new.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions window-->
+
+        <record id="new_data_action" model="ir.actions.act_window">
+            <field name="name">New Members data</field>
+            <field name="res_model">new.data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="new_data_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="policy_report_sub_2" name="New Members Data" parent="policy_report_sub_main" action="new_data_action"
+                  sequence="103"/>
+
+
+    </data>
+</odoo>

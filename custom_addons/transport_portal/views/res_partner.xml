@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_vendor_approval_form" model="ir.ui.view">
+        <field name="name">vendor.approval.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_transport_vendor"/>
+                <field name="is_active_vendor" attrs="{'invisible':[('is_transport_vendor','!=',True)]}"
+                       widget="boolean_toggle" style="text-decoration:Red;"/>
+            </xpath>
+            <xpath expr="/form/*" position="before">
+                <header>
+                    <button name="action_vendor_validate" string="Validate"
+                            class="oe_highlight" type="object" groups="transport_portal.group_circulation_incharge"
+                            attrs="{'invisible':['|',('vendor_state', '!=', 'draft'),('is_transport_vendor', '!=', True)]}"/>
+
+                    <button name="action_vendor_approve" string="Approve"
+                            class="oe_highlight" type="object" groups="transport_portal.group_unit_incharge"
+                            attrs="{'invisible':['|',('vendor_state', '!=', 'validated'),('is_transport_vendor', '!=', True)]}"/>
+
+                    <button name="action_vendor_draft" string="Reset To Draft" groups="transport_portal.group_accounts_incharge"
+                            attrs="{'invisible':['|',('vendor_state','!=','reject'),('is_transport_vendor', '!=', True)]}" type="object"/>
+
+                    <button name="action_vendor_reject" string="Reject"
+                            class="btn-danger" type="object" groups="transport_portal.group_accounts_incharge"
+                            attrs="{'invisible':['|',('vendor_state', '!=', 'approved'),('is_transport_vendor', '!=', True)]}"/>
+
+                    <field name="vendor_state" widget="statusbar"
+                           attrs="{'invisible':[('is_transport_vendor', '!=', True)]}"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet/div" position="after">
+                <div style="margin-top:0px;">
+                    <widget name="web_ribbon" text="Approved"
+                            attrs="{'invisible': ['|',('vendor_state','!=','approved'),('is_transport_vendor', '!=', True)]}"/>
+                </div>
+
+                <div style="margin-top:0px;">
+                    <widget name="web_ribbon" text="Validated" bg_color="bg-info"
+                            attrs="{'invisible': ['|',('vendor_state','!=','validated'),('is_transport_vendor', '!=', True)]}"/>
+                </div>
+
+                <div style="margin-top:0px;">
+                    <widget name="web_ribbon" text="Rejected" bg_color="bg-danger"
+                            attrs="{'invisible': ['|',('vendor_state','!=','reject'),('is_transport_vendor', '!=', True)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_transportation_vendor_filter_approved" model="ir.actions.act_window">
+        <field name="name">Approved Vendors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('vendor_state','=','approved'), ('is_transport_vendor','=', True)]</field>
+    </record>
+
+    <record id="action_transportation_vendor_filter_state_draft" model="ir.actions.act_window">
+        <field name="name">Draft Vendors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('vendor_state','!=','approved'),
+            ('vendor_state','!=','validated'),('vendor_state','!=','reject'),('is_transport_vendor','=', True)]
+        </field>
+    </record>
+
+    <record id="action_transportation_vendor_filter_state_reject" model="ir.actions.act_window">
+        <field name="name">Rejected Vendors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('vendor_state','=','reject'), ('is_transport_vendor','=', True)]</field>
+    </record>
+
+    <record id="action_transportation_vendor_filter_state_validated" model="ir.actions.act_window">
+        <field name="name">Validated Vendors</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('vendor_state','=','validated'),('is_transport_vendor','=', True)]</field>
+    </record>
+
+    <menuitem id="transportation_vendor_onboarding_menu"
+              name="Vendors Onboarding"
+              parent="transport_portal.transportation_main_menu"
+              sequence="10"/>
+
+    <menuitem id="transportation_vendor_filter_state_draft"
+              name="Draft Vendors"
+              parent="transportation_vendor_onboarding_menu"
+              sequence="1"
+              action="action_transportation_vendor_filter_state_draft"/>
+
+    <menuitem id="transportation_vendor_filter_state_validated"
+              name="Validated Vendors"
+              parent="transportation_vendor_onboarding_menu"
+              sequence="2"
+              action="action_transportation_vendor_filter_state_validated"/>
+
+    <menuitem id="transportation_vendor_filter_state_approved"
+              name="Approved Vendors"
+              parent="transportation_vendor_onboarding_menu"
+              sequence="3"
+              action="action_transportation_vendor_filter_approved"/>
+
+    <menuitem id="transportation_vendor_filter_state_reject"
+              name="Reject Vendors"
+              parent="transportation_vendor_onboarding_menu"
+              sequence="4"
+              action="action_transportation_vendor_filter_state_reject"/>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="create_rfq_form_view" model="ir.ui.view">
+		<field name="name">create.rfq.wizard.form</field>
+		<field name="model">create.rfq.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Create RFQ">
+				<sheet>
+					<group>
+						<field name = 'supplier_id'/>
+                		<newline />
+						<field name = 'select_all' />
+                		<newline />
+						<field name="create_rfq_line_ids" nolabel="1" colspan="2">
+							<tree name="Details" create="false" editable="bottom">
+								<field name = 'create_rfq'/>
+								<field name = 'rfq_created' invisible = '1'/>
+								<field name = 'purchase_request_id'/>
+								<field name = 'purchase_request_line_id' invisible = '1'/>
+								<field name = 'product_id'/>
+								<field name = 'name'/>
+								<field name = 'product_qty'/>
+								<field name = 'product_uom_id'/>
+							</tree>
+						</field>
+					</group>
+	                <footer>
+	                    <button
+	                        name="make_purchase_order_from_indend"
+	                        string="Create RFQ"
+	                        type="object"
+	                        class="oe_highlight"
+	                    />
+	                    <button special="cancel" string="Cancel" class="oe_link" />
+	                </footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<record id="create_rfq_wizard_action" model="ir.actions.act_window">
+		<field name="name">create.rfq.wizard.action</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">create.rfq.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="create_rfq_form_view"/>
+		<field name="target">new</field>
+	</record>
+
+</odoo>

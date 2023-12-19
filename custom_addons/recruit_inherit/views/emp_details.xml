@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_employee_medical_details" model="ir.ui.view">
+        <field name="name">hr.employee.form.emp</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='personal_information']/group/group[3]" position="replace">
+                <group string="Medical Details">
+                    <field name="height"/>
+                    <field name="weight"/>
+                    <field name="left_eye"/>
+                    <field name="right_eye"/>
+                    <field name="identification_mark1" required="0"/>
+                    <field name="identification_mark2"/>
+                </group>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/div/div/group/field[@name='work_location_id']" position="attributes">
+                <attribute name="options">{"no_open": True}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/div/div/group/field[@name='work_location_id']" position="after">
+                <field name="unit_name_hr" options='{"no_open": True}' required="0" widget="many2many_tags"/>
+                <field name="section_name_hr" options='{"no_open": True}' required="0" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_dep_code" model="ir.ui.view">
+        <field name="name">hr.department.form.emp</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='manager_id']" position="after">
+                <field name="dep_code"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_time_off_required" model="ir.ui.view">
+        <field name="name">hr.employee.form.time</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_holidays.view_employee_form_leave_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='leave_manager_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

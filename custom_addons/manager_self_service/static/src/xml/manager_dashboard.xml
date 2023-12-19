@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template_manager" xml:space="preserve">
+    <t t-name="DashboardManager">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+        </div>
+    </t>
+
+    <t t-name="DashboardFour">
+        <section class="dashboard_main" id="main_section">
+       <div class="col-sm-12 mb-4">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-8">
+                   <h2 class="section-header">Manager's Dashboard</h2>
+               </div>
+
+               <!--      Tiles    1ST ROW-->
+               <div class='row spacer_row' style="justify-content:center;">
+                    <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">OnDuty Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_leave'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Leave Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_leave_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_shift'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Shift Change Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_shift_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_ontour'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Ontour Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_ontour_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_auth'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Authorisation Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_auth_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+
+<!--               2nd ROW-->
+
+               <div class='row spacer_row' style="justify-content:center;">
+                   <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_rectification'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">Rectification Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_rectification_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class='col-md-2 text-center common_margin'>
+                        <div class='o-scorecard w-100 h-100 hrm_card common_card self_pending_manager_lta'>
+                            <div>
+                                <div class="card_header hdr7_bg_color" style="margin-bottom: 5px;">
+                                    <div>
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"> </i><span style="padding:8px;font-size:12px;">LTA Pending for Approval</span></div></div>
+                                        <div class="card_header_right"> </div>
+                                     </div>
+                                <div class="hrm_card_value" id="total_employee_lta_submits"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+               </div>
+           </div>
+       </div>
+   </section>
+    </t>
+</templates>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_shift_management_tree" model="ir.ui.view">
+        <field name="name">Shift Management tree</field>
+        <field name="model">shift.management</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="shift_time_in" widget='float_time'/>
+                <field name="shift_time_out" widget='float_time'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_shift_management_form" model="ir.ui.view">
+        <field name="name">Shift Management form</field>
+        <field name="model">shift.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="shift_time_in" widget='float_time'/>
+                        <field name="shift_time_out" widget='float_time'/>
+                        <field name="break_time_in" widget='float_time'/>
+                        <field name="break_time_out" widget='float_time'/>
+                        <field name="grace_time_in" widget='float_time'/>
+                        <field name="grace_time_out" widget='float_time'/>
+                        <field name="nsa_applicable"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" options="{'post_refresh' : 'recipients'}" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_employee_timing" model="ir.ui.view">
+        <field name="name">hr.employee.timing</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="Itax_calculation_master.view_hr_payslip_week_off_day"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='week_off_day']" position="after">
+                <field name="emp_time_id" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_shift_management" model="ir.actions.act_window">
+        <field name="name">Shift Management</field>
+        <field name="res_model">shift.management</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_attendance_view_attendances"
+              name="Shift Master"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_shift_management"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_manager_form_self_service" model="ir.ui.view">
+        <field name="name">self.service.application.details.form</field>
+        <field name="model">self.service.application.details</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,approved,reject"/>
+                    <button string="Approve" type="object" name="approve_onduty_manager" class="btn-primary" attrs="{'invisible': [('status', '!=', 'submitted')]}"/>
+                    <button string="Reject" type="object" name="reject_onduty_manager"  class="btn-primary" attrs="{'invisible': [('status', '!=', 'submitted')]}"/>
+                </header>
+                <sheet>
+                    <group style="font-size:16px">
+                        <group>
+                            <field name="e_name" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px; font-size: 16px;" options="{'no_open': True}"/>
+                            <field name="designation_onduty" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_onduty_emp" widget="many2many_tags" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="day_type" widget='radio' options="{'horizontal': true}" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;font-size:18px"/>
+                            <field name="duty_from_date" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="duty_from_time" widget="float_time" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_of_on_duty" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                        <group>
+                            <field name="e_code" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_onduty" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_onduty" widget="many2many_tags" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="duty_purpose" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="duty_to_date" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="duty_to_time" widget="float_time" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="duty_hours" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_manager_tree_self_service" model="ir.ui.view">
+        <field name="name">self.service.application.details.tree</field>
+        <field name="model">self.service.application.details</field>
+        <field name="arch" type="xml">
+            <tree create="0">
+                <field name="e_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="open_view_manager_self_onduty" model="ir.actions.act_window">
+        <field name="name">OnDuty Form</field>
+        <field name="res_model">self.service.application.details</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('status', 'in', ['submitted','approved','reject']),('e_name.parent_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record id="open_view_manager_self_onduty_action_tree" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_manager_tree_self_service"/>
+        <field name="act_window_id" ref="open_view_manager_self_onduty"/>
+    </record>
+
+    <record id="open_view_manager_self_onduty_action_form" model="ir.actions.act_window.view">
+        <field eval="10" name="sequence"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_manager_form_self_service"/>
+        <field name="act_window_id" ref="open_view_manager_self_onduty"/>
+    </record>
+
+    <record id="action_self_manager_dashboard_screen" model="ir.actions.client">
+        <field name="name">Dashboard Manager</field>
+        <field name="tag">self_dashboard_manager</field>
+    </record>
+
+    <menuitem id="menu_manager_self_service_root"
+              name="Manager Self Service"
+              web_icon="manager_self_service,static/description/icon.png"
+              sequence="0"/>
+
+    <menuitem id="menu_manager_dashboard_self_service"
+              parent="menu_manager_self_service_root"
+              name="Manager dashboard"
+              action="action_self_manager_dashboard_screen"
+              sequence="2"/>
+
+    <menuitem id="menu_employee_self_service_child"
+              parent="menu_manager_self_service_root"
+              name="Application Details"
+              sequence="5"/>
+
+    <menuitem id="menu_manager_self_service_onduty"
+              name="OnDuty Form"
+              parent="menu_employee_self_service_child"
+              action="open_view_manager_self_onduty"
+              sequence="1"/>
+</odoo>

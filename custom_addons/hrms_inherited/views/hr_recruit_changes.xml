@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_applicant_view_form_changes" model="ir.ui.view">
+        <field name="name">hr.applicant.changes</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/field[@name='user_id']" position="after">
+                <field name="reject_reason" attrs="{'invisible': [('date_rejected', '=', False)]}"/>
+                <field name="date_rejected"/>
+                <field name="date_selected"/>
+            </xpath>
+            <xpath expr="//form/sheet/widget[@name='web_ribbon']" position="after">
+                <widget name="web_ribbon" title="Rejected" bg_color="bg-danger" attrs="{'invisible': [('date_rejected', '=', False)]}" />
+                <widget name="web_ribbon" title="Selected" attrs="{'invisible': [('date_selected', '=', False)]}" />
+            </xpath>
+            <xpath expr="//form/sheet/widget[1]" position="replace">
+                <widget name="web_ribbon" title="Offer Declined" bg_color="bg-danger"
+                        attrs="{'invisible': ['|', ('active', '=', True), ('refuse_reason_id', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='archive_applicant']" position="attributes">
+                <attribute name="string">Offer Declined</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_applicant_view_search_bis_declined" model="ir.ui.view">
+        <field name="name">hr.applicant.declined</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_search_bis"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/filter[@name='refused']" position="attributes">
+                <attribute name="string">Offer Declined</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_recruitment_stage_form_changes" model="ir.ui.view">
+        <field name="name">hr.recruitment.stage.changes</field>
+        <field name="model">hr.recruitment.stage</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_recruitment_stage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/group/field[@name='hired_stage']" position="after">
+                <field name="rejected_stage"/>
+                <field name="selected_stage"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

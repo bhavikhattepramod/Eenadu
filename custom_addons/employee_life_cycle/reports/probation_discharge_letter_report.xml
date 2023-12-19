@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_probation_discharge_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">25</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="probation_discharge_letter_wizards" model="ir.actions.report">
+        <field name="name">Probation Discharge Letter</field>
+        <field name="model">probation.discharge.letter</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.probation_discharge_letter_report</field>
+        <field name="report_file">employee_life_cycle.probation_discharge_letter_report</field>
+        <field name="binding_model_id" ref="model_probation_discharge_letter"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_probation_discharge_report"/>
+    </record>
+
+    <data>
+        <template id="probation_discharge_letter_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .right-align {
+                            text-align: right;
+                            }
+                            table.my-table {
+                            border: 1px solid white;
+                            }
+
+                        </style>
+                        <div class="page" style="text-align: justify; font-size:20px;">
+                            <table class="my-table">
+                                <tr>
+                                    <td class="left-align" style="padding-right:30px;">
+                                        <b>REGD POST/ACK DUE</b>
+                                    </td>
+                                    <td class="right-align" style="padding-left:250px;">
+                                        <field t-esc="doc.current_date.strftime('%d %B, %Y')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <span t-field="doc.name_id.emp_code.son_dot_of"></span>
+                            <br/>
+                            <span t-field="doc.name_id.emp_code.street_emp"/>
+                            <br/>
+                            <span t-field="doc.name_id.emp_code.street2_emp"/>
+                            <span t-field="doc.name_id.emp_code.city_emp"/>
+                            <span t-field="doc.name_id.emp_code.state_id_emp"/>
+                            <span t-field="doc.name_id.emp_code.zip_emp"/>
+                            <span t-field="doc.name_id.emp_code.country_id_emp"/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>This has reference to your Letter of Employment - Probationary dated 14th February, 2011.
+                                As per the said letter, your probationary period has come to an end with effect from
+                                today i.e.20th August, 2011.
+                            </p>
+                            <br/>
+                            <p>In pursuance of Clause-4 of your Letter of Employment - Probationary, you are hereby
+                                discharged from probation with effect from today i.e. 20th August, 2011
+                                after the close of working hours.
+                            </p>
+                            <br/>
+                            <p>The Accounts Department has been advised to settle your account.</p>
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            <span>
+                                <b>Authorised By</b>
+                            </span>
+                            <br/>
+                            <span>
+                                <b>
+                                    <span t-field="doc.name_id.company.director_id"/>
+                                </b>
+                            </span>
+
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id="proof_reading_details_seq" model="ir.sequence">
+		<field name="name">Proof reading Seq</field>
+		<field name="code">proof.reading.seq</field>
+		<field name="prefix">PR</field>
+		<field name="padding">5</field>
+		<field name="company_id" eval="False"/>
+	</record>
+
+	<record id="proof_reading_details_form_view" model="ir.ui.view">
+		<field name="name">proof.reading.details.form</field>
+		<field name="model">proof.reading.details</field>
+		<field name="arch" type="xml">
+			<form string="Proof Reading Details">
+				<header>
+                    <field name="status" widget="statusbar" />
+                </header>
+				<sheet>
+					<div class="oe_title">
+						<span class="o_form_label">Proof Reading</span>
+						<h1>
+							<field name="proof_reading_sequence" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name = 'product_id' />
+							<field name = 'publish_date'/>
+							<field name = 'region_ids' widget='many2many_tags'/>
+						</group>
+						<group>
+							<field name = 'name' />
+							<field name = 'no_of_lines' />
+							<field name = 'publication_id'/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="proof_reading_details_tree_view" model="ir.ui.view">
+		<field name="name">proof.reading.details.tree</field>
+		<field name="model">proof.reading.details</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'proof_reading_sequence' />
+				<field name = 'product_id' />
+				<field name = 'name' />
+				<field name = 'publication_id' />
+				<field name = 'region_ids' widget='many2many_tags'/>
+				<field name = 'publish_date' />
+				<field name = 'no_of_lines' />
+				<field name = 'status' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_proof_reading_details_view" model="ir.actions.act_window">
+		<field name="name">Proof Reading Details</field>
+		<field name="res_model">proof.reading.details</field>
+		<field name="domain"></field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Proof Reading" id="menu_proof_reading" parent="menu_position_details_classifieds" action="action_proof_reading_details_view" sequence="20"/>
+	
+</odoo>

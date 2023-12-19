@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_company_form_new_sms" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.sms</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="sms_credential" string="SMS API Credential">
+                    <group>
+                        <group string="SMS API Credential">
+                            <field name="sms_username"/>
+                            <field name="sms_password"/>
+                            <field name="from_number"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_reta_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <!--                    <button name="generate_otp" string="Validate" class="oe_highlight" type="object" attrs="{'invisible': ['|',('reta_state', 'not in', ['sent']), ('classified_bool_field', '=', True)]}"/>-->
+                <button name="generate_otp" string="Send For Scheduling" class="oe_highlight" type="object"
+                        attrs="{'invisible': ['|',('reta_state','!=','draft'),('reta_bool_field','!=',True)]}"/>
+                <button name="generate_otp" string="Send For Scheduling" class="oe_highlight" type="object" attrs="{'invisible': ['|',('reta_state','!=','draft'),('nap_bool_field','!=',True)]}" />
+            </xpath>
+            <xpath expr="//button[@name='send_for_scheduling']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+    </field>
+</record>
+
+
+        <!--    <record id="inherit_sale_order_form" model="ir.ui.view">-->
+        <!--        <field name="name">sale.order.form</field>-->
+        <!--        <field name="model">sale.order</field>-->
+        <!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            &lt;!&ndash; Hide the Confirm Button &ndash;&gt;-->
+        <!--            <xpath expr="//button[@name='action_confirm']" position="attributes">-->
+        <!--                <attribute name="attrs">{'invisible':[('reta_bool_field', '=', True)]}</attribute>-->
+        <!--            </xpath>-->
+        <!--        </field>-->
+        <!--    </record>-->
+        </odoo>
+
+
+

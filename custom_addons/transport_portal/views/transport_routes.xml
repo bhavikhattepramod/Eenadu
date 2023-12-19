@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="transport_routes_action">
+        <field name="name">Transport Routes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">transport.routes</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p id="view_no_content">
+                Transport Routes
+            </p>
+        </field>
+    </record>
+
+    <record id="transport_routes_tree" model="ir.ui.view">
+        <field name="name">Transport Routes tree</field>
+        <field name="model">transport.routes</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="route"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="transport_routes_form" model="ir.ui.view">
+        <field name="name">Transport Routes form</field>
+        <field name="model">transport.routes</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="route"/>
+                        <field name="name" string="Transporter"/>
+                    </group>
+                    <notebook>
+                        <page name="routes_lines" string="Route Lines" >
+                            <field name="route_lines">
+                                <tree editable="bottom">
+                                    <field name="src_location" />
+                                    <field name="des_location" />
+                                    <field name="distance" />
+                                    <field name="hours" widget="float_time" />
+<!--                                    <field name="formatted_time" />-->
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <menuitem id="Transportation_routes_main_menu"
+              name="Transport Routes"
+              sequence="2"
+              parent="transportation_main_menu"
+              />
+
+     <menuitem id="Transportation_menu_routes"
+              name="Transport Routes"
+              sequence="0"
+              parent="Transportation_routes_main_menu"
+              action="transport_portal.transport_routes_action"/>
+
+
+</odoo>

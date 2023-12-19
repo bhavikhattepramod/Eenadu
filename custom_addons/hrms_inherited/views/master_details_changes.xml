@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_contract_view_form_salary" model="ir.ui.view">
+        <field name="name">hr.contract.view.salary</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='other']" position="after">
+                <page name="master_details" string="Employment Master Salary Details">
+                    <field name="salary_rule_master">
+                        <tree editable="bottom">
+                            <field name="salary_line_component"/>
+                            <field name="salary_code"/>
+                            <field name="vpf_field" invisible="1"/>
+                            <field name="prorate_field" invisible="1"/>
+                            <field name="lop_applicable" invisible="0"/>
+<!--                            <field name="lop_arrear_applicable" invisible="0"/>-->
+                            <field name="salary_amount"/>
+                            <field name="salary_amount_percentage"/>
+                        </tree>
+                    </field>
+                </page>
+                <page name="employee_statutory_details" string="Statutory Details">
+                    <group>
+                        <field name="vpf_field"/>
+                        <field name="da_exit_applicable"/>
+                        <field name="nsa_amount"/>
+                        <field name="lop_days_exit" invisible="1"/>
+                        <field name="present_days_exit" invisible="1"/>
+                        <field name="amount_da" invisible="1"/>
+                    </group>
+                </page>
+            </xpath>
+<!--            <xpath expr="//form/sheet/group/group/field[@name='hr_responsible_id']" position="after">-->
+<!--                <field name="vpf_field"/>-->
+<!--                <field name="nsa_amount"/>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+</odoo>

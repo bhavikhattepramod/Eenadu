@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="survey_survey_view_form_candidate_details_applicable" model="ir.ui.view">
+            <field name="name">survey.view.form.inherit.candidate.details.applicable</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="candidate_details_applicable"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!--          <record id="hr_applicant_attachement_field" model="ir<.ui.view">-->
+        <!--            <field name="name">hr.applicant.attachment.field</field>-->
+        <!--            <field name="model">hr.applicant</field>-->
+        <!--            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                    <xpath expr="//field[@name='medium_id']" position="after">-->
+        <!--                        <field name="attachement_download"/>-->
+        <!--                    </xpath>-->
+        <!--            </field>-->
+        <!--          </record>-->
+
+        <record id="hr_applicant_attachement_field" model="ir.ui.view">
+            <field name="name">hr.applicant.attachment.field</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='medium_id']" position="after">
+                    <field name="attachement_id1" widget="many2many_binary"/>
+                    <!--                    <field name="attachement_id1"/>-->
+                    <!--                    <field name="attach_1"/>-->
+                </xpath>
+                <xpath expr="//form/sheet/div/h2/div/field[@name='partner_name']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='email_from']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='partner_mobile']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group/group/field[@name='location']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_recruitment_dashboard_screen" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">recruitment_dashboard_supervisor</field>
+    </record>
+
+    <record id="action_recruitment_dashboard_hod_screen" model="ir.actions.client">
+        <field name="name">Dashboard-HOD</field>
+        <field name="tag">recruitment_dashboard_hod</field>
+    </record>
+
+    <record id="action_recruitment_dashboard_finance_screen" model="ir.actions.client">
+        <field name="name">Dashboard-Finance</field>
+        <field name="tag">recruitment_dashboard_finance</field>
+    </record>
+
+    <menuitem id="recruitment_dashboard_menu"
+              name="Dashboard"
+              sequence="1"
+              parent="hr_recruitment.menu_hr_recruitment_root"
+              action="action_recruitment_dashboard_screen"/>
+
+    <menuitem id="recruitment_dashboard_hod_menu"
+              name="Dashboard - HOD"
+              sequence="1"
+              parent="hr_recruitment.menu_hr_recruitment_root"
+              action="action_recruitment_dashboard_hod_screen"/>
+
+    <menuitem id="recruitment_dashboard_finance_menu"
+              name="Dashboard - Finance"
+              sequence="1"
+              parent="hr_recruitment.menu_hr_recruitment_root"
+              action="action_recruitment_dashboard_finance_screen"/>
+</odoo>

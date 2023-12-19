@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="kanban_dev_job_position_request" model="ir.ui.view">
+        <field name="name">kanban.dev.job.position.request.view</field>
+        <field name="model">job.position.request</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="count_new"/>
+                <field name="count_submit"/>
+                <field name="count_hod"/>
+                <field name="count_finance"/>
+                <field name="count_hr"/>
+                <field name="count_approved"/>
+                <field name="count_reject"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="container o_kanban_card_content">
+                            <div class="row">
+                                <div class="col-6 o_kanban_primary_right">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_new" type="object">
+                                                <field name="count_new"/>
+                                                New
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_submit" type="object">
+                                                <field name="count_submit"/>
+                                                Submit
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_hod" type="object">
+                                                <field name="count_hod"/>
+                                                Hod
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_finance" type="object">
+                                                <field name="count_finance"/>
+                                                Finance
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_hr" type="object">
+                                                <field name="count_hr"/>
+                                                Hr
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_approved" type="object">
+                                                <field name="count_approved"/>
+                                                Approved
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a name="get_action_manpower_tree_reject" type="object">
+                                                <field name="count_reject"/>
+                                                Reject
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_dev_job_position_request_new" model="ir.actions.act_window">
+        <field name="name">Manpower New</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_new_filter':1}</field>
+    </record>
+    <record id="action_dev_job_position_request_submit" model="ir.actions.act_window">
+        <field name="name">Manpower Submit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_submit_filter':1}</field>
+    </record>
+    <record id="action_dev_job_position_request_hod" model="ir.actions.act_window">
+        <field name="name">Manpower Hod</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_hod_approve_filter':1}</field>
+    </record>
+    <record id="action_dev_job_position_request_finance" model="ir.actions.act_window">
+        <field name="name">Manpower Finance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_finance_approve_filter':1}</field>
+    </record>
+    <record id="action_dev_job_position_request_hr" model="ir.actions.act_window">
+        <field name="name">Manpower Hr</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_hr_approve_filter':1}</field>
+    </record>
+
+    <record id="action_dev_job_position_request_approved" model="ir.actions.act_window">
+        <field name="name">Manpower Approved</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_approved_filter':1}</field>
+    </record>
+
+    <record id="action_dev_job_position_request_reject" model="ir.actions.act_window">
+        <field name="name">Manpower Reject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.position.request</field>
+        <field name="view_mode">tree.form</field>
+        <field name="context">{'search_default_rejected_filter':1}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_joining_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">30</field>
+        <field name="margin_right">30</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_forms_wizards" model="ir.actions.report">
+        <field name="name">Apprenticeship Completion Relieving</field>
+        <field name="model">apprenticeship.relieving</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.report_extension_report</field>
+        <field name="report_file">exit_management.report_extension_report</field>
+        <field name="binding_model_id" ref="model_apprenticeship_relieving"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_joining_report"/>
+    </record>
+    <data>
+        <template id="report_extension_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            td{
+                            height:30px;
+                            padding :7px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;">
+                            <div class="page" style="text-align:justify; font-size:135%;">
+                                <div style="text-align:right;">
+                                    <span t-field="doc.current_date"/>
+                                    <br/>
+                                </div>
+                                <br/>
+                                <div style="text-align:left;">
+                                    Mr/Miss
+                                    <span t-field="doc.name.employee_id"/>
+                                    <br/>
+                                    <br/>
+                                    <span t-field="doc.name.employee_id.job_id"/>
+                                    <br/>
+                                    <br/>
+                                    Mr/Miss
+                                    <span t-field="doc.name.employee_id"/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <p>This has reference to your letter of Contract of Apprenticeship dated
+                                    __________________. In pursuance of Clause-7 of the said letter, your Apprenticeship
+                                    training has
+                                    come to an end with effect from today i.e.
+                                    <span t-field="doc.name.emp_relieving_date"/>
+                                    after the close of
+                                    working hours and therefore you are relieved accordingly.
+                                </p>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>
+                                    The Accounts Department has been advised to settle your account.
+                                </p>
+                                <br/>
+                                <br/>
+                                <p style="text-align:left;">
+                                    <b>Authorised By:
+                                        <br/>
+                                        <span t-field="doc.name.company_id.director_id"/>
+                                    </b>
+                                </p>
+                                <p style="page-break-before:always"/>
+                                <div class="page" style="text-align:justify; font-size:105%;">
+                                    <div style="text-align:right;">
+                                        <span t-field="doc.current_date"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <h1 style="font-size:100%; text-align:center; text-decoration:underline;">
+                                    <b>APPRENTICESHIP CERTIFICATE</b>
+                                </h1>
+                                <br/>
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>1.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Name</span>-->
+                                <!--                                    <span style="padding-left:195px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                        <span t-field="doc.name.employee_id"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>2.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Designation</span>-->
+                                <!--                                    <span style="padding-left:120px;">:</span>-->
+                                <!--                                    <span style="padding-right:60px;">-->
+                                <!--                                        <span t-field="doc.name.employee_id.job_id"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>3.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Date of Joining</span>-->
+                                <!--                                    <span style="padding-left:114px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                        <span t-field="doc.name.date_of_joining"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>4.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Stipend at the time</span>-->
+                                <!--                                    <span style="padding-left:80px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                    </span>-->
+                                <!--                                    <br></br>-->
+                                <!--                                    <span style="padding-left:29px;">of Joining</span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>5.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Date of Leaving</span>-->
+                                <!--                                    <span style="padding-left:110px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                        <span t-field="doc.name.emp_relieving_date"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>6.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Stipend at the time</span>-->
+                                <!--                                    <span style="padding-left:82px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                    </span>-->
+                                <!--                                    <br></br>-->
+                                <!--                                    <span style="padding-left:29px;">of Leaving</span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>7.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Reasons for Leaving</span>-->
+                                <!--                                    <span style="padding-left:73px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;">-->
+                                <!--                                        <span t-field="doc.name.reason"/>-->
+                                <!--                                    </span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <!--                                <p style="padding-left:150px; padding-right:60px;">-->
+                                <!--                                    <span>8.</span>-->
+                                <!--                                    <span style="padding-left:10px;">Conduct &amp; Character</span>-->
+                                <!--                                    <span style="padding-left:63px;">:</span>-->
+                                <!--                                    <span style="padding-left:60px;"></span>-->
+                                <!--                                </p>-->
+                                <!--                                <br></br>-->
+                                <table width="100%" style="border:1px solid white;">
+                                    <tr>
+                                        <td width="45%">
+                                            1. Name
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            <span t-field="doc.name.employee_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            2. Designation
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            <span t-field="doc.name.employee_id.job_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            3. Date of Joining
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            <span t-field="doc.name.date_of_joining"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            4. Stipend at the time
+                                            <br/>
+                                            <span style="padding-left:20px;">of leaving</span>
+
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            5. Date of Leaving
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            <span t-field="doc.name.emp_relieving_date"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            6. Stipend at the time
+                                            <br/>
+                                            <span style="padding-left:20px;">of leaving</span>
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            7. Reasons for Leaving
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            <span t-field="doc.name.reason"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="45%">
+                                            8. Conduct &amp; Character
+                                        </td>
+                                        <td width="10%">
+                                            :
+                                        </td>
+                                        <td width="45%">
+                                            Satisfactory
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>
+                                    <span>
+                                        <b>
+                                            Authorised By :
+                                        </b>
+                                        <br></br>
+                                        <b>
+                                            <span t-field="doc.name.company_id.director_id"/>
+                                        </b>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+

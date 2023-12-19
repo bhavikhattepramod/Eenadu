@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="self_service_manager_shift_tree" model="ir.ui.view">
+        <field name="name">self.service.shift.tree</field>
+        <field name="model">shift.changes.form</field>
+        <field name="arch" type="xml">
+            <tree string="Shift Form">
+                <field name="e_name_shift"/>
+                <field name="e_code_shift"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="self_service_manager_shift_form" model="ir.ui.view">
+        <field name="name">self.service.shift.form</field>
+        <field name="model">shift.changes.form</field>
+        <field name="arch" type="xml">
+            <form string="Shift Form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,approved,reject"/>
+                    <button string="Approve" type="object" name="approve_shift_manager" class="btn-primary" />
+                    <button string="Reject" type="object" name="reject_shift_manager"  class="btn-secondary" />
+                </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" options="{'no_open': True}"/>
+                            <field name="designation_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_shift_emp" widget="many2many_tags" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="shift_from_date" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="current_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" options="{'no_open': True}" context="{'shift_name_formate': True}"/>
+                            <field name="new_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" context="{'shift_name_formate': True}"/>
+<!--                            <field name="place_of_on_duty" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>-->
+                        </group>
+                        <group>
+                            <field name="e_code_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_shift" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_shift" widget="many2many_tags" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="shift_to_date" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="shift_days" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="shift_reason" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+<!--                            <field name="duty_to_time" widget="float_time" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>-->
+<!--                            <field name="duty_hours" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>-->
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Add a Note field to the form view -->
+                        <field name="shift_note_field" widget="text" string="Note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_manager_application_details_shift" model="ir.actions.act_window">
+        <field name="name">Shift Change Form </field>
+        <field name="res_model">shift.changes.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('status', 'in', ['submitted','approved','reject']),('e_name_shift.parent_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record id="self_service_manager_application_details_shift_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="self_service_manager_shift_tree"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_shift"/>
+    </record>
+
+    <record id="self_service_manager_application_details_shift_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="self_service_manager_shift_form"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_shift"/>
+    </record>
+
+    <menuitem id="self_service_application_shift_menu"
+          name="Shift Change Form"
+          parent="menu_employee_self_service_child"
+          action="action_self_service_manager_application_details_shift"
+          sequence="60"/>
+</odoo>

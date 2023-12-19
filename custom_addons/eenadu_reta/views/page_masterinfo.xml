@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="page_masterinfo_form_view" model="ir.ui.view">
+        <field name="name">page.masterinfo.form</field>
+        <field name="model">page.master.info</field>
+        <field name="arch" type="xml">
+            <form string="PageMasterInfo">
+<!--                <header>-->
+<!--                    <button string="Test" type="object" name="action_test_connection"-->
+<!--                            class="oe_stat_button"/>-->
+<!--                </header>-->
+                <sheet>
+                    <group>
+                        <field name='page_no'/>
+                        <field name='page_name_id'/>
+                        <field name='length' required="1"/>
+                        <field name='total_size' required="1"/>
+                        <field name='reserved' required="1"/>
+                        <field name='remaining' readonly="1"/>
+                        <field name="date"/>
+                    </group>
+                    <notebook>
+                        <page string="Order Details" name="page_reserve_ids">
+                            <field name="page_reserve_ids" >
+                                <tree edit="0" create="0" delete="0">
+                                    <field name="agent_id"/>
+                                    <field name="customer_id"/>
+                                    <field name="product_template_id" string="Ad Name"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty" string="Size"/>
+                                </tree>
+
+                                <form edit="0" create="0" delete="0" string="Order Details">
+                                    <group col="2">
+                                        <group col="1">
+                                            <field name="agent_id"/>
+                                            <field name="customer_id"/>
+                                        </group>
+                                        <group col="2">
+                                            <field name="product_uom_qty" string="Size"/>
+                                            <field name="product_template_id" string="Ad Name"/>
+                                            <field name="name"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+<record id="page_masterinfo_tree_view" model="ir.ui.view">
+<field name="name">page.masterinfo.tree</field>
+<field name="model">page.master.info</field>
+<field name="arch" type="xml">
+    <tree>
+
+        <field name='page_no'/>
+        <field name='page_name_id'/>
+        <field name='length'/>
+        <field name='width'/>
+        <field name='total_size'/>
+        <field name='reserved'/>
+        <field name='remaining'/>
+        <field name="date"/>
+
+    </tree>
+</field>
+</record>
+        <!--	<record id="view_search" model="ir.ui.view">-->
+        <!--        <field name="name">Filter search</field>-->
+        <!--        <field name="model">page.master.info</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <search string="condition search">-->
+        <!--                <field name="page_name"/>-->
+        <!--                <field name="date"/>-->
+        <!--                <filter-->
+        <!--                        string="Date Srch"-->
+        <!--                        name="datesearch"-->
+        <!--                        domain="[('date', '&lt;=','date' )]"-->
+        <!--                />-->
+        <!--                <separator/>-->
+        <!--                <group expand="1" string="Group By">-->
+        <!--                    <filter-->
+        <!--                            string="Date"-->
+        <!--                            name="date"-->
+        <!--                            context="{'group_by': 'date'}"-->
+        <!--                    />-->
+        <!--                </group>-->
+        <!--            </search>-->
+        <!--        </field>-->
+        <!--    </record>-->
+<record id="action_page_masterinfo_view" model="ir.actions.act_window">
+<field name="name">PageMaster Reservation Information</field>
+<field name="res_model">page.master.info</field>
+<field name="view_mode">tree,form</field>
+</record>
+<menuitem name="Page Reservation Info" id="menu_page_master_details" parent="eenadu_reta.parent_reta_application" action="action_page_masterinfo_view" sequence="24"/>
+
+<!--<menuitem name="PageMasterInfo" id="menu_page_masterinfo_details" parent="menu_page_master_details"-->
+<!--          action="action_page_masterinfo_view" sequence="26"/>-->
+
+        </odoo>

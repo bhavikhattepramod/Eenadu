@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_employee_emp_address" model="ir.ui.view">
+        <field name="name">hr.employee.form.emp</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="Itax_calculation_master.hr_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_address_format']" position="after">
+                <field name="native_place" options="{'no_open': True,}" required="0"/>
+                <field name="native_district" options="{'no_open': True,}" required="0"/>
+            </xpath>
+            <xpath expr="//field[@name='employee_pan_no']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div/field[@name='bank_account_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='age']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='div_age']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='blood_group_rel']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//group/field[@name='total_ctc']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group/field[@name='mbo']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_date_join" model="ir.ui.view">
+        <field name="name">hr.employee.data.join</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="Itax_calculation_master.view_employee_language"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_join']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='total_exp']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='resume_emp']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//span[@name='language_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div/field[@name='lan_emp']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="view_employee_date_joining" model="ir.ui.view">-->
+<!--        <field name="name">hr.employee.form.date.joining</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="inherit_id" ref="Itax_calculation_master.view_employee_background"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--                <xpath expr="//field/form/group/field[@name='certificate_level']" position="after">-->
+<!--                <field name="qualification_id"/>-->
+<!--                <field name="qualification_type"/>-->
+<!--            </xpath>-->
+<!--&lt;!&ndash;            <xpath expr="//field/form/group/field[@name='end_month_date']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="year_passing"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="percent"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;            <xpath expr="//field/form/group/field[@name='other_skill']" position="attributes">&ndash;&gt;-->
+<!--&lt;!&ndash;                <attribute name="string">Optional Subjects</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;            <xpath expr="//field/form/group/field[@name='college_name_emp']" position="attributes">&ndash;&gt;-->
+<!--&lt;!&ndash;                <attribute name="string">Name of Institute</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--            <xpath expr="//field[@name='background_emp']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_employee_form_citizen" model="ir.ui.view">
+        <field name="name">hr.employee.form.citizen</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='identification_id']" position="before">
+                <field name="emp_nationality" required="0"/>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='emergency_contact']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='emergency_phone']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='marital']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='country_of_birth']" position="after">
+                <field name="handi_caps" widget="radio" options="{'horizontal': true}"/>
+                <field name="mother_tongue" required="0"/>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='place_of_birth']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='country_id']" position="attributes">
+                <attribute name="attrs">{'default':'India'}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='lang']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/div[@name='div_km_home_work']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='bank_account_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='emergency_phone']" position="after">
+                <span class="o_form_label o_td_label" name="language_name">
+                    <b>Languages</b>
+                </span>
+                <div>
+                    <field name="lan_emp" mode="tree">
+                        <tree>
+                            <field name="langauge_name" optional="show" required="1"/>
+                            <field name="speak_lang" optional="show"/>
+                            <field name="write_lang" optional="show"/>
+                            <field name="read_lang" optional="show"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="langauge_name"/>
+                                <field name="speak_lang"/>
+                                <field name="write_lang"/>
+                                <field name="read_lang"/>
+                            </group>
+                        </form>
+                    </field>
+                </div>
+                <field name="resume_emp"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

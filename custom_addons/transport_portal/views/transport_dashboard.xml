@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_client_transport_dashboard_menu" model="ir.actions.client">
+        <field name="name">Transport Dashboard</field>
+        <field name="tag">transport_dashboard_eenadu</field>
+    </record>
+
+    <menuitem id="transportation_dashboard_main_menu"
+              name="Dashboard"
+              sequence="1"
+              parent="transportation_main_menu"
+              action="action_client_transport_dashboard_menu"
+              />
+</odoo>

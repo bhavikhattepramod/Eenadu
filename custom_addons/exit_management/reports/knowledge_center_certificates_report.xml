@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_knowledge_center_certificates_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">25</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_knowledge_center_certificates_wizards" model="ir.actions.report">
+        <field name="name">Knowledge Center Certificate</field>
+        <field name="model">knowledge.center.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.knowledge_center_certificates_report</field>
+        <field name="report_file">exit_management.knowledge_center_certificates_report</field>
+        <field name="binding_model_id" ref="model_knowledge_center_certificate"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_knowledge_center_certificates_report"/>
+    </record>
+
+    <data>
+        <template id="knowledge_center_certificates_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page1" style="text-align: justify;">
+                            <center style="word-spacing: 6px;font-size:20px;">
+                                <b>
+                                    <u>CERTIFICATE FROM RAMOJI KNOWLEDGE CENTRE</u>
+                                </b>
+                            </center>
+                            <div style="font-size:20px;">
+                                <br/>
+                                <p style="text-align:right;margin-right:160px;">Date :</p>
+                                <p>To: THE GENERAL MANAGER</p>
+                                <br/>
+                                <p>
+                                    Mr/Ms/Mrs.
+                                    <span t-field="doc.name_id"/>
+                                    <span t-field="doc.name_id.employee_id.identification_id"/>, Manager has tendered
+                                    her
+                                    resignation with effect
+                                    from
+                                    <span t-esc="doc.name_id.emp_relieving_date"/>
+                                    Please inform whether she has taken any
+                                    Books/Magazines/Reference Volumes/Clipping Files etc., from Library.
+                                </p>
+                                <br/>
+                                <br/>
+                                <table width="100%" style="border:1px solid white;">
+                                    <tr>
+                                        <td width="40%">
+                                        </td>
+                                        <td width="60%">
+                                            <span>1.&#160;&#160; Not taken Books/Magazines/Reference</span>
+                                            <br/>
+                                            <span style="margin-left:20px;"> &#160;&#160;Volumes/Clipping Files etc.</span>
+                                            <br/>
+                                            <br/>
+                                            <span>2.&#160;&#160; He/She is to return the following:</span>
+                                            <br/>
+                                            <br/>
+                                            <span style="margin-left:20px;">a)</span>
+                                            <br/>
+                                            <br/>
+                                            <span style="margin-left:20px;">b)</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <table width="100%" style="border:1px solid white">
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <b>Authorised By :</b>
+                                                <br/>
+                                                <span t-field="doc.name_id.company_id.director_id"/>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span style="padding-left:300px;">
+                                                <b>(SIGNATURE)</b>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

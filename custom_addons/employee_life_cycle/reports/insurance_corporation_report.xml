@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_insurance_corporation">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="header"/>
+                    <table class="table table-borderless" style="" width="100%">
+                        <tr>
+                            <td width="30%" rowspan="2" style="padding-left:150px;">
+                                <img class="logo"
+                                     src="/employee_life_cycle/static/src/Employee_State_Insurance_Corporation_Logo.png"
+                                     height="60px" width="60px"/>
+                            </td>
+                            <td width="70%" style="vertical-align:top;font-size:16px;">
+                                <span>
+                                    <strong>EMPLOYEE'S STATE INSURANCE CORPORATION</strong>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:top; text-align:right;font-size:14px;">
+                                <span>
+                                    <strong>FORM-1</strong>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center; font-size:12px;">
+                        <span align="center">To be filled in by the employee after reading instructions overleaf. Two
+                            Postcard
+                            size photographs are to be attached with this form .This form is free of cost.
+                        </span>
+                    </div>
+                    <div style="width:100%">
+                        <div style="float:left; width:49%;">
+                            <span style="font-size:13px;">(A) INSURED PERSON'S PARTICULARS</span>
+                            <table class="table table-condensed"
+                                   style="table-layout:fixed; border-collapse:collapse; border:1px solid black; width:100%;">
+                                <tr colspan="20">
+                                    <td colspan="8">1.Insurance No.</td>
+                                    <td colspan="12"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">2.Name (in block letters)</td>
+                                    <td colspan="12"><span t-esc="o.name.name"/> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">3.Father's/Husband's Name</td>
+                                    <td colspan="12"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">4.Date of Birth</td>
+                                    <td colspan="6"></td>
+                                    <!--                                    <td colspan="2">M</td>-->
+                                    <!--                                    <td colspan="2">Y</td>-->
+                                    <td colspan="3">Marital Status</td>
+                                    <td colspan="3">M/U/W</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td colspan="6"></td>
+                                    <!--                                    <td colspan="2"></td>-->
+                                    <!--                                    <td colspan="2"></td>-->
+                                    <td colspan="3">6.Sex</td>
+                                    <td colspan="3">M/F</td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td colspan="10" style="border-bottom:none;">7.Present Address
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                    </td>
+                                    <td colspan="10" style="border-bottom:none;">8.Permanent Address
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                    </td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td colspan="4" style="border-bottom:none;border-top:none; border-right:none;">Pin
+                                        Code
+                                    </td>
+                                    <td colspan="6"
+                                        style="border-bottom:1px dotted black; border-top:none; border-left:none;"></td>
+                                    <td colspan="4" style="border-bottom:none;border-top:none; border-right:none;">Pin
+                                        Code
+                                    </td>
+                                    <td colspan="6"
+                                        style="border-bottom: 1px dotted black;border-top:none; border-left:none;"></td>
+                                </tr>
+                                <tr style="border:none;height:15px;">
+                                    <td colspan="10" style="border-top:none;">
+                                        <span style="paddding-top:15px;">e-mail address</span>
+                                    </td>
+                                    <td colspan="10" style="border-top:none;">
+                                        <span style="paddding-top:15px;">e-mail address</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">
+                                        <span>Branch Office</span>
+                                    </td>
+                                    <td colspan="10">
+                                        <span>Dispensary</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="float:right; width:49%;">
+                            <span style="font-size:13px;">(B) EMPLOYER'S PARTICULARS</span>
+                            <table class="table table-condensed"
+                                   style="table-layout:fixed; border-collapse:collapse; border:1px solid black; width:100%;">
+                                <tr colspan="10">
+                                    <td colspan="4">1.Employer's Code No.</td>
+                                    <td colspan="6"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">10.Date of Appointment</td>
+                                    <td colspan="6"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">11.Name &amp; Address of the Employer
+                                        <hr/>
+                                        <hr/>
+                                        <hr/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10">12.In case of any previous employment please fill up the details as
+                                        under:-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">a) Previous Ins.No.</td>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">b) Emplr's Code No.</td>
+                                    <td colspan="5"></td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td colspan="10" style="height:69px;border-bottom:none;">c) Name &amp; address of
+                                        the Employer
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" style="border-top:none;">e-mail address</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <group width="100%">
+                        <table class="table table-condensed"
+                               style="table-layout:fixed; border-collapse:collapse; border:1px solid black; width:100%;">
+                            <tr style="border:none">
+                                <td colspan="20" class="rule"
+                                    style="border-left:1px solid white;border-right:none;border-top:1px solid white;">
+                                    (C) Details of Nominee u/s 71 of ESI Act 1948/Rule 56(2) of ESI (Central) Rules,1950
+                                    for payment of cash benefit in the event of death.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="6">Name</th>
+                                <th colspan="5">Relationship</th>
+                                <th colspan="9">Address</th>
+                            </tr>
+                            <tr>
+                                <td colspan="6" style="height:15px"></td>
+                                <td colspan="5" style="height:15px"></td>
+                                <td colspan="9" style="height:15px"></td>
+                            </tr>
+                            <tr style="border:none">
+                                <td colspan="20"
+                                    style="border-left:1px solid white;border-right:none;border-top:1px solid white;border-bottom:1px solid white;">
+                                    I hereby declare that the particulars given by me are correct to the best of my
+                                    knowledge and belief.I undertake to intimate the Corporation any changes in the
+                                    membership of my family within 15 days of such change.
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr style="border:none">
+                                <td colspan="20"
+                                    style="border-left:1px solid white;border-right:none;border-top:1px solid white;border-bottom:1px solid white;">
+                                    <div>
+                                        <div style="float:left; width:50%;">
+                                            <span>Counter signature by the employer</span>
+                                        </div>
+                                        <div style="float:right;">
+                                            <span>Signature/T.I.of IP</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border:none;">
+                                <td colspan="20"
+                                    style="border-left:1px solid white;border-right:none;border-top:1px solid white;border-bottom:1px solid white;">
+                                    <span>Signature with seal</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </group>
+                    <group>
+                        <!--                        <span>(D) FAMILY PARTICULARS OF INSURED PERSON</span>-->
+                        <table class="table table-condensed"
+                               style="table-layout:fixed; border-collapse:collapse; border:1px solid black; width:100%;">
+                            <tr style="border:none;">
+                                <td colspan="20" class="rule"
+                                    style="border-left:1px solid white;border-right:none;border-top:1px solid white;">
+                                    (D) FAMILY PARTICULARS OF INSURED PERSON
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="1">SI.NO</th>
+                                <th colspan="4">Name</th>
+                                <th colspan="4">Date of Birth/ Age as on date of filling form</th>
+                                <th colspan="3">Relationship with the Employee</th>
+                                <th colspan="4">Whether residing with him/her ?</th>
+                                <th colspan="4">If 'No', state place of Residence</th>
+                            </tr>
+                            <tr>
+                                <td colspan="1"></td>
+                                <td colspan="4"></td>
+                                <td colspan="4"></td>
+                                <td colspan="3"></td>
+                                <td colspan="2">Yes</td>
+                                <td colspan="2">No</td>
+                                <td colspan="2">Town</td>
+                                <td colspan="2">State</td>
+                            </tr>
+                            <t t-set="m" t-value="1"/>
+                            <t t-foreach="range(6)" t-as="i">
+                                <tr>
+                                    <td class="table_size" colspan="1">
+                                        <span t-esc="m"/>
+                                        <t t-set="m" t-value="m+1"/>
+                                    </td>
+                                    <td class="table_size" colspan="4"></td>
+                                    <td class="table_size" colspan="4"></td>
+                                    <td class="table_size" colspan="3"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </group>
+                    <div>
+                        <div style="float:left; width:50%; text-align:right; font-size:12px;">
+                            <span style="padding-right:20px;">ESI Corporation Temporary Identity Card</span>
+                        </div>
+                        <div style="float:right;width:50%;font-size:12px; text-align:right;">
+                            <span>(Valid for 3 months from the date of appointment)</span>
+                        </div>
+                    </div>
+                    <div width="100%">
+                        <div width="50%"></div>
+                        <table class="table table-condensed"
+                               style="table-layout:fixed; border-collapse; border:1px solid black;" colspan="20">
+                            <tr style="border:none;">
+                                <td colspan="4">Name</td>
+                                <td colspan="6"></td>
+                                <td colspan="7" rowspan="4"
+                                    style="border-top:1px solid white;border-bottom:1px solid white;">
+                                </td>
+                                <td colspan="3" rowspan="4" style="text-align:center;">
+                                    <span></span>
+                                    <br/>
+                                    <span></span>
+                                    <br/>
+                                    <span></span>
+                                    <br/>
+                                    <span></span>
+                                    <br/>
+                                    <span>Space for photograph</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Ins.No.</td>
+                                <td colspan="2"></td>
+                                <td colspan="4">Date of appointment</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Branch Office</td>
+                                <td colspan="2"></td>
+                                <td colspan="4">Dispensary</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">Employer's Code No. &amp; Address</td>
+                                <td colspan="6"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <span style="padding-right:300px; font-size:12px;">validate :</span>
+                    <span style="padding-right:200px;font-size:12px;">Signature/T.I. of I.P</span>
+                    <span style="font-size:12px;">Signature of B.M. with Seal</span>
+                    <br/>
+                    <div>
+                        <span>Dated:</span>
+                        <br/>
+                        <ol>
+                            <span><li>Submission of Form-1 is governed by regulations 11 &amp; 12 of ESI (General)
+                                Regulations,1950.
+                            </li></span>
+                            <span><li>"Family" means all or any of the following relatives of an Insured Person namely:-
+                            </li></span>
+                            <span><li>(1) A spouse (1) a minor legitimate or adopted child dependant upon the 1.P;() a child
+                                who
+                                is wholly dependant on the earnings of the 1.P. and who is (a)receiving education, till
+                                he
+                                or she attains the age of 21 years (b)an un married daughter; (iv) a child who is infirm
+                                by
+                                reason of any physical or mental abnormity or injury and is wholly dependant on the
+                                earnings
+                                of the I.P. so long as the infirmity continues; (v) dependant parents (Please see
+                                Section 2, clause 11 of the ESI Act 1948 for details).
+                            </li></span>
+                            <span><li>Identity Card is Non-transferable.</li></span>
+                            <span><li>Loss of Identity Card be reported to Employer/Branch Manager Immediately.</li></span>
+                            <span><li>Submission of false information attracts penal action under Section 84 of ESI Act,
+                                1948.
+                            </li></span>
+                            <span><li>This form duly filled in must reach the concerned Branch office within 10 days of
+                                appointment of an Employee. Delay attracts penal action under Section 85 of the Act,
+                                against
+                                employer.
+                            </li></span>
+                            <span><li>As an Insured person you and your dependent family members are entitled to full medical
+                                care. The other benefits in cash include (1) sickness Benefit (2) Temporary Disablement
+                                benefit (3) Permanent disablement Benefit (4) Dependents benefit and (5) Maternity
+                                Benefit
+                                (in case of women employees subject to fulfillment of contributory conditions.
+                            </li></span>
+                            <span><li>For more details Please Visit website of ESIC at www.esic.nic.in or www.esickar.gov.in
+                                contact Regional office or Branch Office.
+                            </li></span>
+                        </ol>
+                    </div>
+                    <div>
+                        <table class="table table-borderless"
+                               style="table-layout:fixed; border-collapse:collapse; border-top:1px solid black; border-bottom:1px dotted black; width:100%;">
+                            <tr>
+                                <th colspan="8" style="font-size:15px; font-weight:bold;">
+                                    <span>FOR BRANCH OFFICE USE ONLY</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="width:100%;">
+                                    <span>1. Date of Allotment of Ins. No.</span>
+                                </td>
+                                <td colspan="6">
+                                    <div class="header-line">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span>2. Date of issue of TIC :</span>
+                                </td>
+                                <td colspan="6">
+                                    <div class="header-line">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span>3. Name/No.of Disp :</span>
+                                </td>
+                                <td colspan="6">
+                                    <div class="header-line">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <span>4. Whether reciprocal Medical arrangements involved?If yes,please indicate :
+                                    </span>
+                                </td>
+                                <td colspan="4">
+                                    <div class="header-line">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="vertical-align:center;text-align:right;height:100px;">
+                                    <span></span>
+                                    <br/>
+                                    <span></span>
+                                    <br/>
+                                    <span></span>
+                                    <br/>
+                                    <span>Signature of Branch Manager</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table class="table table-condensed"
+                               style="table-layout:fixed; border-collapse:collapse; border:1px solid black; width:100%;">
+                            <tr>
+                                <th colspan="1">SI.NO</th>
+                                <th colspan="4">Name</th>
+                                <th colspan="4">Date of Birth/ Age as on date of filling form</th>
+                                <th colspan="3">Relationship with the Employee</th>
+                                <th colspan="4">Whether residing with him/her ?</th>
+                                <th colspan="4">If 'No', state place of Residence</th>
+                            </tr>
+                            <tr>
+                                <td colspan="1"></td>
+                                <td colspan="4"></td>
+                                <td colspan="4"></td>
+                                <td colspan="3"></td>
+                                <td colspan="2">Yes</td>
+                                <td colspan="2">No</td>
+                                <td colspan="2">Town</td>
+                                <td colspan="2">State</td>
+                            </tr>
+                            <t t-set="m" t-value="1"/>
+                            <t t-foreach="range(6)" t-as="i">
+                                <tr>
+                                    <td class="table_size" colspan="1">
+                                        <span t-esc="m"/>
+                                        <t t-set="m" t-value="m+1"/>
+                                    </td>
+                                    <td class="table_size" colspan="4"></td>
+                                    <td class="table_size" colspan="4"></td>
+                                    <td class="table_size" colspan="3"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                    <td class="table_size" colspan="2"></td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+                <style>
+                    td{
+                    font-size:12px;
+                    border-right: 1px solid black;
+                    }
+                    tr{
+                    border:none;
+                    }
+                    th{
+                    font-size:12px;
+                    border-right: 1px solid black;
+                    }
+                    .rule{
+                    font-size:13px;
+                    font-weight:bold;
+                    }
+                    .table_size{
+                    font-size:8px;
+                    }
+                    .header-line {
+                    border-top: 2px solid black;
+                    margin-top: 8px;
+                    width:100%;
+                    }
+                </style>
+            </t>
+        </t>
+        </t>
+    </template>
+
+    <record id="paperformat_insurance" model="report.paperformat">
+        <field name="name">A4 Insurance</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="hr_employee_state_insurance_corporation_report" model="ir.actions.report">
+        <field name="name">Employee State Insurance Corporation Report</field>
+        <field name="model">employee.state.insurance.corporation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.report_insurance_corporation</field>
+        <field name="report_file">employee_life_cycle.report_insurance_corporation</field>
+        <field name="binding_model_id" ref="model_employee_state_insurance_corporation"/>
+        <field name="paperformat_id" ref="paperformat_insurance"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

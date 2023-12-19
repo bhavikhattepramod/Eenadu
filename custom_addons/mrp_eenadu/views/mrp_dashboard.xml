@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_client_mrp_dashboard_menu" model="ir.actions.client">
+        <field name="name">Mrp Dashboard</field>
+        <field name="tag">mrp_dashboard_eenadu</field>
+    </record>
+
+    <menuitem name="Dashboard" id="menu_mrp_dashboard_parent" parent="mrp.menu_mrp_root"
+              action="action_client_mrp_dashboard_menu" sequence="1"/>
+</odoo>

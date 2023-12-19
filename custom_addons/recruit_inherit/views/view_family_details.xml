@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_employee_family_details" model="ir.ui.view">
+        <field name="name">hr.employee.form.family</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="Itax_calculation_master.view_employee_family_page"/>
+        <field name="arch" type="xml">
+            <xpath expr="///page/group/field/form/group/field[@name='date_of_marriage']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='relationship_family']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='name_family']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='date_of_birth_rel']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='age_rel']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='gender_rel']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="///page/group/field/form/group/field[@name='blood_group_rel']" position="after">
+                <field name="occupation"/>
+                <field name="monthly_income"/>
+            </xpath>
+            <xpath expr="///page/group/field[@name='family_details']" position="after">
+                <group string="Relation or Friends in our Organization">
+                    <div style="width: 350px;">
+                        <field name="family_relation" widget="section_and_note_one2many" mode="tree">
+                            <tree editable="bottom">
+                                <field name="type"/>
+                                <field name="name"/>
+                                <field name="designation"/>
+                            </tree>
+                        </field>
+                    </div>
+                </group>
+            </xpath>
+<!--            <xpath expr="//page/group" position="attributes">-->
+<!--                <attribute name="string">Family Particular</attribute>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+</odoo>

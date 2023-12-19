@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="parents_policy_form" model="ir.ui.view">
+            <field name="name">Parents Policy Form</field>
+            <field name="model">parents.policy</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions window-->
+
+        <record id="parents_policy_action" model="ir.actions.act_window">
+            <field name="name">Parents Policy</field>
+            <field name="res_model">parents.policy</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="parents_policy_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="policy_report_sub_3" name="Parents Policy" parent="policy_report_sub_main"
+                  action="parents_policy_action" sequence="103"/>
+
+
+    </data>
+</odoo>

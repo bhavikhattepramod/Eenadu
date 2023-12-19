@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_agent_commission" name="Agent Commissions" customize_show="True"
+              inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Agent Commissions</t>
+                <t t-set="url" t-value="'/agent_commission'"/>
+                <t t-set="placeholder_count" t-value="'agent_commission'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="portal_breadcrumbs_deposits" inherit_id="portal.portal_breadcrumbs" name="Agent Commissions">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'agent_commission'" class="breadcrumb-item">Agent Commissions</li>
+        </xpath>
+    </template>
+
+
+    <template id="agent_commission" name="Agent Commissions">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Agent Commissions</t>
+            </t>
+            <t t-call="portal.portal_table">
+                <tr class="active" style="background-color: #20ACD4; color: white;">
+                    <th class="text-center">Order Number</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Total Amount</th>
+                    <th class="text-center">Paid Amount</th>
+                    <th class="text-center">Commission</th>
+                    <th class="text-center">Bill Number</th>
+                    <th class="text-center">Status</th>
+                </tr>
+                <tr t-foreach="orders" t-as="order">
+                    <td class="text-center">
+                        <t t-esc="order['reta_orders']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="order['date']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="order['total_amt']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="order['amount_paid']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="order['commission']"/>
+                    </td>
+                    <td class="text-center">
+                        <a href="invoice.get_portal_url()" class="">
+                            <t t-esc="order['bill_number']"/>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="order['status']"/>
+                    </td>
+                </tr>
+                <!--                <tfoot>-->
+                <!--                    <tr style="background-color: #f2f2f2;">-->
+                <!--                        <td>-->
+                <!--                        </td>-->
+                <!--                    </tr>-->
+                <!--                </tfoot>-->
+            </t>
+        </t>
+    </template>
+</odoo>

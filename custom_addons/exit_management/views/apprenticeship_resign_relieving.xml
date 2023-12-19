@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="apprenticeship_resign_relieving_wizard" model="ir.ui.view">
+        <field name="name">apprenticeship.resign.relieving.wizard</field>
+        <field name="model">apprenticeship.resign.relieving</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_apprentice_resign_relieving" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_resign_relieving" model="ir.actions.act_window">
+        <field name="name">Apprenticeship Resign Relieving</field>
+        <field name="res_model">apprenticeship.resign.relieving</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="apprenticeship_resign_relieving_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="apprenticeship_resign_relieving_menu"
+              name="Apprenticeship Resign Relieving"
+              parent="superannuation_reporting"
+              action="action_resign_relieving"
+              sequence="32"/>
+</odoo>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_letter_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_letter_arrangement_wizards" model="ir.actions.report">
+        <field name="name">Letter Of Arrangement</field>
+        <field name="model">letter.arrangement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.report_letter_report</field>
+        <field name="report_file">employee_life_cycle.report_letter_report</field>
+        <field name="binding_model_id" ref="model_letter_arrangement"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_letter_report"/>
+    </record>
+
+    <data>
+        <template id="report_letter_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align: justify;">
+                            <table width="100%" style="border:1px solid white;">
+                                <tr>
+                                    <td width="70%">
+                                        Mr
+                                        <span t-field="doc.name_id.name"/>
+                                        <br/>
+                                        <span t-field="doc.name_id.son_dot_of"></span>
+                                        <br/>
+                                        <span t-field="doc.name_id.street_emp"/>
+                                        <br/>
+                                        <span t-field="doc.name_id.street2_emp"/>
+                                        <span t-field="doc.name_id.city_emp"/>
+                                        <span t-field="doc.name_id.state_id_emp"/>
+                                        <span t-field="doc.name_id.zip_emp"/>
+                                        <span t-field="doc.name_id.country_id_emp"/>
+                                    </td>
+                                    <td width="30%" style="padding-left:70px;">
+                                        <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <p>Dear Mr
+                                <span t-field="doc.name_id.name"/>
+                            </p>
+                            <br/>
+                            <center>
+                                <span style="border-bottom: 2px solid;">
+                                    <b>LETTER OF ARRANGEMENT — CONTRACTUAL</b>
+                                </span>
+                            </center>
+                            <br/>
+                            <p>Further to our discussions you had with us, we are pleased to engage you as <b
+                                    style="padding-left:3px;padding-right:3px;">EXECUTIVE</b>on
+                                the following terms and conditions:
+                            </p>
+                            <p>1. This Contractual Arrangement shall be effective fcr a period of<b
+                                    style="padding-left:3px;padding-right:3px;">ONE YEAR</b>from the date
+                                of commencement of your services i.e. with effect from
+                                <b style="padding-left:3px;padding-right:3px;">1“ December, 2022.</b>
+                            </p>
+                            <p>2 As a E xecutive, you will render your services for the matters referred to you.</p>
+                            <p>
+                                3. Inconsideration of your services, we shall pay you a Consolidated Remuneration of
+                                <br/>
+                                <b>Rs.</b>_____________(Rupees<b>__________________________________________</b> only)
+                                per month
+                            </p>
+                            <p>4. All payments by way of Consolidated Remuneration will be subject to deduction of tax
+                                at source, wherever applicable
+                            </p>
+                            <p>5. This Contractual Arrangement would be devoid of any employment benefits and thus you
+                                can not claim any benefits accruing to a regular employee of the Company.
+                            </p>
+                            <p>6. This Contractual period shall automatically come to an end on the expiry of the period
+                                mentioned in clause (1) above.
+                            </p>
+                            <p>7. Any fact, information or other material obtained in the course of your assignment with
+                                the company should not be disclosed or divulged by you.
+                            </p>
+                            <p>8. This arrangement is liable to be terminated during Contractual Period for any other
+                                reason by either party at any time without notice
+                            </p>
+                            <p>
+                                This <b style="padding-left:3px;padding-right:3px;">’LETTER OF ARRANGEMENT -
+                                CONTRACTUAL’
+                            </b> is being issued to you in duplicate. If the
+                                above terms and conditions are acceptable to you, please return the duplicate copy of
+                                this <b style="padding-left:3px;padding-right:3px;">'LETTER OF ARRANGEMENT —
+                                CONTRACTUAL’</b>duly signed by you as a token of your
+                                acceptance.
+                            </p>
+                            <br/>
+                            <p>For
+                                <b>USHODAYA ENTERPRISES PVT LTD</b>
+                            </p>
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                        <b>AUTHORIZED BY:
+                                            <br></br>
+                                            <br></br>
+                                            <span t-field="doc.name_id.company_id.director_id"/>
+                                        </b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div align="right">
+                                <b>Signature</b>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+</odoo>

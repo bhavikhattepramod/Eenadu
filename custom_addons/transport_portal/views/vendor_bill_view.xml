@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="inherit_account_move_form_vendor_bills" model="ir.ui.view">
+        <field name="name">Vendor Bills</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='invoice_tab']/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+                <field name="move_type" invisible="1"/>
+                <field name="vehicle_no" attrs="{'column_invisible': [('parent.move_type', 'not in', ['in_invoice'])]}"/>
+                <field name="drop_location_vehicle" attrs="{'column_invisible': [('parent.move_type', 'not in', ['in_invoice'])]}"/>
+                <field name="distance" attrs="{'column_invisible': [('parent.move_type', 'not in', ['in_invoice'])]}"/>
+                <field name="hours" attrs="{'column_invisible': [('parent.move_type', 'not in', ['in_invoice'])]}"/>
+                <field name="no_of_parcels" attrs="{'column_invisible': [('parent.move_type', 'not in', ['in_invoice'])]}"/>
+            </xpath>
+            <xpath expr="//form/header/field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,circulation_incharge,
+                    unit_incharge,
+                    accounts_incharge,posted" attrs="{'invisible': [('is_transportation', '!=', True)]}"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,posted"
+                       attrs="{'invisible': [('is_transportation', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='action_post']" position="after">
+                <button name="action_approve_circulation_incharge" string="Approve" class="oe_highlight" groups="transport_portal.group_circulation_incharge"
+                        type="object" attrs="{'invisible': ['|',('state', '!=', 'draft'),('is_transportation', '!=', True)]}"/>
+                <button name="action_approve_unit_incharge" string="Approve" class="oe_highlight" groups="transport_portal.group_unit_incharge"
+                        type="object" attrs="{'invisible': ['|',('state', '!=', 'circulation_incharge'),('is_transportation', '!=', True)]}"/>
+                <button name="action_approve_accounts_incharge" string="Approve" class="oe_highlight" groups="transport_portal.group_accounts_incharge"
+                        type="object" attrs="{'invisible': ['|',('state', '!=', 'unit_incharge'),('is_transportation', '!=', True)]}"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_post'][2]" position="replace">
+                <button name="action_post" string="Confirm" class="oe_highlight" type="object" groups="account.group_account_invoice" data-hotkey="v" context="{'validate_analytic': True}" attrs="{'invisible': ['|', '|', '|',('hide_post_button', '=', True), ('move_type', '=', 'entry'), ('display_inactive_currency_warning','=',True),('is_transportation', '=', True)]}"/>
+                <button name="action_post" string="Confirm" class="oe_highlight" type="object" groups="account.group_account_invoice" data-hotkey="v" context="{'validate_analytic': True}" attrs="{'invisible': ['|', ('state', '!=', 'accounts_incharge'),('is_transportation', '!=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_create_vendor_bills" model="ir.actions.server">
+        <field name="name">Create Vendor Bills</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_transport_entry_details"/>
+        <field name="binding_model_id" ref="model_transport_entry_details"/>
+        <field name="state">code</field>
+        <field name="code">records.action_create_vendor_bills()</field>
+    </record>
+
+    <record model="ir.ui.view" id="account_move_line_transport_view">
+        <field name="name">Account Move Line</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="name"/>
+                <field name="vehicle_no"/>
+                <field name="drop_location_vehicle"/>
+                <field name="distance"/>
+                <field name="hours"/>
+                <field name="no_of_parcels"/>
+                <field name="is_landed_costs_line"/>
+                <field name="asset_category_id"/>
+                <field name="account_id"/>
+                <field name="analytic_distribution"/>
+                <field name="quantity"/>
+                <field name="product_uom_id"/>
+                <field name="price_unit"/>
+                <field name="discount"/>
+                <field name="tax_ids"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_account_move_line_circulation_view" model="ir.actions.act_window">
+        <field name="name">Agent</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="account_move_line_transport_view"/>
+<!--        <field name="context">{'default_move_type': 'in_invoice'}</field>-->
+        <field name="domain">[('move_type', '=', 'in_invoice'), ('move_id.is_transportation', '=', True)]</field>
+    </record>
+
+    <menuitem id="circulation_account_move_line_menu"
+              name="Account move lines"
+              parent="sales_circulation.circulation_configaration_menu"
+              action="action_account_move_line_circulation_view"
+    />
+    <record id="ir_cron_for_vendor_bills" model="ir.cron">
+        <field name="name">Vendor Bill</field>
+        <field name="model_id" ref="model_transport_entry_details"/>
+        <field name="state">code</field>
+        <field name="code">model.action_create_vendor_bills()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+
+</odoo>

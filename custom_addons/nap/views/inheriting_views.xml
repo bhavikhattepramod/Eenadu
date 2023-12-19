@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    <record id="inherit_sale_view_order_form_nap_view_inherit" model="ir.ui.view">-->
+<!--        <field name="name">sale.order</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sales_circulation.sale_order_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--&lt;!&ndash;            <xpath expr="//page[@name='customer_selection']" position="attributes">&ndash;&gt;-->
+<!--&lt;!&ndash;                <attribute name="attrs">{'invisible':[('nap_bool_field','=',True)]}</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--            <xpath expr="//page[@name='order_lines']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible':[('nap_bool_field','=',True)]}</attribute>-->
+<!--            </xpath>-->
+<!--&lt;!&ndash;            <xpath expr="//page[@name='advertisement_details']" position="attributes">&ndash;&gt;-->
+<!--&lt;!&ndash;                <attribute name="attrs">{'invisible':[('nap_bool_field','=',True)]}</attribute>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    view_order_form_reta_inherit-->
+
+<!--    <record id="inherit_sale_view_order_form_nap_view_inherit_classifed" model="ir.ui.view">-->
+<!--        <field name="name">sale.order</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="eenadu_reta.view_order_form_reta_inherit"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//page[@name='advertisement_details']" position="attributes">-->
+<!--                <attribute name="attrs">{'invisible':[('nap_bool_field','=',True)]}</attribute>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+</odoo>

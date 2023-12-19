@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_extension_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_extension_wizards" model="ir.actions.report">
+        <field name="name">Extension Training Letter(Admin)</field>
+        <field name="model">extension.training</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.confirmation_extension_report</field>
+        <field name="report_file">employee_life_cycle.confirmation_extension_report</field>
+        <field name="binding_model_id" ref="model_extension_training"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_extension_report"/>
+    </record>
+
+    <data>
+        <template id="confirmation_extension_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify;">
+                            <div style="text-align:right;">
+                                <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div style="font-size:100%;">
+                                Mr/Miss.
+                                <span t-field="doc.name_id.emp_code"/>
+                                <br/>
+                                <br/>
+                                Management Tr.
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <h5 style="text-align:center; text-decoration:underline;">
+                                <b>EXTENSION OF TRAINING(ADMIN)</b>
+                            </h5>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>
+                                This refers to your Letter of Apprenticeship Training dated
+                                <b>
+                                    <span t-field="doc.name_id.emp_code.appointment_date"/>
+                                </b>
+                                appointing you as
+                                <b>
+                                    <span t-field="doc.name_id.emp_code.job_id"/>
+                                </b>
+                                for an initial period of one year. We have assessed and reviewed your
+                                performance during the initial training period and found that you are yet to acquire the
+                                knowledge of basic principles involved in your job.
+                            </p>
+                            <br/>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                In view of the above, it has been decided to impart you further training for another
+                                period of
+                                <b>
+                                    <span t-field="doc.name_id.no_of_months_extension"/>
+                                </b>
+                                with effect from
+                                <span t-field="doc.name_id.extension_start_date_tr"/>
+                                which is in accordance with Clause-a of
+                                your Letter of Apprenticeship.
+                            </p>
+                            <br/>
+                            <br></br>
+                            <br></br>
+                            <p>
+                                You are advised to make best use of the opportunity given to you and show definite
+                                improvement in your work performance during the extended period of training.
+
+                            </p>
+                            <br/>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p style="text-align:left;">
+                                <b>Authorised By:
+                                    <br/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.company.director_id"/>
+                                </b>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

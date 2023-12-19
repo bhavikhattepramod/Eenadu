@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_hrdept_wizard_form" model="ir.ui.view">
+        <field name="name">HR Department</field>
+        <field name="model">hr.dept</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="names_id" required="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="invoice_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_hrdept_report_wizard" model="ir.actions.act_window">
+        <field name="name">Communications Department</field>
+        <field name="res_model">hr.dept</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_hrdept_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_communications_department" parent="certificates_from_different_departments_menu" name="Communication Department" action="action_hrdept_report_wizard"/>
+</odoo>

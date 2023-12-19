@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="email_template_job_position_request_approved" model="mail.template">
+        <field name="name">Job Position Request Approved Email</field>
+        <field name="subject">Job Position Request Approved</field>
+        <field name="model_id" ref="dev_job_position_request.model_job_position_request"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">{{ object.create_uid.lang }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hello</p>
+                <p>Your manpower request for job position <t t-out="object.name.name "/> with Ref : <strong><t t-out="object.sequence"/></strong>, has been Approved</p>
+
+<!--                <p>You can access it from below button</p>-->
+<!--                <br/>-->
+<!--                % set url = object.make_url()-->
+<!--                <br/>-->
+<!--                <a href="${url}" style="background-color: #1abc9c;-->
+<!--                padding: 20px; text-decoration: none; color: #fff;-->
+<!--                border-radius: 5px; font-size: 16px;"-->
+<!--                   class="o_default_snippet_text">View Request</a><br/><br/>-->
+            </div>
+        </field>
+    </record>
+</odoo>

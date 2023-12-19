@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payroll_summary_negative_salary_reports_action" model="ir.actions.act_window">
+        <field name="name">Payroll Negative salary Summary</field>
+        <field name="res_model">payslip.negative.salary</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="payroll_summary_negative_salary_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="payroll_summary_negative_salary_reports_final_action" model="ir.actions.act_window">
+        <field name="name">Payroll Priority salary Summary</field>
+        <field name="res_model">payslip.negative.salary.final</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="payroll_summary_negative_salary_final_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_hr_payroll_report"
+              name="Reporting"
+              parent="om_hr_payroll.menu_hr_payroll_root"
+              sequence="15"/>
+
+    <menuitem id="menu_report_payroll_summary"
+              name="Negative Salaries List"
+              action="payroll_summary_negative_salary_reports_action"
+              parent="om_hr_payroll.menu_hr_payroll_report"
+              sequence="25"/>
+
+    <menuitem id="menu_report_payroll_summary_final"
+              name="Priority Wise Deducted List"
+              action="payroll_summary_negative_salary_reports_final_action"
+              parent="om_hr_payroll.menu_hr_payroll_report"
+              sequence="26"/>
+
+</odoo>

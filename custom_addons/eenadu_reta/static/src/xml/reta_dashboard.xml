@@ -1,0 +1,536 @@
+<template id="template" xml:space="preserve">
+
+    <t t-name="reta_dashboard">
+
+        <div class="oh_reta_dashboards">
+            <div class="container-fluid o_reta_main_dashboard"></div>
+
+        </div>
+    </t>
+
+    <t t-name="reta_dashboard_data">
+        <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <div style="background:#aae4f5; padding:10px; font-size:14px; width:100%; border-bottom-left-radius: 27px 27px; border-bottom-right-radius: 27px 27px;">
+       <div class="col-lg-12">
+           <div class="row">
+               <div id="welcomenote" class="col-lg-11 welcomenote common_margin" style="font-weight:bold; font-size:16px;"> Welcome to RETA(Retail Ads). </div>
+       <div class="col-lg-1" style="float:right; text-align:center"><i class="fa fa-user " aria-hidden="true" data-bs-toggle="modal" data-bs-target="#myModal" ></i></div>
+
+           </div>
+
+       </div>
+
+
+        </div>
+
+
+
+
+        <div class="row o_dashboard_reta">
+
+            <script src="https://unpkg.com/bootstrap-table@1.22.0/dist/bootstrap-table.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.22.0/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.js"></script>
+
+            <div class="container-fluid" style="display:block;">
+
+                <div class='col-lg-12' style="width:100%">
+
+                    <div style="height:10px; width:100%">&nbsp;</div>
+                    <div style="padding: 3px;box-shadow: 2px 2px 2px 2px #dbdbe3 !important; background: #fff; border-radius: 5px; ">
+
+                    <div class='row spacer_row'>
+
+                        <div class='col-md-3 text-center common_margin'>
+                            <div class='o-scorecard w-100 h-100 reta_card common_card'>
+                                <div class="display_cio_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=sale.order&amp;action=eenadu_reta.action_dashboard_cio&amp;menu_id=eenadu_reta.child_reta_application">
+                                    <div>
+                                        <div class="card_header hdr1_bg_color" style="margin-bottom: 5px;">
+                                            <div>
+                                                <div class="card_header_left"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                    CIO New</div></div>
+                                            <div class="card_header_right"></div>
+                                            </div>
+                                        <div class="reta_card_value"><t t-esc="widget.cio"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_scheduling_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=sale.order&amp;action=eenadu_reta.action_dashboard_scheduling&amp;menu_id=eenadu_reta.child_reta_application">
+                                    <div>
+                                        <div class="card_header hdr2_bg_color" style="margin-bottom: 5px;">
+                                            <div>
+                                                <div class="card_header_left"> <i class="fa fa-calendar-check-o"
+                                                                                  aria-hidden="true"></i> Scheduling</div>
+                                                <div class="card_header_right"></div>
+                                            </div>
+                                        </div>
+                                        <div class="reta_card_value">
+                                            <t t-esc="widget.scheduling"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_waiting_for_approval_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=sale.order&amp;action=eenadu_reta.action_dashboard_waiting_for_approval&amp;menu_id=eenadu_reta.child_reta_application">
+                                    <div>
+                                        <div class="card_header hdr3_bg_color">
+                                            <div>
+                                                <div class="card_header_left"> <i class="fa fa-check-square-o"
+                                                                                  aria-hidden="true"></i> Waiting for
+                                                    Approval</div>
+                                                <div class="card_header_right"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reta_card_value">
+                                        <t t-esc="widget.waiting_for_approval"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_release_orders_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=sale.order&amp;action=eenadu_reta.action_dashboard_release_orders&amp;menu_id=eenadu_reta.child_reta_application">
+                                    <div>
+                                        <div class="card_header hdr4_bg_color">
+                                            <div class="card_header_left"><i class="fa fa-book" aria-hidden="true"></i>
+                                                Release Orders</div>
+                                            <div class="card_header_right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="reta_card_value">
+                                        <t t-esc="widget.release_orders"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row spacer_row">
+
+                        <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card ">
+                                <div class="display_invoices_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=account.move&amp;action=eenadu_reta.action_dashboard_invoices&amp;menu_id=account.view_invoice_tree">
+                                    <div>
+                                        <div class="card_header hdr5_bg_color">
+                                            <div class="card_header_left"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                Invoices</div>
+                                            <div class="card_header_right"></div>
+                                        </div>
+                                        <div class="reta_card_sub_value">
+                                            <div class="innerdiv_alignment"><strong>Invoice Amount</strong></div>
+                                            <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.invoice_amount"/></div>
+                                        </div>
+                                        <div class="reta_card_sub_value">
+                                            <div class="innerdiv_alignment"><strong>Amount Due</strong></div>
+                                            <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.invoice_due"/></div>
+                                        </div>
+                                        <!-- <div class="reta_card_value"><t t-esc="widget.invoices"/></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_deposits_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=account.deposit&amp;action=account_deposit.action_reta_dashboard_account_deposit&amp;menu_id=account_deposit.account_deposit_tree_view">
+                                    <div class="card_header hdr6_bg_color">
+                                        <div class="card_header_left"> <i class="fa fa-credit-card-alt"
+                                                                          aria-hidden="true"></i> Deposits</div>
+                                    </div>
+                                    <div class="reta_card_sub_value">
+                                        <div class="innerdiv_alignment"><strong>Deposit Amount</strong></div>
+                                        <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.deposit_amt"/></div>
+                                    </div>
+                                    <div class="reta_card_sub_value">
+                                        <div class="innerdiv_alignment"><strong>Outstanding </strong></div>
+                                        <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.outstanding_amt"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_commissions_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=commission.settlement&amp;action=commission.action_reta_dashboard_commissions&amp;menu_id=commission.view_settlement_tree">
+                                    <div class="card_header hdr7_bg_color">
+                                        <div class="card_header_left"><i class="fa fa-money" aria-hidden="true"></i>
+                                            Commissions </div>
+                                        <div class="card_header_right"></div>
+                                        </div>
+
+                                    </div>
+                                <div class="reta_card_sub_value">
+                                   <div class="innerdiv_alignment"><strong>Collected Payment  </strong></div>
+                                    <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.total_payment_received"/></div>
+                                </div>
+                                <div class="reta_card_sub_value">
+                                    <div class="innerdiv_alignment"><strong>Commissions :</strong></div>
+                                    <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.total_commission_received"/></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                            <div class='col-md-3 text-center common_margin'>
+                            <div class="o-scorecard w-100 h-100 reta_card common_card">
+                                <div class="display_incentive_div" role="button"
+                                     t-attf-test="web#view_type=list&amp;model=partner.incentive.line&amp;action=eenadu_incentives.action_reta_dashboard_incentive&amp;menu_id=eenadu_incentives.employee_incentives_tree_view">
+
+                                        <div class="card_header hdr8_bg_color">
+                                            <div class="card_header_left"><i class="fa fa-cc-visa" aria-hidden="true"></i>
+                                                Incentives</div>
+                                            <div class="card_header_right"></div>
+                                        </div>
+
+                                    <div class="reta_card_sub_value">
+                                        <div class="innerdiv_alignment"> <strong>Collected Payment</strong></div>
+                                        <div class="innerdiv_alignment1"> : ₹<t t-esc="widget.total_incentive_payment_received"/></div>
+                                            </div>
+                                    <div class="reta_card_sub_value">
+                                        <div class="innerdiv_alignment"><strong>Incentive</strong></div>
+                                       <div class="innerdiv_alignment1"> : ₹ <t t-esc="widget.total_incentive_amount"/></div>
+                                        </div>
+
+                                </div>
+                            </div>
+
+
+                         </div>
+
+                    </div>
+
+                    </div>
+                </div>
+
+                <div style='height:30px; width:100%'></div>
+
+
+                <div style="padding: 25px;box-shadow: 2px 2px 2px 2px #dbdbe3 !important; background: #fff; border-radius: 5px; ">
+                <div class="row">
+
+                    <div class="col-lg-7 graph_div_table">
+                        <!-- <div style='height:150px; width:100%'></div> -->
+                        <div id="tabletargets">
+                              <div class="tableheader_new" style="margin-bottom:2px;">Targets Reta</div>
+
+                            <div class='table-responsive scroll scroll1' style='max-height:500px;'>
+
+                        <table class='table table-striped'>
+                           <thead style="position: sticky;top: 0; background:#aae4f5">
+                                <tr style="font-size:16px;">
+                                    <th name="th_product_id" class="headertablefixed" style="color:#000"><strong>Employee</strong></th>
+                                    <th name="th_target_amount" class=" headertablefixed text-center" style="color:#000"><strong>Period</strong></th>
+                                    <th name="th_target_amount" class="headertablefixed text-center" style="color:#000"><strong>Target Amount</strong></th>
+                                    <th name="th_ro_total_amount" class="headertablefixed text-center" style="color:#000"><strong>RO Total Amount</strong></th>
+                                    <th name="th_received_amount" class="headertablefixed text-center" style="color:#000"><strong>Received Payment</strong></th>
+                                    <th name="th_progress_bar" class="headertablefixed text-center" style="color:#000"><strong>Progress</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="widget.incentive_lines" t-as="incentive_line">
+                                    <tr t-att-class='o_line_section'>
+                                        <td style='padding:10px;'>
+                                            <span><t t-esc="incentive_line.employee_name"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span><t t-esc="incentive_line.target_period"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span>₹</span>
+                                            <span><t t-esc="incentive_line.target_amt"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span>₹</span>
+                                            <span><t t-esc="incentive_line.so_total_amt"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span>₹</span>
+                                            <span><t t-esc="incentive_line.recieved_payment"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <progress id="progress_bar" t-att-value="incentive_line.progress" max="100"></progress>
+                                            <span><t t-esc="incentive_line.progress"/></span>
+                                            <span> %</span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </div></div>
+
+                    <div class="col-lg-5 graph_div">
+
+<!--                            <div class="col-md-8 graph_title">Graphs</div>-->
+                            <div class="col-md-12 graph_icon">
+                                <ul class="nav nav-tabs  mb-3" id="ex1" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a
+                                                class="nav-link active"
+                                                id="ex3-tab-1"
+                                                data-bs-toggle="tab"
+                                                href="#ex3-tabs-1"
+                                                role="tab"
+                                                aria-controls="ex3-tabs-1"
+                                                aria-selected="true"
+                                        > <i class="fa fa-pie-chart" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a
+                                                class="nav-link"
+                                                id="ex3-tab-2"
+                                                data-bs-toggle="tab"
+                                                href="#ex3-tabs-2"
+                                                role="tab"
+                                                aria-controls="ex3-tabs-2"
+                                                aria-selected="false"
+                                        ><i class="fa fa-bar-chart" aria-hidden="true"></i></a
+                                        >
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a
+                                                class="nav-link"
+                                                id="ex3-tab-3"
+                                                data-bs-toggle="tab"
+                                                href="#ex3-tabs-3"
+                                                role="tab"
+                                                aria-controls="ex3-tabs-3"
+                                                aria-selected="false"
+                                        ><i class="fa fa-line-chart" aria-hidden="true"></i></a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        <div class="tab-content" id="ex2-content">
+                            <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel"
+                                 aria-labelledby="ex3-tab-1">
+                                <div>
+                                    <canvas id='reta_pie_chart' height="300vh" width="400vw"/>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="ex3-tabs-2" role="tabpanel" aria-labelledby="ex3-tab-2">
+                                <div>
+                                    <canvas id='reta_bar_graph' height="300vh" width="400vw"/>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="ex3-tabs-3" role="tabpanel" aria-labelledby="ex3-tab-3">
+                                <div>
+                                    <canvas id='reta_line_graph' height="300vh" width="400vw"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style='height:30px; width:100%'></div>
+                    
+                </div>
+                </div>
+                <div style='height:30px; width:100%'></div>
+                <!-- <div class="row">
+                    
+                    <div class="col-md-5">
+
+                        <ul class="nav nav-tabs  mb-3" id="ex4" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a
+                                        class="nav-link active"
+                                        id="ex5-tab-1"
+                                        data-bs-toggle="tab"
+                                        href="#ex5-tabs-1"
+                                        role="tab"
+                                        aria-controls="ex5-tabs-1"
+                                        aria-selected="true"
+                                > <i class="fa fa-pie-chart" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a
+                                        class="nav-link"
+                                        id="ex5-tab-2"
+                                        data-bs-toggle="tab"
+                                        href="#ex5-tabs-2"
+                                        role="tab"
+                                        aria-controls="ex5-tabs-2"
+                                        aria-selected="false"
+                                ><i class="fa fa-bar-chart" aria-hidden="true"></i></a
+                                >
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a
+                                        class="nav-link"
+                                        id="ex5-tab-3"
+                                        data-bs-toggle="tab"
+                                        href="#ex5-tabs-3"
+                                        role="tab"
+                                        aria-controls="ex5-tabs-3"
+                                        aria-selected="false"
+                                ><i class="fa fa-line-chart" aria-hidden="true"></i></a
+                                >
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="ex6-content">
+                            <div class="tab-pane fade show active" id="ex5-tabs-1" role="tabpanel" aria-labelledby="ex5-tab-1" >
+                                <div>
+                                    <canvas id='reta_so_pie_chart' height="400vh" width="400vw"/>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="ex5-tabs-2" role="tabpanel" aria-labelledby="ex5-tab-2">
+                                <div>
+                                    <canvas id='reta_so_bar_graph' height="400vh" width="400vw"/>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="ex5-tabs-3" role="tabpanel" aria-labelledby="ex5-tab-3">
+                                <div>
+                                    <canvas id='reta_so_line_graph' height="400vh" width="400vw"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="table_so_targets">
+                            <div class='table-responsive scroll scroll1' style='max-height:300px;'>
+
+                        <table class='table table-striped'>
+                            <thead style="position: sticky;top: 0; background:#20acd4">
+                                <tr style="font-size:16px;">
+                                    <th name="th_product_id" class="headertablefixed" style="color:#FFF"><strong>Target Amount</strong></th>
+                                    <th name="th_target_amount" class=" headertablefixed text-center"
+                                        style="color:#FFF"><strong>RO Total Amount</strong></th>
+                                    <th name="th_achieved_amount" class="headertablefixed text-center"
+                                        style="color:#FFF"><strong>Achieved Amount</strong></th>
+                                    <th name="th_to_be_achieved" class="headertablefixed text-center"
+                                        style="color:#FFF"><strong>To Be Achieved</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="widget.so_target_lines" t-as="so_target_line">
+                                    <tr t-att-class='o_line_section'>
+                                        <td style='padding:10px;'>
+                                            <span><t t-esc="so_target_line.target_amount"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span>₹</span>
+                                            <span><t t-esc="so_target_line.so_total_amount"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span>₹</span>
+                                            <span><t t-esc="so_target_line.achieved_amount"/></span>
+                                        </td>
+                                        <td class="text-center" style='padding:10px;'>
+                                            <span><t t-esc="so_target_line.to_be_achieved"/></span>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style='height:30px; width:100%'></div>
+                    
+                </div> -->
+            </div>
+        </div>
+
+        <div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="container mt-5 d-flex justify-content-center">
+           <div class="card p-3">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="image">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                     class="rounded" width="155">
+                </div>
+
+                    <div class="ml-3 w-100">
+
+                   <h4 class="mb-0 mt-0">Alex HMorrision</h4>
+                        <span>Senior Journalist</span>
+
+                        <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+
+                    <div class="d-flex flex-column">
+
+                        <span class="articles">Articles</span>
+                        <span class="number1">38</span>
+
+                    </div>
+
+                            <div class="d-flex flex-column">
+
+                        <span class="followers">Followers</span>
+                                <span class="number2">980</span>
+
+                    </div>
+
+
+                            <div class="d-flex flex-column">
+
+                        <span class="rating">Rating</span>
+                                <span class="number3">8.9</span>
+
+                    </div>
+
+                   </div>
+
+
+                        <div class="button mt-2 d-flex flex-row align-items-center">
+
+                    <button class="btn btn-sm btn-outline-primary w-100">Chat</button>
+                            <button class="btn btn-sm btn-primary w-100 ml-2">Follow</button>
+
+
+                   </div>
+
+
+                </div>
+
+
+                </div>
+
+            </div>
+
+                </div>
+
+      </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+	</div>
+    </t>
+
+</template>

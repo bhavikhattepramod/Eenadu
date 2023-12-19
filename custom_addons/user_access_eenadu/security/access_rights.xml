@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="user_access_products" model="res.groups">-->
+<!--            <field name="name"> Restrict Product Category</field>-->
+<!--        </record>-->
+
+<!--        <record id="product_category_new_rules" model="ir.rule">-->
+<!--            <field name="name">Filter Product Category Type Allowed new</field>-->
+<!--            <field name="model_id" search="[('model','=','product.category')]" model="ir.model"/>-->
+<!--            <field name="groups" eval="[(4, ref('user_access_products'))]"/>-->
+<!--            <field name="domain_force">[('id','in', [ p.id for p in user.product_category_ids])]</field>-->
+<!--            <field name="perm_read" eval="True"/>-->
+<!--            <field name="perm_write" eval="True"/>-->
+<!--            <field name="perm_create" eval="True"/>-->
+<!--            <field name="perm_unlink" eval="False"/>-->
+<!--        </record>-->
+    </data>
+</odoo>

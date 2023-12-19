@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_picking_form_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+            	<field name = "delivery_challan_id" groups='custom_purchase.group_newsprint_shipment_distributor,custom_purchase.group_newsprint_purchase_manager'/>
+            </xpath>
+            <xpath expr="//page[@name='operations']" position="after">
+                <page name = 'vendor_invoice_ietails' string = "Vendor Invoice Details">
+                    <group>
+                        <group>
+                            <field name = 'invoice_id' />
+                            <field name = 'vendor_bill_date' />
+                            <field name = 'vendor_bill_amount' />
+                        </group>
+                        <group>
+                            <field name = 'vendor_partner_id' />
+                            <field name = 'vendor_bill_accounting_date' />
+                            <field name = 'currency_id' invisible='1' />
+                        </group>
+                    </group>
+                </page>
+                <page name = 'transporter_details' string = "Transporter Details">
+                    <group>
+                        <group>
+                            <field name = "lorry_no" />
+                            <field name = "lr_date" />
+                            <!-- <field name = "bill_no" /> -->
+                        </group>
+                        <group>
+                            <field name = "lr_no" />
+                            <!-- <field name = "bill_date" /> -->
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button name='action_create_landing_cost' string="Add Additional Costs" type="object" class="btn-primary" attrs="{'invisible': [('state', 'not in', ('assigned', 'done'))]}" groups='custom_purchase.group_newsprint_shipment_distributor,custom_purchase.group_newsprint_purchase_manager'/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

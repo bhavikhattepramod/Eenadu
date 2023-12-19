@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="ship_onboard_form_view" model="ir.ui.view">
+		<field name="name">ship.onboard.form</field>
+		<field name="model">ship.onboard</field>
+		<field name="arch" type="xml">
+			<form string="Ship On-board">
+				<!-- <header>
+					<field name="state" widget="statusbar" />
+				</header> -->
+				<sheet>
+					<group>
+						<group>
+							<field name = 'policy_number_id' required="1" />
+							<field name = 'purchase_order_id' required="1" />
+						</group>
+						<group>
+							<field name = 'agent_partner_id' required="1" />
+							<field name = 'vendor_partner_id' required="1" />
+							<field name = 'currency_id' invisible="1"/>
+						</group>
+					</group>
+					<notebook>
+						<page string = 'Ship On-board Details' name = 'ship_onboard_details'>
+							<field name = 'ship_oboard_line_ids'>
+								<tree editable='bottom'>
+									<field name = 'name' required="1" />
+									<field name = 'product_id' required="1" />
+									<field name = 'product_qty' required="1" />
+									<field name = 'product_uom_id' required="1" />
+									<field name = 'unit_price' required="1" />
+									<field name = 'ship_onboard_value' />
+									<field name = 'currency_id' invisible="1"/>
+									<field name = 'order_id' invisible="1"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" name="total_ship_onboard_value">
+								<field name="total_ship_onboard_value" class="oe_subtotal_footer_separator"/>
+								<field name="total_estimated_additional_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_estimated_tax_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_actual_additional_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_actual_tax_charges" class="oe_subtotal_footer_separator"/>
+							</group>
+							<div class="oe_clear"/>
+						</page>
+						<page string = 'Additional Charges' name = 'additional_charges'>
+							<field name = 'additional_charges_line_ids'>
+								<tree editable='bottom'>
+									<field name = 'product_id' required="1"/>
+									<field name = 'product_desc' required="1"/>
+									<field name = 'product_qty' readonly="1"/>
+									<field name = 'currency_id' invisible="1"/>
+									<field name = 'price_unit' required="1"/>
+									<field name = 'taxes_id' widget='many2many_tags'/>
+									<field name = 'actual_amount' />
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" name="total_ship_onboard_value">
+								<field name="total_ship_onboard_value" class="oe_subtotal_footer_separator"/>
+								<field name="total_estimated_additional_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_estimated_tax_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_actual_additional_charges" class="oe_subtotal_footer_separator"/>
+								<field name="total_actual_tax_charges" class="oe_subtotal_footer_separator"/>
+							</group>
+							<div class="oe_clear"/>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="ship_onboard_tree_view" model="ir.ui.view">
+		<field name="name">ship.onboard.tree</field>
+		<field name="model">ship.onboard</field>
+		<field name="arch" type="xml">
+			<tree string="Ship On-board">
+				<field name='policy_number_id'/>
+				<field name='purchase_order_id'/>
+				<field name='agent_partner_id'/>
+				<field name='vendor_partner_id'/>
+				<field name='total_ship_onboard_value'/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_ship_onboard_view" model="ir.actions.act_window">
+		<field name="name">Ship On-board</field>
+		<field name="res_model">ship.onboard</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem name="Ship On-board Details" id="menu_ship_onboard" parent="purchase.menu_procurement_management" action="action_ship_onboard_view" groups='custom_purchase.group_newsprint_insurance_user,custom_purchase.group_newsprint_purchase_manager' sequence="10"/>
+
+</odoo>

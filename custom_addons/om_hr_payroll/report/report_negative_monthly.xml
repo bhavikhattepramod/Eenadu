@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="report_negative_salary_employee_payslip" model="ir.actions.report">
+        <field name="name">Negative Salary Report</field>
+        <field name="model">payslip.negative.salary</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hr_payroll.report_payslip_negative_salary</field>
+        <field name="report_file">om_hr_payroll.report_payslip_negative_salary</field>
+        <field name="binding_model_id" ref="model_payslip_negative_salary"/>
+        <field name="binding_type">report</field>
+<!--        <field name="paperformat_id" ref="paper_format_joining_report"/>-->
+    </record>
+
+    <data>
+        <template id="report_payslip_negative_salary">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <t class="page">
+                            <h3>Negative Salary Employee Details</h3>
+                            <table style="width:100%;border:2px solid black;">
+                                <tr style="height:20px;font-weight:bold;font-size:22px;border:2px solid black;">
+                                    <td  style="border:2px solid black;">Employee name</td>
+<!--                                    <td  style="border:2px solid black;">Net Salary</td>-->
+                                    <td  style="border:2px solid black;">Total</td>
+                                </tr>
+                                <t t-foreach="o.generate_payroll_negative_summary()" t-as="line">
+                                    <tr>
+                                        <td style="border:2px solid black;"><span t-esc="line['emp_name']"/></td>
+<!--                                        <td style="border:2px solid black;"><span t-esc="line['rule_name']"/></td>-->
+                                        <td style="border:2px solid black;"><span t-esc="line['rule_total']"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

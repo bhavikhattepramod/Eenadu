@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="distribute_shipments_form_view" model="ir.ui.view">
+		<field name="name">distribute.shipments.form</field>
+		<field name="model">distribute.shipments</field>
+		<field name="arch" type="xml">
+			<form string="Distribute Shipments">
+				<header>
+					<!-- <field name="state" widget="statusbar" /> -->
+					<button name="create_transfer" string = "Transfer" class="btn-primary" type="object" attrs="{'invisible': [('shipment_distribution_count', '!=', 0)]}"/>
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+		                <!-- <button name="action_create_domestic_insurance_claim" 
+		                    string="Claim Insurance"
+		                    class="oe_stat_button" 
+		                    icon="fa-shield" 
+		                    type="object" 
+		                    attrs="{'invisible': [('domestic_insurance_claim_count', '!=', 0)]}"/>
+		                <button name="action_view_domestic_insurance_claim" 
+		                    string="View Insurance"
+		                    class="oe_stat_button"
+		                    icon="fa-shield"
+		                    type="object" attrs="{'invisible': [('domestic_insurance_claim_count', '==', 0)]}">
+		                    <field name="domestic_insurance_claim_count" widget="statinfo" string="View Insurance"/>
+		                </button> -->
+						<button name="action_view_distribution" 
+		                    string="Receipt"
+		                    class="oe_stat_button"
+		                    icon="fa-truck"
+		                    type="object" attrs="{'invisible': [('shipment_distribution_count', '==', 0)]}">
+		                    <field name="shipment_distribution_count" widget="statinfo" string="Receipt"/>
+		                </button>
+		            </div>
+					<group>
+						<group>
+							<field name = "policy_number_id" />
+							<field name = "purchase_order_id" />
+							<label for="qty_as_per_po" />
+			                <div class="o_row">
+			                    <field name="qty_as_per_po"/>
+			                    <field name="po_qty_uom" groups="uom.group_uom" readonly = "1"/>
+			                </div>
+			                <field name = "invoice_number" />
+							<!-- <field name = "invoice_id" /> -->
+							<field name = "clearing_agent_id" />
+							<!-- <field name = "delivery_challan_no" required="0" /> -->
+							<!-- <field name = "unit_partner_id" required="0" /> -->
+							<!-- <field name = "lorry_no" required="0" />
+							<field name = "source_warehouse_id" required="0" />
+							<field name = "source_dest_id" required="0" /> -->
+						</group>
+						<group>
+							<field name = "picking_id" />
+							<field name = "no_of_containers" />
+							<field name = "bl_number" />
+							<field name = "sum_insured" />
+							<!-- <field name = "delivery_challan_date" required="0" /> -->
+							<!-- <field name = "issue_unit_date" required="0" /> -->
+							<!-- <field name = "lorry_recipt_no" required="0" />
+							<field name = "warehouse_dest_id" required="0" />
+							<field name = "location_dest_id" required="0" /> -->
+						</group>
+					</group>
+					<notebook>
+						<page name = "distribution_lines" string = "Distribution Lines">
+							<field name = "distribute_shipments_line_ids">
+								<tree editable = "bottom">
+									<!-- <field name = "reels_lot_id" required="0" />
+									<field name = "product_code" />
+									<field name = "hsn_code" /> -->
+									<field name = "product_id" required="1" />
+									<field name = "no_of_reels" required="1" />
+									<field name = "transfer_qty" required="1" />
+									<field name = "product_uom" />
+									<field name = "source_location" />
+									<field name = "destination_location" required="1" />
+									<!-- <field name = "transport_partner_id" />
+									<field name = "lorry_reg_no" />
+									<field name = "transporter_contact_no" /> -->
+									<field name = "picking_id" invisible="1" />
+									<!-- <field name = "distribute_shipments_line_id" /> -->
+									<!-- <field name = "gross_qty" />
+									<field name = "damage_qty" />
+									<field name = "net_qty" />
+									<field name = "unit_rate" required="0" />
+									<field name = "price_subtotal" /> -->
+									<field name = "currency_id" invisible="1"/>
+								</tree>
+							</field>
+							<!-- <group class="oe_subtotal_footer oe_right" name="total_shipment_value">
+								<field name="total_shipment_value" class="oe_subtotal_footer_separator"/>
+							</group>
+							<div class="oe_clear"/> -->
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="distribute_shipments_tree_view" model="ir.ui.view">
+		<field name="name">distribute.shipments.tree</field>
+		<field name="model">distribute.shipments</field>
+		<field name="arch" type="xml">
+			<tree string="Distribute Shipments">
+				<!-- <field name='delivery_challan_no'/>
+				<field name='delivery_challan_date'/> -->
+				<field name='picking_id'/>
+				<field name='purchase_order_id' />
+				<field name='invoice_number' />
+				<field name='clearing_agent_id' />
+				<field name='no_of_containers' />
+				<field name='bl_number' />
+				<field name='sum_insured' />
+				<field name='qty_as_per_po' string = 'Qty(t)' />
+				<!-- <field name='unit_partner_id'/>
+				<field name='issue_unit_date'/>
+				<field name='lorry_no'/>
+				<field name='lorry_recipt_no'/>
+				<field name='source_dest_id'/>
+				<field name='location_dest_id'/>
+				<field name='total_shipment_value'/> -->
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_distribute_shipments_view" model="ir.actions.act_window">
+		<field name="name">Distribute Shipments</field>
+		<field name="res_model">distribute.shipments</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem name="Distribute Shipments" id="menu_distribute_shipments" parent="purchase.menu_procurement_management" action="action_distribute_shipments_view" groups='custom_purchase.group_newsprint_shipment_distributor,custom_purchase.group_newsprint_purchase_manager' sequence="11"/>
+
+</odoo>

@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="exit_management_gslic_hr_view" model="ir.ui.view">
+            <field name="name">Gslic</field>
+            <field name="model">clearance_glsic.exit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+<!--                            <field name="name_id"/>-->
+                            <field name="date" invisible="1"/>
+                            <field name="name_id" required="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions window-->
+        <record id="action_glsic" model="ir.actions.act_window">
+            <field name="name">GSLIC Department</field>
+            <field name="res_model">clearance_glsic.exit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="exit_management_clearance_certificate_hr_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="exit_gslic_certifcates"
+              name="GSLIC Department"
+              parent="certificates_from_different_departments_menu"
+              action="action_glsic"
+              sequence="30"/>
+    </data>
+</odoo>

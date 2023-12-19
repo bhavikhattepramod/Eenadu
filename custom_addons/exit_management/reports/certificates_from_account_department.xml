@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="certificates_from_account_department_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .page_break{
+                            padding-top:400px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;font-size:20px;">
+                            <h1 align="middle" style="font-size:24px; padding-top:100px;">
+                                <b>
+                                    <u>CERTIFICATE FROM ACCOUNTS DEPARTMENT
+                                    </u>
+                                </b>
+                            </h1>
+                            <br/>
+                            <br/>
+                            <p align="right" style="padding-left:70px; padding-right:70px; padding-top:40px;">
+                                <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <p align="left" style="padding-right:70px; padding-left:70px; padding-top:40px;">
+                                To:&#160;THE ACCOUNT DEPARTMENT
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                <span t-esc="doc.name_id.employee_id.name"/>
+                                (<span t-esc="doc.name_id.employee_id.identification_id"/>), Manager has tendered her
+                                resignation with effect from
+                                <span t-esc="doc.name_id.date_of_joining"/>
+                            </p>
+                            <br/>
+                            <br/>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                Please give us the DUES particulars.
+                            </p>
+                            <br></br>
+                            <p align="center">
+                                1. No Dues.
+                            </p>
+                            <p align="center" style="padding-left:275px; padding-right:50px;">
+                                2.An Amount of Rs ____________________
+                            </p>
+                            <p align="center" style="padding-left:135px; padding-right:50px;">
+                                is due from him/her.
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                        <b>AUTHORIZE BY:
+                                        </b>
+                                    </td>
+
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:right;">
+                                        <b>SIGNATURE</b>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <record id="paperformat_certificates_from_account_department" model="report.paperformat">
+        <field name="name">Certificates Account Department</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="certificates_from_account_department_action" model="ir.actions.report">
+        <field name="name">Certificates Account Department</field>
+        <field name="model">certificates.account.department</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.certificates_from_account_department_report</field>
+        <field name="report_file">exit_management.certificates_from_account_department_report</field>
+        <field name="paperformat_id" ref="paperformat_certificates_from_account_department"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="employee_life_cycle_tree" model="ir.ui.view">
+        <field name="name">Employee life cycle tree</field>
+        <field name="model">employee.life.cycle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="process"/>
+                <field name="emp_name"/>
+                <field name="emp_code"/>
+                <field name="unit_elc" widget="many2many_tags"/>
+                <field name="department"/>
+                <field name="effective_date"/>
+                <field name="transaction_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_life_cycle_form" model="ir.ui.view">
+        <field name="name">Employee life cycle form</field>
+        <field name="model">employee.life.cycle</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_submit" string="Submit" class="oe_highlight" type="object" states="new"
+                            attrs="{'invisible' : ('state','!=','new')}"/>
+                    <button name="button_hr" string="Hr" class="oe_highlight" type="object" states="submit"
+                            attrs="{'invisible' : ('state','!=','submit')}"/>
+                    <button name="button_reject" string="Reject" class="oe_highlight" type="object" states="submit"
+                            attrs="{'invisible' : ('state','!=','submit')}"/>
+                    <button name="button_hod" string="Hod" class="oe_highlight" type="object" states="hr"
+                            attrs="{'invisible' : ('state','!=','hr')}"/>
+                    <button name="button_reject" string="Reject" class="oe_highlight" type="object" states="hr"
+                            attrs="{'invisible' : ('state','!=','hr')}"/>
+                    <button name="record_post" string="Post" class="oe_highlight" type="object" states="approved"
+                            attrs="{'invisible' : ('state','!=','approved')}"/>
+                    <!--                    <button name="" string="Submit" class="oe_highlight" type="object" states="hod"/>-->
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div style="width:400px;">
+                        <group>
+                            <field name="process"
+                                   attrs="{'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                        </group>
+                    </div>
+                    <!--                    <group>-->
+                    <group>
+                        <group>
+                            <field name="emp_code" attrs="{'readonly': [('state', 'in', ['approved','post','reject'])]}"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                            <field name="emp_name" attrs="{'readonly': [('state', 'in', ['approved','post','reject'])]}"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                            <field name="company"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="unit_elc"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   widget="many2many_tags"/>
+                            <field name="department"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                            <field name="section_from_top_elc"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="designation"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                            <field name="general_category"/>
+                            <field name="work_category"/>
+                            <field name="date_of_join"/>
+                            <field name="effective_date" invisible="1"/>
+                            <field name="transaction_date" invisible="1"/>
+                        </group>
+                    </group>
+                    <hr style="border: 5px solid black"/>
+                    <group>
+                        <group>
+                            <field name="transfer_effective_date"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="company_from"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="from_unit_elc"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','transfers')]}" widget="many2many_tags"/>
+                            <field name="from_department"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'process' : [('state','!=','transfers')]}"/>
+                            <field name="section_from_elc"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','transfers')]}" widget="many2many_tags"/>
+                            <field name="reason"
+                                   attrs="{'invisible' : [('process','!=','tran_prob')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','tran_prob')]}"/>
+                            <field name="reason2"
+                                   attrs="{'invisible' : [('process','!=','prob_to_conf')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_to_conf')]}"/>
+                            <field name="reason3"
+                                   attrs="{'invisible' : [('process','!=','prob_ext')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_ext')]}"/>
+                            <field name="reason4"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="reason5"
+                                   attrs="{'invisible' : [('process','!=','re_designation')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','re_designation')]}"/>
+                            <field name="reason6"
+                                   attrs="{'invisible' : [('process','!=','extension_of_training')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','extension_of_training')]}"/>
+                            <field name="reason7"
+                                   attrs="{'invisible' : [('process','!=','service_extension')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','service_extension')]}"/>
+                        </group>
+                        <group>
+                            <field name="probation_date"
+                                   attrs="{'invisible' : [('process','not in',['tran_prob','probation_discharge'])],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','tran_prob')]}"/>
+                            <field name="transaction_date_tr"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="company_to"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="confirm_date"
+                                   attrs="{'invisible' : [('process','!=','prob_to_conf')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_to_conf')]}"/>
+                            <field name="confirm_effective_date"
+                                   attrs="{'invisible' : [('process','!=','prob_to_conf')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_to_conf')]}"/>
+                            <field name="no_of_months"
+                                   attrs="{'invisible' : [('process','!=','prob_ext')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_ext')]}"/>
+                            <field name="no_of_months_extension"
+                                   attrs="{'invisible' : [('process','!=','extension_of_training')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','extension_of_training')]}"/>
+                            <field name="no_of_months_extension_service"
+                                   attrs="{'invisible' : [('process','!=','service_extension')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','service_extension')]}"/>
+                            <field name="extension_start_date"
+                                   attrs="{'invisible' : [('process','!=','prob_ext')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','prob_ext')]}"/>
+                            <field name="extension_start_date_tr"
+                                   attrs="{'invisible' : [('process','!=','extension_of_training')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','extension_of_training')]}"/>
+                             <field name="extension_start_date_ex"
+                                   attrs="{'invisible' : [('process','!=','service_extension')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','service_extension')]}"/>
+                            <field name="new_designation"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','promotion')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','promotion')]}"/>
+                            <field name="new_re_designation"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','re_designation')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','re_designation')]}"/>
+                            <field name="promotion_effective_date"
+                                   attrs="{'invisible' : [('process','!=','promotion')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','promotion')]}"/>
+                            <field name="increment_effective_date"
+                                   attrs="{'invisible' : [('process','!=','increments')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','increments')]}"/>
+                            <field name="salary_structure"
+                                   attrs="{'invisible' : [('process','!=','increments')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','increments')]}"/>
+                            <field name="re_designation_effective_date"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','re_designation')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','re_designation')]}"/>
+                            <field name="to_unit_emp"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   widget="many2many_tags"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="to_department"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="transaction_date_tp"
+                                   attrs="{'invisible' : [('process','!=','tran_prob')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_pc"
+                                   attrs="{'invisible' : [('process','!=','prob_to_conf')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_pe"
+                                   attrs="{'invisible' : [('process','!=','prob_ext')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_ex_pr"
+                                   attrs="{'invisible' : [('process','!=','extension_of_training')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_ex_sr"
+                                   attrs="{'invisible' : [('process','!=','service_extension')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_pr"
+                                   attrs="{'invisible' : [('process','!=','promotion')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_in"
+                                   attrs="{'invisible' : [('process','!=','increments')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="transaction_date_rd"
+                                   attrs="{'invisible' : [('process','!=','re_designation')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks"
+                                   attrs="{'invisible' : [('process','!=','tran_prob')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks2"
+                                   attrs="{'invisible' : [('process','!=','prob_to_conf')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks3"
+                                   attrs="{'invisible' : [('process','!=','prob_ext')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="section_to_elc"
+                                   options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                                   widget="many2many_tags"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])], 'required': [('process','=','transfers')]}"/>
+                            <field name="remarks4"
+                                   attrs="{'invisible' : [('process','!=','transfers')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks5"
+                                   attrs="{'invisible' : [('process','!=','promotion')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks6"
+                                   attrs="{'invisible' : [('process','!=','increments')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks7"
+                                   attrs="{'invisible' : [('process','!=','re_designation')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks8"
+                                   attrs="{'invisible' : [('process','!=','extension_of_training')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                             <field name="remarks9"
+                                   attrs="{'invisible' : [('process','!=','service_extension')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks10"
+                                   attrs="{'invisible' : [('process','!=','probation_discharge')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                            <field name="remarks11"
+                                   attrs="{'invisible' : [('process','!=','trainee_discharge')],'readonly': [('state', 'in', ['approved','post','reject'])]}"/>
+                        </group>
+                    </group>
+                    <!--                    </group>-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="career_history_tab_menu" model="ir.ui.view">
+        <field name="name">Career History Tab</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="career_hist" string="Career History">
+                    <field name="career_history_field" string="Employee Career History" readonly="1">
+                        <tree editable="0" create="0">
+                            <field name="process"/>
+                            <field name="company_from"/>
+                            <field name="unit_elc" widget="many2many_tags"/>
+                            <field name="department"/>
+                            <field name="section_from_top_elc" widget="many2many_tags"/>
+                            <field name="effective_date"/>
+                            <field name="transaction_date"/>
+                            <!--                            <field name="state"/>-->
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_hr_employee_view_form_received_badges" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.received.badges</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_gamification.hr_hr_employee_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='received_badges']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="employee_emails" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="employee_life_cycle_action" model="ir.actions.act_window">
+        <field name="name">Employee Life Cycle</field>
+        <field name="res_model">employee.life.cycle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <record id="action_employee_dashboard_screen" model="ir.actions.client">
+        <field name="name">Dashboard-ELC</field>
+        <field name="tag">employee_dashboard_elc</field>
+    </record>
+
+    <menuitem id="employee_life_cycle_menu"
+              name="Employee Life cycle"
+              parent="hr.menu_hr_root"
+              sequence="100"/>
+
+    <menuitem id="employee_life_cycle_sub_menus"
+              name="Employee Life cycle"
+              parent="employee_life_cycle_menu"
+              action="employee_life_cycle_action"
+              sequence="20"/>
+
+    <menuitem id="employee_life_cycle_menu_dashboard"
+              name="Dashboard"
+              parent="hr.menu_hr_root"
+              action="action_employee_dashboard_screen"
+              sequence="101"/>
+
+
+</odoo>

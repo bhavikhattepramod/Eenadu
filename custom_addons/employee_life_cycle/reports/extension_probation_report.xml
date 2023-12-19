@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_probation_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">25</field>
+        <field name="margin_right">25</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_probation_wizards" model="ir.actions.report">
+        <field name="name">Extension Probation Report</field>
+        <field name="model">extension.probation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.probation_extension_report</field>
+        <field name="report_file">employee_life_cycle.probation_extension_report</field>
+        <field name="binding_model_id" ref="model_extension_probation"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_probation_report"/>
+    </record>
+
+    <data>
+        <template id="probation_extension_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify; font-size:125%;">
+                            <div style="text-align:right;">
+                                <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="font-size:100%;">
+                                Mr/Miss.
+                                <span t-field="doc.no_of_months.emp_code"/>
+                                <br/>
+                                <br/>
+                                <span t-field="doc.no_of_months.designation"/>
+                            </div>
+                            <br/>
+                            <br/>
+                            <h5 style="text-align:center; text-decoration:underline;"><b>EXTENSION OF PROBATION</b></h5>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>
+                                This refers to your Letter of Employment dated
+                                <b><span t-field="doc.no_of_months.emp_code.appointment_date"/></b>
+                                appointing you as
+                                <b><span t-field="doc.no_of_months.designation"/></b>
+                                Probation for an initial period of <b>Six Months</b>. The review of your performance at the end
+                                of your Probation period indicates that you are yet to acquaint yourself with the
+                                complete functions of your job in order to reach the standards expected of you.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p>
+                                In view of the above, it has been decided to extend your probation for another period of
+                                <b><span t-field="doc.no_of_months.no_of_months_extension"/></b> with effect from <b><span t-field="doc.no_of_months.extension_start_date"/></b>which is in accordance with Clause-3 of your
+                                Letter of Employment.
+
+                            </p>
+                            <br/>
+                            <br/>
+                            <p>
+                                You are advised to learn the functions of your job diligently and thoroughly and improve
+                                your work performance during the extended period of Probation.
+
+                            </p>
+                            <br/>
+                            <br/>
+                            <p style="text-align:left;">
+                                <b>Authorised By:<br/><span t-field="doc.no_of_months.company.director_id"/></b>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

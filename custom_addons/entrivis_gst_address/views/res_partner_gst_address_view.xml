@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--ADD GST VERIFIED AND PAN NUMBER FIELDS IN PARTNER FORM VIEW -->
+    <record id="view_res_partner_inherit_form" model="ir.ui.view">
+        <field name="name">view_res_partner_inherit_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group/field[@name='vat']" position="after">
+                <value for="vat"/>
+                <button name="fetch_address" string="Fetch Address" type="object"
+                        class="btn-link oe_edit_only"
+                        style="text-decoration:underline;"
+                        attrs="{'invisible': [('gst_verified', '!=', False)]}"/>
+            </xpath>
+            <field name="vat" position="attributes">
+                <attribute name="string">GST</attribute>
+            </field>
+
+            <field name="vat" position="after">
+                <field name="gst_verified" />
+                <field name="gst_status" decoration-success="gst_status=='Active'" decoration-warning="gst_status=='Suspended'" decoration-danger="gst_status=='Cancelled'"/>
+                <field name="current_date" string=""/>
+
+            </field>
+        </field>
+    </record>
+
+    <!-- APPYFLOW KEY IN COMPANY VIEW FORM -->
+    <record id="view_aspid_key_company" model="ir.ui.view">
+        <field name="name">view_company_form_aspid_key</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='general_info']" position="after">
+                <page name="appyflow_config" string="GST Configuration">
+                    <group>
+                        <field name="gstin_number"/>
+                        <field name="subscription_key"/>
+                        <field name="source_type"/>
+                        <field name="reference_no"/>
+                        <field name="location"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

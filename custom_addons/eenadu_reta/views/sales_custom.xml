@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="inherit_sale_view_order_form_reta" model="ir.ui.view">
+        <field name="name">sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="reta_bool_field" invisible="1"/>
+            </xpath>
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible':['|',('sale_order_duplicating','!=',True),('reta_bool_field','=',True)]}
+                </attribute>
+            </xpath>
+
+<!--            <xpath expr="//header" position="inside">-->
+<!--                <field name="reta_state" widget="statusbar" statusbar_visible="draft,sent,sale"-->
+<!--                       attrs="{'invisible':['|',('sale_order_duplicating','=',True),('reta_bool_field','!=',True)]}"/>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="sale_order_view_form_reta">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sales_circulation.sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='customer_selection']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible':['|',('sale_order_duplicating','=',True),('reta_bool_field','=',True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='order_lines']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible':['|',('sale_order_duplicating','=',True),('reta_bool_field','=',True)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record> -->
+
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="name">Internal Orders</field>
+        <field name="domain">
+            [('sale_order_duplicating','!=',True),('reta_bool_field','!=',True)]
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_inherited_reta" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="reta_bool_field" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

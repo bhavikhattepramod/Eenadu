@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_employee_state_insurance_corporation_action" model="ir.actions.act_window">
+        <field name="name">Employee State Insurance Corporation Action</field>
+        <field name="res_model">employee.state.insurance.corporation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="nomination_and_declaration_form" model="ir.actions.act_window">
+        <field name="name">Nomination and Declaration Form</field>
+        <field name="res_model">nomination.declaration</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="hr_employee_state_insurance_corporation"
+              name="Employee State Insurance Corporation"
+              action="hr_employee_state_insurance_corporation_action"
+              parent="hr.hr_menu_hr_reports"
+              sequence="20"/>
+
+    <menuitem id="nomination_and_declaration_form_menu"
+              name="Nomination and Declaration - PF"
+              parent="hr.hr_menu_hr_reports"
+              action="nomination_and_declaration_form"
+              sequence="30"/>
+
+</odoo>

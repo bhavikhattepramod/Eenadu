@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="page_master_form_view" model="ir.ui.view">
+        <field name="name">page master</field>
+        <field name="model">page.master</field>
+        <field name="arch" type="xml">
+            <form string=" Page master Details">
+                <sheet>
+                    <group>
+                        <field name='page_number' required="1"/>
+                        <field name='page_name' required="1"/>
+                        <field name='page_height' required="1"/>
+                        <field name='page_width'/>
+                        <field name='total'/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_page_master_view" model="ir.actions.act_window">
+        <field name="name">Page master</field>
+        <field name="res_model">page.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Page details" id="menu_page_details" parent="eenadu_reta.parent_reta_application"
+               sequence="22"/>
+    <menuitem name="Page master" id="menu_page_master" parent="eenadu_reta.menu_page_details"
+              action="action_page_master_view" sequence="23"/>
+
+
+</odoo>

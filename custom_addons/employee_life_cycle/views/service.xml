@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_offer_wizard_form" model="ir.ui.view">
+        <field name="name">service extension</field>
+        <field name="model">service.extensions</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="service_id" required="1"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="invoice_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_service_report_wizard" model="ir.actions.act_window">
+        <field name="name">Service Extension</field>
+        <field name="res_model">service.extensions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_offer_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="employee_resignation_req" parent="employee_life_cycle_menu" name="Service Extension"
+              action="action_service_report_wizard" sequence="5"/>
+</odoo>

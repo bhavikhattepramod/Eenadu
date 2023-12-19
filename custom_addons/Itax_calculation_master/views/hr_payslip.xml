@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<odoo>
+	    <record id="view_hr_payslip_form" model="ir.ui.view">
+		<field name="name">hr.payslip.form</field>
+		<field name="model">hr.payslip</field>
+		<field name="inherit_id" ref="om_hr_payroll.view_hr_payslip_form"/>
+		<field name="arch" type="xml">
+		    <xpath expr="//notebook" position="inside">
+		        <page name="master_salary_details" string="Contributions">
+		            <group>
+		                <field name="basic_salary" invisible="1"/>
+		                <field name="hra" invisible="1"/>
+		                <field name="standard_deduction" invisible="1"/>
+		                <field name="lta" invisible="1"/>
+		                <field name="special_allowance" invisible="1"/>
+		                <field name="variable_allowance" invisible="1"/>
+		                <field name="pf_amount"/>
+		            </group>
+		        </page>
+		    </xpath>
+		    <xpath expr="//notebook" position="inside">
+		        <page name="other_info" string="Variables E/D">
+		            <group>
+		                <group string="Deductions (₹)">
+		                    <field name="food_coupon_ded" invisible="1"/>
+		                    <field name="income_tax"/>
+		                    <field name="surcharge"/>
+		                    <field name="cess"/>
+		                    <field name="hr_deduction"/>
+		                    <field name="other_deductions"/>
+		                    <field name="income_tax_total" invisible="1"/>
+		                </group>
+		                <group string="Allowances (₹)">
+		                    <field name="food_coupon_alw" invisible="1"/>
+		                    <field name="onsite_allowance" invisible="1"/>
+		                    <field name="shift_allowance"/>
+		                    <field name="other_allowance"/>
+		                    <field name="bonus"/>
+		                    <field name="ex_gratia"/>
+		                </group>
+		            </group>
+		        </page>
+		    </xpath>
+		    <xpath expr="//notebook" position="inside">
+		        <page name="attendance" string="Attendance">
+		            <group string="Days">
+		                <group>
+		                    <field name="total_days"/>
+		                    <field name="paid_days"/>
+		                    <field name="salary_days" invisible="1"/>
+		                    <field name="leave_days"/>
+		                    <field name="unpaid_days"/>
+		                    <field name="weekend_days"/>
+		                    <field name="public_leave_days"/>
+		                    <field name="present_days"/>
+		                    <field name="number_of_days"/>
+		                </group>
+		                <group>
+		                    <field name="ot_hours"/>
+		                    <field name="lop_arrear_field"/>
+		                    <field name="hop_days"/>
+		                    <field name="nsa_days"/>
+	<!--                            <field name="lop_arrear_total_amount"/>-->
+		                </group>
+		            </group>
+		        </page>
+		    </xpath>
+
+		    <xpath expr="//sheet/notebook/page[2]/field[@name='line_ids']/tree/field[@name='quantity']"
+		           position="attributes">
+		        <attribute name="optional">hide</attribute>
+		    </xpath>
+		    <xpath expr="//sheet/notebook/page[2]/field[@name='line_ids']/tree/field[@name='rate']"
+		           position="attributes">
+		        <attribute name="optional">hide</attribute>
+		    </xpath>
+		    <xpath expr="//sheet/notebook/page[2]/field[@name='line_ids']/tree/field[@name='amount']"
+		           position="attributes">
+		        <attribute name="optional">hide</attribute>
+		    </xpath>
+		    <xpath expr="//sheet/notebook/page[2]/field[@name='line_ids']/tree/field[@name='salary_rule_id']"
+		           position="attributes">
+		        <attribute name="optional">hide</attribute>
+		    </xpath>
+		</field>
+	    </record>
+	    <record id="view_hr_payslip_week_off_day" model="ir.ui.view">
+		<field name="name">hr.employee.week.off.day</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+		    <xpath expr="//form/sheet/notebook/page/div/div/group/field[@name='tz']" position="after">
+		        <field name="week_off_day"/>
+		    </xpath>
+		</field>
+	    </record>
+
+	    <record id="resource_calendar_leaves_tree_inherit_state" model="ir.ui.view">
+		<field name="name">resource.calendar.leaves.state</field>
+		<field name="model">resource.calendar.leaves</field>
+		<field name="inherit_id" ref="hr_holidays.resource_calendar_leaves_tree_inherit"/>
+		<field name="arch" type="xml">
+		    <xpath expr="//field[@name='date_to']" position="after">
+		        <field name="state_id"/>
+		    </xpath>
+		</field>
+	    </record>
+	</odoo>
+

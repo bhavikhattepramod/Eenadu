@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="advertisement_position_form_view" model="ir.ui.view">
+		<field name="name">advertisement.position.form</field>
+		<field name="model">advertisement.position</field>
+		<field name="arch" type="xml">
+			<form string="Advertisement Position">
+				<sheet>
+					<group>
+						<group>
+							<field name = 'name' required="1"/>
+						</group>
+						<group>
+							<field name = 'currency_id' invisible="1"/>
+							<field name = 'base_price' required="1"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="advertisement_position_tree_view" model="ir.ui.view">
+		<field name="name">advertisement.position.tree</field>
+		<field name="model">advertisement.position</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'name' />
+				<field name = 'base_price' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_advertisement_position_view" model="ir.actions.act_window">
+		<field name="name">Advertisement Position</field>
+		<field name="res_model">advertisement.position</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Position" id="menu_advertisement_position" parent="sales_person_target.menu_reta_configuration_scheme" action="action_advertisement_position_view" sequence="20"/>
+
+	
+
+</odoo>

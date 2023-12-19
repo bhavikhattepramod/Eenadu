@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="contract_apprenticeship_wizard" model="ir.ui.view">
+        <field name="name">contract.of.apprenticeship.wizard</field>
+        <field name="model">contract.apprenticeship</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                            <field name="date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_contract_apprenticeship_action" model="ir.actions.act_window">
+        <field name="name">Contract of Apprenticeship</field>
+        <field name="res_model">contract.apprenticeship</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="contract_apprenticeship_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="employee_contract_apprenticeship"
+              name="Contract of Apprenticeship"
+              parent="hr.hr_menu_hr_reports"
+              action="employee_contract_apprenticeship_action"
+              sequence="10"/>
+</odoo>

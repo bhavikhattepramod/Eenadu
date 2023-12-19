@@ -1,0 +1,189 @@
+<odoo>
+    <record id="paperformat_empolyment" model="report.paperformat">
+        <field name="name">Custom Paper</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20.00</field>
+        <field name="margin_bottom">20.00</field>
+        <field name="margin_left">7.0</field>
+        <field name="margin_right">7.0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">125</field>
+    </record>
+    <record id="letter_of_employment_vi" model="ir.actions.report">
+        <field name="name">letter Of Employment Direct Probationary</field>
+        <field name="model">letter.of.employment.probationary</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.letter_of_employment_views_id</field>
+        <field name="report_file">employee_life_cycle.letter_of_employment_views_id</field>
+        <!--        <field name="binding_model_id" ref="model_letter_of_employment_probationary"/>-->
+        <field name="paperformat_id" ref="employee_life_cycle.paperformat_empolyment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="letter_of_employment_views_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="text-align:justify;">
+                        <head>
+                            <style>
+                                #listy
+                                {
+                                margin-left:200px;
+                                margin-right:200px;
+                                font-family: "Times New Roman", Times, serif;
+                                font-size:20px;
+                                line-height: 1.4;
+                                }
+                                #para1
+                                {
+                                margin-left:140px;
+                                margin-right:160px;
+                                font-family: "Times New Roman", Times, serif;
+                                font-size:20px;
+                                line-height: 1.0;
+                                }
+                                #para2
+                                {
+                                margin-left:140px;
+                                margin-right:160px;
+                                font-family: "Times New Roman", Times, serif;
+                                font-size:20px;
+                                line-height: 1.0;
+                                }
+                                table
+                                {
+                               border: 1px solid white;
+                                }
+                                #para{
+                                line-height: 2.0;
+                                }
+
+                            </style>
+                                   Mr
+                                       <span t-field="doc.name_id.name"/>
+                            <p style="text-align:right;">Date
+                                <span t-field="doc.date"/></p>
+                            <address>
+                                <span t-field="doc.name_id.son_dot_of"/><br></br>
+                                 <span t-field="doc.name_id.street2_emp"/><br></br>
+                                <span t-field="doc.name_id.city_emp"/><br></br>
+                                <span t-field="doc.name_id.state_id_emp"/><br></br>
+                            </address>
+                            <h2 style="text-align:center;"><u>LETTER OF EMPLOYMENT - DIRECT PROBATIONARY </u></h2>
+                            <br/>
+                        </head>
+                        <body>
+
+                            <p style="margin-left:50px;"> Dear Mr.<span t-field="doc.name_id.name"/></p><br/>
+                            <p id="para1">
+                                With reference to your application and the subsequent interview you had with us, the Management is pleased to offer you an appointment as <b><span t-field="doc.name_id.job_id"/></b> at our Eenadu Corporate Office, Ramoji Film City on the following terms and conditions
+                            </p><br/>
+                            <br/>
+                            <ol id="listy">
+                                <li style="padding-left: 30px">You will be on probation for a period of SIX MONTHS from the date of your joining.
+                                </li><br/>
+                                <li style="padding-left: 30px">Your present total salary shall be
+                                    Rs ____________ (Rupees ______________________________only) per
+                                    month. The Break-up of the salary will be shown in your payslip.
+                                </li><br/>
+                                <li style="padding-left: 30px">During the probationary period, the Company will assess your work, conduct, general
+                                    aptitude and overall suitability. Where you show improvement in your performance,
+                                    though not upto the standards, the Company may extend your Probationary period at
+                                    its sole discretion which will be intimated to you in writing. And where you are
+                                    found not suitable, your services may be terminated without any further notice either
+                                    during the probationary period or on the expiry of the Probation period.
+                                </li><br/>
+                                <li style="padding-left: 30px">In the event of the Company deciding to offer you regular employment on the expiry
+                                    of your probationary service you will be advised so in writing. Till such time you are
+                                    advised in writing, you shall be deemed to be on probation.
+                                </li><br/>
+                                <li style="padding-left: 30px">Your services will be governed ny the Standing Orders, Service R ules and any other
+                                    rules framed by the Company from time to time.
+                                   <li style="padding-left: 30px">You will be entitled to such leave with pay as may be prescribed by the rules and
+                                       orders for the time being in force.</li><br/>
+                                </li><br/>
+                                <li style="padding-left: 30px">You shall be entitled to such terminal benefits as may be prescribed by the order
+                                    for the time being in force.
+                                </li><br/>
+                                <li style="padding-left: 30px">You are responsible for such duties and functions as detailed by the Management or
+                                    by any other person nominated by the Management to allocate work to you from time to time.
+                                </li><br/>
+                                <li style="padding-left: 30px">You are liable to be transferred from one Branch/office/ Section/Division/Job to
+                                    another either in existence o which may come into existence anywhere in India. You shall also be
+                                    liable to be deputed from one Unit to another Unit or to any of the group
+                                    organizations. either temporarily or permanently. You will not be entitled to any additional
+                                    remuneration on account of such transfer or deputation.
+                                </li><br/>
+                                <li style="padding-left: 30px">You shall not work or write for any other Newspaper/Journal/ Publication except with
+                                    the written permission of the Management. You will not engage or interest yourself,
+                                    directly or indirectly in any Trade or Business, while you are in the services of the
+                                    Company. If you indulge in any of these activities, your services are liable to be terminated
+                                    without any notice.
+                                </li><br/>
+                                <li style="padding-left: 30px">Your services are liable to be terminated during the period of probation without
+                                    notice on either side.
+                                </li>
+                             <br/>
+                                <br/>
+                                <li style="padding-left: 30px">For breach of contract on your part, the Company may terminate your employment
+                                    without any notice.
+                                </li><br/>
+                                <li style="padding-left: 30px"> a) Any notice, order, charge sheet, communication or intimation sent to the
+                                    postal addresses/ e-mail id furnished by you in your application/ service record shall be
+                                    deemed to have been served on you and received for all purposes of service of such
+                                    notice/ communication etc. If any change takes place in your addresses or e-mail id,
+                                    it shall be intimated to the Office immediately.<br/>
+                                    <br/>
+                                    b) A registered letter sent to you along with a copy of the same under certificate
+                                    of posting shall be deemed to be sufficient that the company has served the contents
+                                    thereof on you. In the same way, if any communication sent to you through your
+                                    e-mail id is deemed to be delivered to you until and unless we receive the message of web
+                                    server as “Subject — Mail failure domain”.
+                                </li><br/>
+
+                            </ol>
+                                <p id="para2">If the above terms and conditions are acceptable to you, please report to The H R
+                                    Department, Eenadu Corporate Office, Ramoji Film City, Anajpur (V), Abdullapurmet
+                                    (M) on 1*' October, 2022 at 9.00 A.M along with the signed duplicate copy of this
+                                    letter of employment enclosed herewith in acceptance of the offer, failing which the
+                                    after of appointment will stand automatically cancelled on the expiry of the date
+                                    mentioned above.
+                                </p><br/>
+                                <p id="para">For
+                                    <b>USHODAYA ENTERPRISES PVT LTD</b>
+                                </p>
+                        </body>
+                        <br/>
+                        <br/>
+                        <table width="100%">
+                            <tr>
+                                <td width="30%">
+                                    CH KIRON
+                                    <br/>
+                                    MANAGING DIRECTOR
+                                </td>
+
+                                <td width="70%" style="text-align:right;">
+                                    <u style="padding-left:470px;">ACCEPTANCE</u>
+                                    <br/>
+                                    I accept the terms and conditions setout above
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+                    </table>
+                        <br/>
+                        <br/>
+                        <p style="text-align:right;">SIGNATURE</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

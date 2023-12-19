@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="form_dev_job_position_changes" model="ir.ui.view">
+        <field name="name">form.dev.job.position.changes</field>
+        <field name="model">job.position.request</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div/h1/field" position="replace">
+                <!--                <attribute name="string">Statutory Related</attribute>-->
+            </xpath>
+        </field>
+    </record>
+</odoo>

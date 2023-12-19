@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_update_approve" model="ir.actions.act_window">
+        <field name="name">Update and Approve</field>
+        <field name="res_model">update.approve</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <record id="update_approve_form_view" model="ir.ui.view">
+        <field name="name">Update and Approve</field>
+        <field name="model">update.approve</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <group>
+                    <field name='original_description'/>
+                    <field name='new_description'/>
+                </group>
+                <footer>
+                    <button name="update_approve_description" class="btn btn-sm btn-primary" string="Update and Approve" type="object"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

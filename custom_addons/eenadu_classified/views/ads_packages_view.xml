@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record model="ir.actions.act_window" id="ads_packages_action">
+        <field name="name">Ads Packages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ads.packages</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p id="view_no_content">
+                Create Ads Packages
+            </p>
+        </field>
+    </record>
+
+    <record id="ads_packages_tree" model="ir.ui.view">
+        <field name="name">Ads Packages</field>
+        <field name="model">ads.packages</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="ads_packages_form" model="ir.ui.view">
+        <field name="name">Ads Packages</field>
+        <field name="model">ads.packages</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group class="oe_left oe_form_group">
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="ads_packages_menu" name="Ads Packages"
+              parent="sales_person_target.menu_classifieds_configuration_scheme" sequence="5"
+              action="ads_packages_action"/>
+
+    <record model="ir.ui.view" id="product_pricelist_view_form_classified">
+        <field name="name">Product Procelist</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='pricelist_rules']" position="after">
+                <page name="classified_rate" string="Classified Rate">
+                    <field name="classified_rate_o2m">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="packages"/>
+                            <field name="publication_id"/>
+                            <field name="regions_id"/>
+                            <field name="minimum_lines"/>
+                            <field name="minimum_lines_price"/>
+                            <field name="additional_line_price"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_category_for">
+        <field name="name">Product Category</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="category_for"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

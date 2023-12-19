@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+	<record id="sale_document_type_form_view" model="ir.ui.view">
+		<field name="name">sale.document.type.form</field>
+		<field name="model">sale.document.type</field>
+		<field name="arch" type="xml">
+			<form string="Sale Document">
+				<sheet>
+					<group>
+						<group>
+							<field name = 'name' required="1"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="sale_document_type_tree_view" model="ir.ui.view">
+		<field name="name">sale.document.type.tree</field>
+		<field name="model">sale.document.type</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'name' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_sale_document_type_view" model="ir.actions.act_window">
+		<field name="name">Sale Document</field>
+		<field name="res_model">sale.document.type</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Sale Document Type" id="menu_sale_document_type" parent="sales_person_target.menu_reta_configuration_scheme" action="action_sale_document_type_view" sequence="20"/>
+
+	
+
+</odoo>

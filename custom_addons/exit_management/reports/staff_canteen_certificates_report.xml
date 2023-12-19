@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_staff_canteen_certificate_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">28</field>
+        <field name="margin_right">28</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_staff_canteen_certificates_wizards" model="ir.actions.report">
+        <field name="name">Staff Canteen Certificate</field>
+        <field name="model">staff.canteen.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.staff_canteen_certificates_report</field>
+        <field name="report_file">exit_management.staff_canteen_certificates_report</field>
+        <field name="binding_model_id" ref="model_staff_canteen_certificate"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_staff_canteen_certificate_report"/>
+    </record>
+
+    <data>
+        <template id="staff_canteen_certificates_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+
+
+                        <div class="page1" style="text-align: justify;">
+
+                            <center style="word-spacing: 6px;font-size:25px;">
+                                <b>
+                                    <u>USHODAYA PUBLICATIONS</u>
+                                </b>
+                            </center>
+                            <center style="font-size:20px;">
+                                <br/>
+                                <span t-field="doc.name_id.company_id.street2"/>
+                                <span t-field="doc.name_id.company_id.city"/>
+                                <span t-field="doc.name_id.company_id.state_id"/>
+                                <br/>
+                            </center>
+                            <div style="font-size:20px;">
+                                <br/>
+                                <p style="text-align:right;margin-right:160px;">Date :</p>
+                                <br/>
+                                <br/>
+
+
+                                <span>TO</span>
+                                <br/>
+                                <span>The Manager</span>
+                                <br/>
+                                <span>Staff Canteen</span>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>Ms/Mr/Mrs.
+                                    <span t-field="doc.name_id"/>
+                                    <span t-field="doc.name_id.employee_id.identification_id"/>
+                                    Manager has Resigned from the services of the Organisation with
+                                    effect from
+                                    <span t-esc="doc.name_id.emp_relieving_date"/>
+                                </p>
+                                <p>Please give us the Canteen Credit/Dues particulars.</p>
+                                <br/>
+                                <br/>
+                                <table width="100%" style="border:1px solid white;">
+                                    <tr>
+                                        <td width="60%">
+
+                                        </td>
+                                        <td width="40%">
+                                            <span>1. &#160;&#160;No Dues.</span>
+                                            <br/>
+                                            <span>2. &#160;&#160;An Amount of Rs.</span>
+                                            <br/>
+                                            <span style="margin-left:20px;">is balance to his/her credit.</span>
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <table width="100%" style="border:1px solid white">
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <b>Authorised By :</b>
+                                                <br/>
+                                                <span t-field="doc.name_id.company_id.director_id"/>
+                                            </span>
+
+                                        </td>
+                                        <td>
+                                            <span style="padding-left:300px;">
+                                                <b>(SIGNATURE)</b>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+</odoo>

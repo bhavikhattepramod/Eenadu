@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_agent_type_view" model="ir.actions.act_window">
+        <field name="name">Agent Type</field>
+        <field name="res_model">agent.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="tree_agent_type_view" model="ir.ui.view">
+        <field name="name">Agent Type</field>
+        <field name="model">agent.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="form_agent_type_view" model="ir.ui.view">
+        <field name="name">Agent Type</field>
+        <field name="model">agent.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name='name' required = "1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem name="Agent Type" id="menu_agent_type"
+              parent="sales_person_target.menu_reta_configuration_scheme"
+              action="action_agent_type_view" sequence="20"/>
+
+</odoo>

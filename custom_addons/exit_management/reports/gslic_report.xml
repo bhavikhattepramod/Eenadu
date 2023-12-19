@@ -1,0 +1,82 @@
+<odoo>
+    <record id="paperformat_gslic" model="report.paperformat">
+        <field name="name">Custom Paper</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40.00</field>
+        <field name="margin_bottom">40.00</field>
+        <field name="margin_left">30</field>
+        <field name="margin_right">30</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">125</field>
+    </record>
+    <record id="clerancy_gslic_id" model="ir.actions.report">
+        <field name="name">GSLIC Department</field>
+        <field name="model">clearance_glsic.exit</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.clerancy_gslic_temp</field>
+        <field name="report_file">exit_management.clerancy_gslic_temp</field>
+<!--                <field name="binding_model_id" ref="model_letter_of_employment_probationary"/>-->
+        <field name="paperformat_id" ref="exit_management.paperformat_gslic"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="clerancy_gslic_temp">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+                            body {
+                            font-size:28px;
+                            }
+                        </style>
+                        <p style="text-align:right;font-size:28px;">Date :</p>
+                        <br/>
+                        <p style="font-size:28px;">To</p>
+                        <br/>
+                        <p style="font-size:24px;">The GSLIC</p>
+                        <body>
+                            <p>
+                                Mr./Ms
+                                <span t-field="doc.name_id"/>
+                                -
+                                <span t-field="doc.name_id.employee_id.identification_id"/>
+                                Manager has tendered her resignation with<br/>effect from
+                                <span t-field="doc.name_id.emp_relieving_date"/>.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p>Please give us the GSLIC DUES Particulars.</p>
+
+                            <div style="padding-left:480px;">
+                                <p>1.No Dues.
+                                    <br/>
+                                    2.An Amount of Rs._______
+                                    <br/>
+                                    is balance to his/her credit.
+                                </p>
+                            </div>
+
+                            <table width="100%" style="border-color:white;">
+                                <tr>
+
+                                    <td width="50%">
+                                        <span t-field="doc.name_id.company_id.director_id"/>
+                                    </td>
+                                    <td width="50%" style="padding-left:270px;padding-top:50px;">
+                                        <b>(SIGNATURE)</b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

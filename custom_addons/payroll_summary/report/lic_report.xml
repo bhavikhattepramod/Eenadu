@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="lic_report_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+<!--                <t t-foreach="docs" t-as="doc">-->
+                    <div t-foreach="docs.policy_details()['policy_data']" t-as="unit_data" style="page-break-after: always;">
+                        <t t-if="unit_data != docs.policy_details()['policy_data'][-1]">
+                            <h2 class="fw-bold" style="text-align: center;">USHODAYA PUBLICATIONS</h2>
+                            <h6 class="fw-bold">L I C REPORT FOR THE MONTH:
+                                <span t-esc="docs.date_from.strftime('%B %Y')"/>
+                                <span style="float:right">RUN DATE:
+                                    <span t-esc="docs.today_date.strftime('%d-%m-%Y')"/>
+                                </span>
+                            </h6>
+                            <h6 class="fw-bold">UNIT/BRANCH:
+                                <span t-esc="unit_data['unit_name']"/>
+                            </h6>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th style="width:3%;color:black">Sl.No</th>
+                                        <th style="width:15%;color:black">POLICY NAME</th>
+                                        <th style="width:15%;color:black">POLICY NO</th>
+                                        <th style="color:black">EMP NAME</th>
+                                        <th style="width:10%;color:black">EMP CD</th>
+                                        <th style="width:10%;color:black">AMOUNT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="unit_data['policies']" t-as="policy">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="policy['serial_number']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="policy['service_company_name']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="policy['policy_no']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="policy['employee_name']"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="policy['employee_code']"/>
+                                            </td>
+                                            <td style="text-align: right;">
+                                                <t t-esc="policy['policy_amount']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <p style="text-align: right;color:black">Unit Total:
+                                <t t-esc="unit_data['unit_total_amount']"/>
+
+                            </p>
+                        </t>
+                        <t t-else="unit_data == docs.policy_details()['policy_data'][-1]">
+
+
+<!--                        <t t-esc="unit_data"/>-->
+<!--                        <style>-->
+<!--                            .page {-->
+<!--                            page-break-before: always;-->
+<!--                            }-->
+<!--                        </style>-->
+                        <h2 class="fw-bold" style="text-align: center;">USHODAYA PUBLICATIONS</h2>
+                        <h6 class="fw-bold">L I C REPORT FOR THE MONTH:
+                            <span t-esc="docs.date_from.strftime('%B %Y')"/>
+                            <span style="float:right">RUN DATE:
+                                <span t-esc="docs.today_date.strftime('%d-%m-%Y')"/>
+                            </span>
+                        </h6>
+                        <h6 class="fw-bold">UNIT/BRANCH:
+                            <span t-esc="unit_data['unit_name']"/>
+                        </h6>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:3%;color:black">Sl.No</th>
+                                    <th style="width:15%;color:black">POLICY NAME</th>
+                                    <th style="width:15%;color:black">POLICY NO</th>
+                                    <th style="color:black">EMP NAME</th>
+                                    <th style="width:10%;color:black">EMP CD</th>
+                                    <th style="width:10%;color:black">AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="unit_data['policies']" t-as="policy">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="policy['serial_number']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="policy['service_company_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="policy['policy_no']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="policy['employee_name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="policy['employee_code']"/>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <t t-esc="policy['policy_amount']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <p style="text-align: right;color:black">Unit Total:
+                            <t t-esc="unit_data['unit_total_amount']"/>
+
+                        </p>
+
+                            <p style="text-align: right;color:black">Grand Total:
+                                    <t t-esc="docs.policy_details()['grand_total']"/>
+                            </p>
+                        </t>
+                    </div>
+<!--                    <p class="page-break-after: always;"></p>-->
+<!--                </t>-->
+                <!-- Add this code to display the Grand Total -->
+<!--                <div class="page">-->
+<!--                    <table class="table table-condensed">-->
+<!--                        <tfoot>-->
+<!--                            <tr>-->
+<!--                                <p colspan="5" style="text-align: right;color:black">Grand Total:-->
+<!--                                <td style="text-align: right;">-->
+<!--                                    <t t-esc="docs.policy_details()['grand_total']"/>-->
+<!--                                </td>-->
+<!--                                </p>-->
+<!--                            </tr>-->
+<!--                        </tfoot>-->
+<!--                    </table>-->
+<!--                </div>-->
+            </t>
+        </t>
+    </template>
+
+
+    <record id="action_lic_report_in_pdf" model="ir.actions.report">
+        <field name="name">In PDF LIC Report</field>
+        <field name="model">payroll.lic.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">payroll_summary.lic_report_pdf</field>
+        <field name="report_file">payroll_summary.lic_report_pdf</field>
+        <field name="binding_model_id" ref="model_payroll_lic_report_wizard" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

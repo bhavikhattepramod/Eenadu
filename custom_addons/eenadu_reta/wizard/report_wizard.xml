@@ -1,0 +1,37 @@
+<odoo>
+    <record id="wizard_eenadu_report_action" model="ir.actions.act_window">
+        <field name="name">Eenadu Report</field>
+        <field name="res_model">wizard.eenadu.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="wizard_eenadu_report_from" model="ir.ui.view">
+        <field name="name">Eenadu Report</field>
+        <field name="model">wizard.eenadu.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="specific_date"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_report" string="Print Report" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- <menuitem id="eenadu_report_main"
+              parent="parent_reta_application"
+              name="Eenadu Report"
+              sequence="10"/>
+
+    <menuitem id="eenadu_report_sub_menu"
+              parent="eenadu_report_main"
+              name="Eenadu Report"
+              action="wizard_eenadu_report_action"
+              sequence="1"/> -->
+
+
+</odoo>

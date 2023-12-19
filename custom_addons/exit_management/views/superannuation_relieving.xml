@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+        <record id="superannuation_relieving_wizard" model="ir.ui.view">
+            <field name="name">Superannuation Relieving</field>
+            <field name="model">superannuation.relieving</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="joining_date_id" required="1"/>
+                                <field name="date_cur" invisible="1"/>
+                            </group>
+                            <footer>
+                                <button name="action_print_relieving" string="Print" class="btn-primary" type="object"/>
+                                <button string="Cancel" class="btn-default" special="cancel"/>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_superannuation_relieving" model="ir.actions.act_window">
+            <field name="name">Superannuation Relieving</field>
+            <field name="res_model">superannuation.relieving</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="superannuation_relieving_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem id="superannuation_reporting" parent="employee_resignation" action="view_superannuation_relieving"
+                  name="Reporting" sequence="100"/>
+
+
+        <menuitem id="superannuation_relieving" action="view_superannuation_relieving" parent="superannuation_reporting"
+                  name="Superannuation Relieving and Service Certificate" sequence="4"/>
+    </data>
+</odoo>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_view_form">
+        <field name="name">mrp.production.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="partner_id"/>
+                <!--                <field name="region_res"/>-->
+                <!--                <field name="res_regions"/>-->
+                <field name="newspaper_date"/>
+                <field name="order_qty"/>
+                <field name="buffer_percentage" attrs="{'invisible':[('state','!=','draft')]}"/>
+                <button name="buffer_copies_percentage" type="object" string="Buffer" attrs="{'invisible':[('state','!=','draft')]}" class="oe_highlight"/>
+                <field name="damage_qty" attrs="{'invisible':[('state','!=','confirmed')]}"/>
+
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="region_zones"/>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']"
+                   position="attributes">
+                <attribute name="widget">integer</attribute>
+            </xpath>
+            <xpath expr="//field[@name='qty_producing']"
+                   position="attributes">
+                <attribute name="widget">integer</attribute>
+            </xpath>
+            <xpath expr="//page[@name='miscellaneous']" position="after">
+                <page name="page_details" string="Page Details">
+                    <group class="oe_left oe_form_group">
+                        <field name="edition_page_details">
+                            <tree>
+                                <field name="name"/>
+                                <field name="no_pages_edition"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group class="oe_left oe_form_group">
+                        <field name="district_page_details">
+                            <tree>
+                                <field name="name"/>
+                                <field name="no_pages_district"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group class="oe_right oe_form_group">
+                        <field name="zone_page_details">
+                            <tree>
+                                <field name="name"/>
+                                <field name="no_pages"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_mrp_production_inherit">
+        <field name="name">Manufacturing Orders Inherit View</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="partner_id"/>
+            </xpath>
+            <xpath expr="//field[@name='name']"
+                   position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='priority']"
+                   position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']"
+                   position="attributes">
+                <attribute name="widget">integer</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!--search view and groupby-->
+    <record model="ir.ui.view" id="view_mrp_production_search_inherit">
+        <field name="name">Manufacturing Orders Inherit View</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="partner_id" string="Newsprint Units"/>
+                <filter name="group_by_partner_id" string="Newsprint Units" context="{'group_by':'partner_id'}"/>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="search_view_id" ref="mrp.view_mrp_production_filter"></field>
+        <!--        use the name of filter to default group-->
+        <field name="context">{'search_default_group_by_partner_id': 1,'search_default_todo': True,
+            'default_company_id': allowed_company_ids[0]}
+        </field>
+    </record>
+    <record id="action_confirm" model="ir.actions.server">
+        <field name="name">Confirm</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_mrp_production"/>
+        <field name="binding_model_id" ref="model_mrp_production"/>
+        <field name="state">code</field>
+        <field name="code">records.mrp_confirm()</field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_bom_inherit_view_form">
+        <field name="name">Mrp Bom</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/tree/button[@name='action_see_attachments']"
+                   position="attributes">
+                <attribute name="string">Attachment</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

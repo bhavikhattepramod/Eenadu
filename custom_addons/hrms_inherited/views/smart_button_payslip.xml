@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="custom_hr_employee_view_form_button" model="ir.ui.view">
+        <field name="name">custom.hr.employee.view.form.button</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+        <field name="priority" eval="70"/>
+        <field name="arch" type="xml">
+                <!-- Find the button inside the div with name="button_box" -->
+            <xpath expr="//div/button[@name='action_open_contract_history']"
+                   position="replace">
+                <button name="action_open_contract_history"
+                            class="oe_stat_button"
+                            icon="fa-book"
+                            type="object"
+                            groups="hr_contract.group_hr_contract_manager"
+                            attrs="{'invisible' : [('employee_type', 'not in', ['employee', 'student', 'trainee'])]}">
+                            <div attrs="{'invisible' : [('first_contract_date', '=', False)]}" class="o_stat_info">
+                                <span class="o_stat_text text-success" attrs="{'invisible' : [('contract_warning', '=', True)]}" title="In Contract Since">Salary Master</span>
+                                <span class="o_stat_value text-success" attrs="{'invisible' : [('contract_warning', '=', True)]}">
+                                    <field name="first_contract_date" readonly="1"/>
+                                </span>
+                                <span class="o_stat_text text-danger" attrs="{'invisible' : [('contract_warning', '=', False)]}" title="In Contract Since">
+                                    Salary Master
+                                </span>
+                                <span class="o_stat_value text-danger" attrs="{'invisible' : [('contract_warning', '=', False)]}">
+                                    <field name="first_contract_date" readonly="1"/>
+                                </span>
+                            </div>
+                            <div attrs="{'invisible' : [('first_contract_date', '!=', False)]}" class="o_stat_info">
+                                <span class="o_stat_value text-danger">
+                                   <field name="contracts_count"/>
+                                </span>
+                                <span attrs="{'invisible' : [('contracts_count', '!=', 1)]}" class="o_stat_text text-danger" >
+                                     Salary Master
+                                </span>
+                                <span attrs="{'invisible' : [('contracts_count', '=', 1)]}" class="o_stat_text text-danger">
+                                     Salary Master
+                                </span>
+                            </div>
+                        </button>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
+

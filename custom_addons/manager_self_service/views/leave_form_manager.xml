@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="edit_holiday_cancel_manager" model="ir.ui.view">
+        <field name="name">Leave Request</field>
+        <field name="model">hr.holidays.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Leave Request" create="0">
+            <header>
+                <button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+                <button string="Approve" name="action_approve" states="confirm" type="object"
+                        groups="hr_holidays.group_hr_holidays_user" class="oe_highlight"/>
+                <button string="Refuse" name="action_refuse" states="confirm,validate" type="object"
+                        groups="hr_holidays.group_hr_holidays_user"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"/>
+            </header>
+            <sheet>
+                <div class="oe_title">
+                    <h1><field name="display_name"/></h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="name" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="emp_dep_leave"/>
+                        <field name="emp_unit_leave" widget="many2many_tags"/>
+                        <field name="emp_section_leave" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="employee_id" groups="hr_holidays.group_hr_holidays_user"/>
+                        <field name="holiday" attrs="{'readonly':[('state','!=','draft')]}" string="Leave" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                        <field name="leave_date_from_self"/>
+                        <field name="leave_date_to_self"/>
+                        <field name="leaves_count"/>
+                    </group>
+                    <div groups="hr_holidays.group_hr_holidays_manager">
+                        <separator string="Comment by Manager"/>
+                        <field name="report_note" placeholder="e.g. Report to the next month..."/>
+                    </div>
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="cancel_holiday_tree_manager" model="ir.ui.view">
+        <field name="name">Cancel Holidays</field>
+        <field name="model">hr.holidays.cancel</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state == 'refuse'"
+                  decoration-info="state == ' draft'"
+                  decoration-success="state == 'validate'"
+                  decoration-bf="message_needaction == True" create="0">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="report_note"/>
+                <field name="leave_date_from_self"/>
+                <field name="leave_date_to_self"/>
+                <field name="leaves_count"/>
+                <field name="state"/>
+                <field name="message_needaction" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="open_cancel_holidays_approve_manager" model="ir.actions.act_window">
+        <field name="name">Leave Cancel Requests</field>
+        <field name="res_model">hr.holidays.cancel</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', '=', 'confirm'),('employee_id.parent_id.user_id', '=', uid)]</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to create a new leave cancellation request.
+          </p><p>
+            Approved Leaves cannot be changed by officers or managers. If the employees need to
+            cancel any approved leaves, they can create a cancellation request from here.
+          </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_hr_holidays_cancel_approve_manager"
+              name="Cancellation Requests"
+              parent="menu_employee_self_service_child"
+              sequence="4"
+              action="open_cancel_holidays_approve_manager"
+              groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user"/>
+
+    <record id="action_cancel_holidays_tree_manager" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="cancel_holiday_tree_manager"/>
+            <field name="act_window_id" ref="open_cancel_holidays_approve_manager"/>
+    </record>
+
+    <record id="action_cancel_holidays_form_manager" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="edit_holiday_cancel_manager"/>
+            <field name="act_window_id" ref="open_cancel_holidays_approve_manager"/>
+    </record>
+</odoo>

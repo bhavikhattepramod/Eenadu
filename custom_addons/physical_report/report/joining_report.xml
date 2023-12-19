@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_joining_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_joining_wizards" model="ir.actions.report">
+        <field name="name">Joining Report</field>
+        <field name="model">physical.fitness</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">physical_report.report_joining_report</field>
+        <field name="report_file">physical_report.report_joining_report</field>
+        <field name="binding_model_id" ref="model_physical_fitness"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_joining_report"/>
+    </record>
+
+    <data>
+        <template id="report_joining_report">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <t class="page">
+
+                            <div>
+                                <h3 style="text-align:center">USHODAYA PUBLICATIONS</h3>
+                                <h6 style="text-align:center">(A Division of Ushodaya Enterprise Pvt Ltd)</h6>
+                                <h6 style="text-align:center">Eenadu Corporate Office, Ramoji Film City</h6>
+                                <br/>
+                                <h4 style="text-align:center">
+                                    <u>JOINING REPORT</u>
+                                </h4>
+
+                                <table class="table-borderless" style="border:solid 0px white;margin-left:700px">
+                                    <tr style="border:None">
+                                        <td>
+                                            Date:
+                                        </td>
+                                        <td>
+                                            ---
+                                        </td>
+
+                                    </tr>
+                                    <br/>
+                                    <tr style="border:None">
+                                        <td>
+                                            Place:
+                                        </td>
+                                        <td>
+                                            ---
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="table-borderless" width="100%">
+                                        <tr>
+                                            <td width="20%">
+                                                <p>Name in Full:</p>
+                                            </td>
+                                            <td style="border-bottom:solid 1px black">
+                                                ---
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Present Address:
+                                            </td>
+                                            <td style="border-bottom:solid 1px black;padding:20px;padding-left:0px;padding-right:0px">
+                                                ---
+                                            </td>
+                                        </tr>
+                                    </table>
+                                <div style="border-bottom:solid 1px black">
+
+                                    <p>
+                                        To,
+                                        <br/>
+                                        The Personnel Manager
+                                        <br/>
+                                        Sir,
+                                    </p>
+                                    <table class="table-borderless">
+                                        <tr>
+                                            <td style="padding-right:20px">
+                                                I hereby report for duty to-day i.e,
+                                            </td>
+                                            <td style="padding-right:400px;border-bottom:solid 1px black">---
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <table class="table-borderless">
+                                        <tr>
+                                            <td style="padding-right:20px">
+                                                In the post of
+                                            </td>
+                                            <td style="padding-right:550px;border-bottom:solid 1px black">---
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br/>
+                                    <table class="table-borderless">
+                                        <tr>
+                                            <td style="padding-right:500px">
+                                                <p>Thanking you</p>
+                                            </td>
+                                            <td>
+                                                <b>Signature of Employee</b>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+                                <div>
+                                    <h4 style="text-align:center">FOR OFFICE USE ONLY</h4>
+                                    <br/>
+                                    <p>Sri <span style="padding-right:520px;border-bottom:solid 1px black">---</span> has
+                                        been engaged in this
+                                        organization as <span style="padding-right:300px;border-bottom:solid 1px black">
+                                            ---
+                                        </span> with effect
+                                        from  <span style="padding-right:250px;border-bottom:solid 1px black">---</span> on
+                                        salary/stipend of Rs
+                                        <span style="padding-right:100px;border-bottom:solid 1px black">---</span>
+                                        (rupees
+                                        <span style="padding-right:200px;border-bottom:solid 1px black">---</span>
+                                        per mensem.
+                                        His name may be entered in concerned Registered/Records.
+                                    </p>
+                                    <br/>
+                                    <h3 style="border-bottom:solid 1px black;TEXT-ALIGN:right">PERSONNEL MANAGER</h3>
+                                </div>
+                                <h3 style="text-align:center">USHODAYA PUBLICATIONS</h3>
+                                <h6 style="text-align:center">(A Division of Ushodaya Enterprise Pvt Ltd)</h6>
+                                <h6 style="text-align:center">Eenadu Corporate Office, Ramoji Film City</h6>
+                                <br/>
+                                <table class="table-borderless">
+                                    <tr>
+                                        <td>Emp. Code :</td>
+                                        <td style="padding-right:500px">12345</td>
+                                        <td>Date :</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <u>
+                                    <h3 style="text-align:center">POSTAL ADDRESS FORM</h3>
+                                </u>
+                            </div>
+
+                            <table class="table-borderless" width="100%">
+                                <tr>
+                                    <td>Name in Full :</td>
+                                    <td colspan="3" style="border-bottom:solid 1px black;padding-right:700px">---</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Designation
+                                    </td>
+                                    <td style="border-bottom:solid 1px black;padding-right:100px">---</td>
+                                    <td>Department</td>
+                                    <td style="border-bottom:solid 1px black;padding-right:100px">---</td>
+                                </tr>
+                            </table><br/>
+                            <div>
+                            <table class="table-borderless" width="100%" cellspacing="200" cellpadding="200">
+                                <tr>
+                                    <td style="border-bottom:solid 1px black;" colspan="2">Present Postal Address (LOCAL)</td>
+                                    <td style="padding-right:100px"></td>
+                                    <td style="border-bottom:solid 1px black;">Permanent Address (Native)</td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:solid 1px black;" colspan="2">---</td>
+                                    <td></td>
+                                    <td style="border-bottom:solid 1px black;">---</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:solid 1px black;" colspan="2">---</td>
+                                    <td></td>
+                                    <td style="border-bottom:solid 1px black;" colspan="2">---</td>
+                                </tr>
+                                <tr>
+                                    <td style="border-bottom:solid 1px black;" colspan="2">---</td>
+                                    <td></td>
+                                    <td style="border-bottom:solid 1px black;">---</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone:</td>
+                                    <td style="border-bottom:solid 1px black;padding-left:200px">---</td>
+                                    <td></td>
+                                    <td style="border-bottom:solid 1px black;">---</td>
+
+                                </tr>
+
+                            </table>
+                            </div>
+                            <div>
+
+                            </div>
+                            <br/>
+
+                            <h5 style="text-align:right">SIGNATURE OF THE EMPLOYEE</h5>
+<!--                            <table width="100%">-->
+<!--                                <tr>-->
+<!--                                    <td>Phone:</td>-->
+<!--                                    <td style="border-bottom:solid 1px black;">-&#45;&#45;</td>-->
+<!--                                    <td style="border-bottom:solid 1px black;">-&#45;&#45;</td>-->
+<!--                                    <td style="border-bottom:solid 1px black;">-&#45;&#45;</td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+                            <p>In case any changes in the above particulars takes place, kindly make it a point to
+                                inform positively within 48 hours to the
+                                personnal department.
+                            </p>
+
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+
+
+
+
+</odoo>

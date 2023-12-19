@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_letter_of_employment_probationary">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div id="header" class="page" style="text-align:justify">
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                        Mr&#160;<span t-field="doc.name_id.name"/>
+                                    </td>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:right;">
+                                        Date:<span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                        <span t-field="doc.name_id.department_id"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br></br>
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                        Dear Mr&#160;<span t-field="doc.name_id.name"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br></br>
+                            <center>
+                                <b>
+                                    <u>LETTER OF EMPLOYMENT - TRAINEE PROBATIONARY</u>
+                                </b>
+                            </center>
+                            <br></br>
+                            <p>On completion of your training the Management is pleased to offer you the post of<b>
+                                CO-ORDINATOR (OPERATIONS)
+                            </b>  on the following terms and conditions:
+                            </p>
+                            <p>1. You will be on probation for a period of <b>Six Months</b> with effect from 1st April, 2023.
+                            <br></br>
+                            </p>
+                            <p>2.Your present total salary shall be <b>Rs:____________________</b>per month.The Break-up of the salary will be shown in your payslip.</p>
+                            <br></br>
+                            <p>3.  During the probationary period, the Company will assess your work, conduct, general aptitude and overall suitability. Where you show improvement in your performance, though not upto the standards, the Company may extend your probationary period at its sole discretion that will be intimated to you in writing. And where you are found not suitable, your services may be terminated without any further notice either during the probationary period or on the expiry of the Probation period</p>
+                            <br></br>
+                            <p>4. In the event of the Company deciding to offer you regular employment on the expiry of your probationary service, you will be advised so in writing. Till such time you are advised in writing, you shall be deemed to be on probation.</p>
+                            <br></br>
+                            <p>5. Your services will be governed by the Company Certified Standing Orders, Service Rules and any other rules framed by the Company from time to time. </p>
+                            <br></br>
+                            <p>6. You will be entitled to such leave with pay as may be prescribed by the rules and orders for the time being in force. </p>
+                            <br></br>
+                            <p>7. You shall be entitled to such terminal benefits as may be prescribed by the orders for the time being in force</p>
+                           <br></br>
+                            <p>8. You are responsible for such duties and functions as detailed by the Management or by any other person nominated by the Management to allocate work to you from time to time</p>
+                            <br></br>
+                            <p>9.  You are liable to be transferred from one Branch/Office/ Section/Division/Job to another either in existence or which may come into existence anywhere in India. You shall also be liable to be deputed from one Unit to another Unit or to any of the group organizations, either temporarily or permanently. You will not be entitled to any additional remuneration on account of such transfer or deputation.</p>
+                            <table style="width:100%; border:1px solid white;">
+                                <tr>
+                                    <td class="tab" style="font-size:75%; width:40%; text-align:right;">
+                                        ----2
+                                    </td>
+                                </tr>
+                            </table>
+                             <div class="page" style="margin-top:500px;">
+                                 <p>10.You should devote your whole time attention to the Company's business only and you are strictly prohibited during the continuance of your employment with the Company from engaging yourself in any trade, business, occupation or employment directly or indirectly, wholly or partly and whether paid or unpaid or honorary in any other Companies, Firms, etc. If you indulge in any of these activities, your services are liable to be terminated without any notice</p>
+                                <br></br>
+                                 <p>11.Your services are liable to be terminated during the period of probation without notice on either side.</p>
+                                 <br></br>
+                                 <p>12.For breach of contract on your part, the Company may terminate your employment without any notice</p>
+                                 <br></br>
+                                 <p>13.a) Any notice, order, charge sheet, communication or intimation sent to the postal addresses/ e-mail id furnished by you in your application/ service record shall be deemed to have been served on you and received for all purposes of service of such notice/ communication etc. If any change takes place in your addresses or e-mail id, it shall be intimated to the Office immediately.</p>
+                                 <br></br>
+                                 <p>b) A registered letter sent to you along with a copy of the same under certificate of posting shall be deemed to be sufficient that the company has served the contents thereof on you. In the same way, if any communication sent to you through your e-mail id is deemed to be delivered to you until and unless we receive the message of web server as "Subject - Mail failure domain"</p>
+                                 <br></br>
+                                 <p>This offer of employment is being issued to you in duplicate and you are advised to return a copy of the same duly signed by you in token of your acceptance of the terms and conditions.</p>
+                                 <br></br>
+                                 <table style="width:100%; border:1px solid white;">
+                                     <tr>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                             For <b>USHODAYA ENTERPRISES</b> PVT LTD
+                                         </td>
+                                     </tr>
+                                 </table>
+                                 <br></br>
+                                 <br></br>
+                                 <br></br>
+                                 <br></br>
+                                 <table style="width:100%; border:1px solid white;">
+                                     <tr>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                             <b>AUTHORIZED BY:  <span t-field="doc.name_id.authorized_by"/> </b>
+                                         </td>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:right;">
+                                             <b>ACCEPTANCE</b>
+                                         </td>
+                                     </tr>
+                                 </table>
+                                 <br></br>
+                                  <table style="width:100%; border:1px solid white;">
+                                     <tr>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:right;">
+                                             I accept the terms and  conditions setout above.
+                                         </td>
+                                     </tr>
+                                 </table>
+<!--                                 <table style="width:100%; border:1px solid white;">-->
+<!--                                     <tr>-->
+<!--                                         <td class="tab" style="font-size:100%; width:40%; text-align:right;">-->
+<!--                                         </td>-->
+<!--                                     </tr>-->
+<!--                                 </table>-->
+                                 <br></br>
+                                 <br></br>
+                                 <br></br>
+                                 <br></br>
+                                  <table style="width:100%; border:1px solid white;">
+                                     <tr>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:right;">
+                                            <b>SIGNATURE</b>
+                                         </td>
+                                     </tr>
+                                 </table>
+                        </div>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+
+    <record id="paperformat_probitionary" model="report.paperformat">
+         <field name="name">Custom Paper</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40.00</field>
+        <field name="margin_bottom">10.00</field>
+        <field name="margin_left">15.0</field>
+        <field name="margin_right">15.0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">125</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="confirmation_order_report_action" model="ir.actions.report">
+        <field name="name">Letter Of Employment Trainee Probationary</field>
+        <field name="model">confirmation.order.note.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.report_letter_of_employment_probationary</field>
+        <field name="report_file">employee_life_cycle.report_letter_of_employment_probationary</field>
+        <field name="paperformat_id" ref="paperformat_probitionary"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="driver_tracker_form" model="ir.ui.view">
+        <field name="name">Driver Tracker Form</field>
+        <field name="model">driver.tracker</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,waiting,drop"/>
+                </header>
+                <sheet>
+                    <group class="oe_left oe_form_group">
+                        <field name="vehicle"/>
+                        <field name="vehicle_route_source"/>
+                        <field name="hand_off_id"/>
+                    </group>
+                    <group class="oe_right oe_form_group">
+                        <field name="hand_of_date"/>
+                        <field name="vehicle_route_destination"/>
+                    </group>
+                    <notebook>
+                        <page name="driver_tracker_line" string="Driver Tracker Line" >
+                            <field name="driver_tracker_line">
+                                <tree>
+                                    <field name="vehicle_drop_location" />
+                                    <field name="distance_of_location" />
+                                    <field name="hours_id" />
+                                    <field name="no_of_parcels_to_drop"/>
+                                    <field name="state"/>
+                                    <button name="action_to_drop" type="object" string="Drop"
+                        attrs="{'invisible':[('state','=','drop')]}" class="btn-primary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="driver_tracker_tree" model="ir.ui.view">
+        <field name="name">Driver Tracker tree</field>
+        <field name="model">driver.tracker</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vehicle"/>
+                <field name="vehicle_route_source"/>
+                <field name="hand_off_id"/>
+                <field name="hand_of_date"/>
+                <field name="vehicle_route_destination"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_driver_tracker" model="ir.actions.act_window">
+        <field name="name">Driver Tracker</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">driver.tracker</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="driver_tracker_main_menu"
+              name="Driver Tracker"
+              parent="transportation_main_menu"
+              action="action_driver_tracker"/>
+
+
+
+</odoo>

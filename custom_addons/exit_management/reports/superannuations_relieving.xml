@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="nomination_superannuation_relieving_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .page_break{
+                            padding-top:400px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;font-size:20px;">
+                            <h1 align="middle" style="font-size:24px; padding-top:100px;">
+                                <b>
+                                    <u>SUPERANNUATION RELIEVING
+                                    </u>
+                                </b>
+                            </h1>
+                            <p align="right" style="padding-left:70px; padding-right:70px; padding-top:40px;">
+                                <span t-esc="doc.date_cur.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                <span>
+                                    Mr/Ms&#160;<span t-field="doc.joining_date_id.employee_id"/>
+                                    <br></br>
+                                    <span t-field="doc.joining_date_id.employee_id.street_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.joining_date_id.employee_id.street2_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.joining_date_id.employee_id.city_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.joining_date_id.employee_id.state_id_emp"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                <span>Dear Mr/Ms&#160;<span t-field="doc.joining_date_id.employee_id"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                We wish to inform you that you have attained the age of superannuation
+                                i.e&#160;
+                                <span t-field="doc.joining_date_id.service_years"/>&#160; years.
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                In pursuance of Clause-6 of your Letter of Employment, you are
+                                superannuated with effect from today i.e.&#160;
+                                <span t-esc="doc.date_cur.strftime('%d, %B, %Y')"/>
+                                after the
+                                close of working hours. Under the instructions of the Managing Director,
+                                you are relieved from your services accordingly.
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                We thank you for your service to the organization and wish you all the
+                                best in your future endeavours.
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                The Accounts Department has been advised to settle your account.
+                            </p>
+                            <br></br>
+                            <p style="padding-left:70px; padding-right:70px;">
+                                With regards
+                            </p>
+                            <p style="padding-left:70px; padding-right:70px; padding-top:80px;">
+                                <span>
+                                    <b>
+                                        Authorised By :
+                                    </b>
+                                    <br></br>
+                                    <b>
+                                        <span t-field="doc.joining_date_id.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </p>
+                            <p  style="padding-left:70px; padding-top:230px; padding-right:70px;"
+                               align="right">
+                                <span t-esc="doc.date_cur.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <h1 align="middle" style="font-size:24px; padding-top:30px;">
+                                <b>
+                                    <u>SERVICE CERTIFICATE
+                                    </u>
+                                </b>
+                            </h1>
+                            <br></br>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>1.</span>
+                                <span style="padding-left:10px;">Name</span>
+                                <span style="padding-left:195px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.employee_id"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>2.</span>
+                                <span style="padding-left:10px;">Date of Joining</span>
+                                <span style="padding-left:114px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.date_of_joining"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>3.</span>
+                                <span style="padding-left:10px;">Designation at the</span>
+                                <span style="padding-left:85px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.employee_id.job_id"/>
+                                    <br></br>
+                                    <span style="padding-left:29px;">Time of joining</span>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>4.</span>
+                                <span style="padding-left:10px;">Stipend at the time</span>
+                                <span style="padding-left:82px;">:</span>
+                                <span style="padding-left:60px;">
+                                </span>
+                                <br></br>
+                                <span style="padding-left:29px;">of Joining</span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>5.</span>
+                                <span style="padding-left:10px;">Date of Leaving</span>
+                                <span style="padding-left:110px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.emp_relieving_date"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>6.</span>
+                                <span style="padding-left:10px;">Designation at the</span>
+                                <span style="padding-left:88px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.employee_id.job_id"/>
+                                </span>
+                                <br></br>
+                                <span style="padding-left:28px;">Time of leaving</span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>7.</span>
+                                <span style="padding-left:10px;">Salary at the time</span>
+                                <span style="padding-left:100px;">:</span>
+                                <span style="padding-left:60px;">
+                                </span>
+                                <br></br>
+                                <span style="padding-left:29px;">of Leaving</span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>8.</span>
+                                <span style="padding-left:10px;">Reasons for Leaving</span>
+                                <span style="padding-left:80px;">:</span>
+                                <span style="padding-left:60px;">
+                                    <span t-field="doc.joining_date_id.reason"/>
+                                </span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px;">
+                                <span>9.</span>
+                                <span style="padding-left:10px;">Conduct &amp; Character</span>
+                                <span style="padding-left:70px;">:</span>
+                                <span style="padding-left:60px;"></span>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:150px; padding-right:60px; padding-top:100px;">
+                                <span>
+                                    <b>
+                                        Authorised By :
+                                    </b>
+                                    <br></br>
+                                    <b>
+                                        <span t-field="doc.joining_date_id.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <record id="paperformat_superannuation_relieving" model="report.paperformat">
+        <field name="name">Superannuation Relieving</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="superannuation_report_action" model="ir.actions.report">
+        <field name="name">Superannuation Relieving</field>
+        <field name="model">superannuation.relieving</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.nomination_superannuation_relieving_report</field>
+        <field name="report_file">exit_management.nomination_superannuation_relieving_report</field>
+        <field name="paperformat_id" ref="paperformat_superannuation_relieving"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

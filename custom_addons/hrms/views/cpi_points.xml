@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="cpi_points_tree" model="ir.ui.view">
+        <field name="name">cpi.points.tree</field>
+        <field name="model">cpi.points</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="cpi_points_form" model="ir.ui.view">
+        <field name="name">cpi.points.form</field>
+        <field name="model">cpi.points</field>
+        <field name="arch" type="xml">
+            <form string="CPI Points">
+                <sheet>
+                    <group>
+                        <field name="sequence"/>
+                    </group>
+                    <field name="cpi_point_lines">
+                        <tree editable="bottom">
+                            <field name="effective_date_from"/>
+                            <field name="effective_date_to"/>
+                            <field name="cpi_points_payroll"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+     </record>
+
+    <record id="cpi_points_menu" model="ir.actions.act_window">
+        <field name="name">CPI Points</field>
+        <field name="res_model">cpi.points</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="CPI Points"
+              parent="om_hr_payroll.menu_hr_payroll_configuration"
+              id="cpi_points_menu_payroll_configuration"
+              action="cpi_points_menu"
+              sequence="15"/>
+</odoo>

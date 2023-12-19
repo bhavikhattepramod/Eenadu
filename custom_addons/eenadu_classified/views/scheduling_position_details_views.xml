@@ -1,0 +1,13 @@
+<odoo>
+
+	<record id="action_scheduling_position_details_classifieds_view" model="ir.actions.act_window">
+		<field name="name">Scheduling Position Details</field>
+		<field name="res_model">scheduling.position.details</field>
+		<field name="domain">[('is_classifieds','=',True)]</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<!-- <menuitem name="Position Details" id="menu_position_details_classifieds" parent="parent_classified_sale_order" action="action_scheduling_position_details_classifieds_view" sequence="20"/> -->
+
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="self_service_manager_auth_tree" model="ir.ui.view">
+        <field name="name">self.service.auth.manager.tree</field>
+        <field name="model">authorisation.form</field>
+        <field name="arch" type="xml">
+            <tree string="Authorisation Tree">
+                <field name="e_name_auth"/>
+                <field name="e_code_auth"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="self_service_manager_auth_form" model="ir.ui.view">
+        <field name="name">self.service.auth.manager.form</field>
+        <field name="model">authorisation.form</field>
+        <field name="arch" type="xml">
+            <form string="Authorisation Form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,approved,reject"/>
+                    <button string="Approve" type="object" name="approve_authorisation_manager" class="btn-primary"/>
+                    <button string="Reject" type="object" name="reject_authorisation_manager" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_auth"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"
+                                   options="{'no_open': True}"/>
+                            <field name="designation_auth"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_auth_emp" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="type_of_leave"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" widget='radio' options="{'horizontal': true}"/>
+                            <field name="auth_from_date"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" />
+                            <field name="auth_duty_days"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="hours_from"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"  widget="float_time"/>
+                            <field name="hours" style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"  widget="float_time"/>
+<!--                            <field name="amount_in_words"-->
+<!--                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>-->
+                        </group>
+                        <group>
+                            <field name="e_code_auth"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_auth"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_auth" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="availed_type"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="auth_to_date"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="auth_shift"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" context="{'shift_name_formate': True}"/>
+                            <field name="hours_to"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"  widget="float_time"/>
+                            <field name="auth_purpose"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Add a Note field to the form view -->
+                        <field name="auth_note_field" widget="text" string="Note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_manager_application_details_authorisation" model="ir.actions.act_window">
+        <field name="name">Authorisation Form</field>
+        <field name="res_model">authorisation.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('status', 'in', ['submitted','approved','reject']),('e_name_auth.parent_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record id="self_service_manager_application_details_authorisation_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="self_service_manager_auth_tree"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_authorisation"/>
+    </record>
+
+    <record id="self_service_manager_application_details_authorisation_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="self_service_manager_auth_form"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_authorisation"/>
+    </record>
+
+    <menuitem id="self_service_application_authorisation_menu"
+          name="Authorisation Form"
+          parent="menu_employee_self_service_child"
+          action="action_self_service_manager_application_details_authorisation"
+          sequence="62"/>
+</odoo>

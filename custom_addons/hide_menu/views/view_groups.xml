@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_hod_group" model="res.groups">
+        <field name="name">HOD</field>
+    </record>
+
+    <record id="view_head_and_finance_group" model="res.groups">
+        <field name="name">Finance Head</field>
+    </record>
+
+    <record id="view_hr_admin_group" model="res.groups">
+        <field name="name">Head Hr</field>
+    </record>
+
+    <record id="view_officer_supervisor_group" model="res.groups">
+        <field name="name">Officers and Supervisors</field>
+    </record>
+
+    <record id="view_manager_group" model="res.groups">
+        <field name="name">HR Manager</field>
+    </record>
+
+    <record id="view_employee_group" model="res.groups">
+        <field name="name">Employees</field>
+    </record>
+
+    <record id="create_edit_access_admin" model="res.groups">
+        <field name="name">Create And Edit Admin Only (Dashboard)</field>
+    </record>
+
+</odoo>

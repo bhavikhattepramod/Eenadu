@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="web_new_login" name="Login" inherit_id="web.login">
+        <xpath expr="//div" position="after">
+            <div class='ushodaya_logo' style='text-align: center;margin-bottom: 10px;'>
+                <img t-attf-src="/website_snippets/static/img/ushodaya.png"/>
+            </div>
+        </xpath>
+
+        <t t-call="web.login_layout">
+
+        </t>
+    </template>
+</odoo>

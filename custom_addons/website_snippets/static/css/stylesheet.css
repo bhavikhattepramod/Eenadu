@@ -1,0 +1,31 @@
+.ushodaya_logo {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.btn-fill-primary, .btn-primary {
+    color: #ffffff !important;
+    background-color: #20acd4 !important;
+    border-color: #20acd4;
+}
+
+.btn-fill-primary:hover, .btn-primary:hover {
+            color: #FFFFFF;
+            background-color: #69a8cd !important;
+            border-color: #69a8cd;
+            }
+
+.navbar-light {
+    background-color: #20acd4;
+    color: #212529;
+}
+
+.o_main_navbar {
+    --o-navbar-height: 46px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: var(--o-navbar-height);
+    min-width: min-content;
+    border-bottom: 1px solid #20acd4;
+    background: #20acd4 !important;
+}

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<odoo>
+    <template id="report_transport_portals">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="oo">
+            <!--            <t t-foreach="docs" t-as="o" t-idx="idx">-->
+            <t t-call="web.internal_layout">
+
+                <div class="page">
+                    <div>
+                        <div style="height:150px;border:0px solid;text-align:center;">
+                            <h2>USHODAYA PUBLICATIONS</h2>
+                            <h6>(A Division of Ushodaya Enterprises Pvt. Ltd.)</h6>
+                            <h6>Publication of <b>EENADU</b>
+
+                            </h6>
+                        </div>
+                        <div>
+                            <div style="text-align:center">
+                            </div>
+                            <h6>Transport No. :</h6>
+                            <h6>vehicle No. :</h6>
+                        </div>
+
+                        <div style="position: absolute;top: 125px;right: 130px;">
+                            <h6>Phone</h6>
+                            <h6>Issue Date :</h6>
+                            <h6>Departure At :</h6>
+                        </div>
+                    </div>
+                    <table style="width:100%;" name="main_table">
+                        <thead name="table_head">
+                            <tr>
+                                <th rowspan="2">
+                                    Sl No.
+                                </th>
+                                <th rowspan="2">Place</th>
+                                <th colspan="3" rowspan="1">NO of Bundles</th>
+                                <th rowspan="2">Arrival Time at destination</th>
+                                <th rowspan="2">Signature of Agent</th>
+                                <th rowspan="2">Remark</th>
+                            </tr>
+                            <tr>
+                                <th>EENADU</th>
+                                <th>Vasun-dhara</th>
+                                <th>MMPL</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody name="main_location">
+                            <tr>
+                                <t t-if="oo.route_type == 'main'">
+                                <td colspan="8" style="text-align:center">
+                                    <h5>MAIN LOCATIONS</h5>
+                                </td>
+                                </t>
+                            </tr>
+                            <t t-set="i" t-value="1"/>
+                            <t t-set="for_run" t-value="0"/>
+
+                            <t t-foreach="docs" t-as="o" t-idx="idx">
+                                <t t-set="for_run" t-value="for_run+1"/>
+                                <tr style="border:none;">
+                                    <t t-if="o.route_type == 'main'">
+                                        <td height="20px" style="padding:6px;border-bottom:none;">
+                                            <span t-esc="i"/>
+                                            <t t-set="i" t-value="i+1"/>
+                                        </td>
+
+                                        <td height="20px" style="padding:6px;">
+                                            <span t-field="o.location.name"/>
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tbody name="link_location">
+                            <tr>
+                                <t t-if="oo.route_type == 'link'">
+                                <td colspan="8" style="text-align:center">
+                                    <h5>LINK LOCATIONS</h5>
+                                </td>
+                                </t>
+                            </tr>
+                            <t t-set="link_seq" t-value="1"/>
+                            <t t-foreach="docs" t-as="link" t-idx="idx">
+                                <tr>
+                                    <t t-if="link.route_type == 'link'">
+                                        <td height="20px" style="padding:6px;border-bottom:none;">
+                                            <span t-esc="link_seq"/>
+                                            <t t-set="link_seq" t-value="link_seq+1"/>
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+                                            <span t-field="link.location.name"/>
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tbody name="sub_location">
+                            <tr>
+                                <t t-if="oo.route_type == 'sub'">
+                                <td colspan="8" style="text-align:center">
+                                    <h5>SUB LOCATION</h5>
+                                </td>
+                                </t>
+                            </tr>
+                            <t t-set="sub_seq" t-value="1"/>
+                            <t t-foreach="docs" t-as="sub" t-idx="idx">
+                                <tr>
+                                    <t t-if="sub.route_type == 'sub'">
+                                        <td height="20px" style="padding:6px;border-bottom:none;">
+                                            <span t-esc="sub_seq"/>
+                                            <t t-set="sub_seq" t-value="sub_seq+1"/>
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+                                            <span t-field="link.location.name"/>
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;">
+
+                                        </td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                        <td height="20px" style="padding:6px;"></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+<!--                        FOR FOOTER-->
+                        <tbody>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td height="50px" style="padding:6px;">Grand total Parcels</td>
+                                <td height="50px"></td>
+                                <td height="50px"></td>
+                                <td height="50px"></td>
+                                <td height="50px"></td>
+                                <td height="50px"></td>
+                                <td height="50px"></td>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" height="100px" style="text-align:center;">
+
+                                    <b>Signature of the despatch inchange</b>
+                                </td>
+                                <td colspan="4" height="100px" style="text-align:center;">
+                                    <b>Signature of the driver</b>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </t>
+        </t>
+                    </t>
+        <!--        </t>-->
+    </template>
+
+    <data>
+        <record id="report_wizard_picking_entry_action_ids" model="ir.actions.report">
+            <field name="name">picking Entry Reports</field>
+            <field name="model">wizard.picking.entry.dup</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">transport_portal.report_transport_portals</field>
+            <field name="report_file">transport_portal.report_transport_portals</field>
+            <!--            <field name="binding_model_id" ref="your_module_name.model_your_model"/>-->
+        </record>
+    </data>
+
+</odoo>

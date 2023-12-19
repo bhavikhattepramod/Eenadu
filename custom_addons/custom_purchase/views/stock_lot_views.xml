@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_production_lot_form_inherit" model="ir.ui.view">
+        <field name="name">stock.lot</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="before">
+                <field name = 'depth_of_cut' />
+                <label for="damage_qty" attrs="{'invisible': [('display_complete', '=', False)]}"/>
+                <div class="o_row" attrs="{'invisible': [('display_complete', '=', False)]}">
+                    <field name="damage_qty" readonly = "1"/>
+                    <field name="product_uom_id" groups="uom.group_uom" readonly = "1"/>
+                </div>
+                <label for="net_qty" attrs="{'invisible': [('display_complete', '=', False)]}"/>
+                <div class="o_row" attrs="{'invisible': [('display_complete', '=', False)]}">
+                    <field name="net_qty"/>
+                    <field name="product_uom_id" groups="uom.group_uom"/>
+                </div>                
+                <field name = "reel_price_unit" />
+                <field name = "reel_price_total" />
+                <field name = "currency_id" invisible="1"/>
+                <field name = "picking_id" />
+                <field name = "container_no" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

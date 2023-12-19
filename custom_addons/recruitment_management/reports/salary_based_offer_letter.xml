@@ -1,0 +1,162 @@
+<odoo>
+    <data>
+        <template id="report_salary_based_offer_letter">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .bottom{
+                            padding-top:100px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;">
+                            <h2 align="middle" style="font-size:18px; padding-top:100px;">
+                                <b>
+                                    <u>SALARY BASED OFFER LETTER</u>
+                                </b>
+                            </h2>
+                            <p align="right" style="padding-left:50px; padding-right:50px; padding-top:20px;">
+                                <span t-esc="doc.cur_date.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <br></br>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span>
+                                    Mr/Ms&#160;<span t-field="doc.partner_name"/>
+                                    <br></br>
+                                    <span t-field="doc.location"/>
+                                    <br></br>
+                                    <span t-field="doc.location"/>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span>Dear Mr/Ms&#160;<span t-field="doc.partner_name"/>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                With reference to your application and subsequent interview you had with us, we are
+                                pleased to inform that you are selected for the post of __________________ <b>TRAINEE
+                            </b> and you will be based at
+                                <b>Midjil.</b>
+                                You will be on <b>Training</b> for a period of <b>ONE YEAR</b> from the date of your
+                                joining
+                                and will be paid a Stipend of
+                                <b>&#8377; ______________ /- (Rupees ____________________________________ Only) per
+                                    month.
+                                </b>
+                            </p>
+
+                            <p style="padding-left:50px; padding-right:50px;">
+                                In the above offer is acceptable, you are advised to report at the Renewable Energy
+                                Division,
+                                ____________________________________________________________________________________ on
+                                or before
+                                <b>
+                                    <span t-field="doc.offer_letter_validity"/>
+                                    at 9 A.M.
+                                </b>
+                                The formal letter of training
+                                will be
+                                issued to you with all terms and conditions on joining.
+                            </p>
+
+                            <p style="padding-left:50px; padding-right:50px;">
+                                You are required to bring the following documents when you report for training:
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Photostat
+                                    copies of all your
+                                    certificates (along with originals for verification) in support of your
+                                    <span style="padding-left:36px;">qualification and experience;</span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Relieving
+                                    letter issued by the previous employer;
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Four recent
+                                    colour photographs of size 2.5 x 3 ems;
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Three Post
+                                    card size photographs of your family(that includes yourself and dependant parents);
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Physical
+                                    fitness certificate in the enclosed format issued by any Registered Medical
+                                    Practitioner;
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span style="padding-left:20px;">&#x2022;<span style="padding-left:10px;">Any one of the
+                                    identity proof like Ration card, Voter Identity card, PAN card, Aadhar card, Driving
+                                    <span style="padding-left:36px;">License, Passport or Postal Identity card;</span>
+                                </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                Please acknowledge the receipt and confirm your date of joining.
+                            </p>
+                            <br></br>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                With best wishes
+                            </p>
+                            <br></br>
+                            <p style="padding-left:50px; padding-right:50px; padding-top:40px;">
+                                <span>
+                                    <span>
+                                        <b>
+                                            Authorised By :
+                                        </b>
+                                        <br></br>
+                                        <b>
+                                            <span t-field="doc.company_id.director_id"/>
+                                        </b>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_salary_based_offer" model="report.paperformat">
+            <field name="name">Salary Based Offer Letter</field>
+            <field name="default" eval="False"/>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">12</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="salary_based_action" model="ir.actions.report">
+            <field name="name">Salary Based Offer Letter</field>
+            <field name="model">hr.applicant</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">recruitment_management.report_salary_based_offer_letter</field>
+            <field name="report_file">recruitment_management.report_salary_based_offer_letter</field>
+            <field name="binding_model_id" ref="model_hr_applicant"/>
+            <field name="paperformat_id" ref="recruitment_management.paperformat_salary_based_offer"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>
+
+

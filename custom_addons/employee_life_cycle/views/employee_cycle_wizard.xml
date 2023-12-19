@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="employee_cycle_wizardd" model="ir.ui.view">
+        <field name="name">cycle.wizard</field>
+        <field name="model">life.cycle</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="names_id" required="1"/>
+                            <field name="date" invisible="1"/>
+
+                            <!--                            <field name="cur_date" invisible="1"/>-->
+
+
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="life_cycle_action" model="ir.actions.act_window">
+        <field name="name">Transfer Order</field>
+        <field name="res_model">life.cycle</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="employee_cycle_wizardd"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="employee_life_cycle_menu_2" name="Transfer Order"
+              parent="employee_life_cycle.employee_life_cycle_menu"
+              action="life_cycle_action" sequence="10"/>
+
+
+</odoo>

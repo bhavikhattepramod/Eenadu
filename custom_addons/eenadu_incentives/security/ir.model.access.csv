@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_incentive,access_incentive,model_partner_incentive,,1,1,1,1
+access_partner_incentive_line,access_incentive_line,model_partner_incentive_line,,1,1,1,1
+access_partner_incentive_wizard,access_incentive_wizard,model_incentive_wizard,,1,1,1,1
+,,,,,,,
+access_partner_incentive_line_classified,access_partner_incentive_line_classified,model_partner_incentive_line_classified,,1,1,1,1

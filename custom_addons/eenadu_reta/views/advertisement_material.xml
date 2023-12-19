@@ -1,0 +1,100 @@
+<odoo>
+    <data>
+        <record id="advertisement_material_form" model="ir.ui.view">
+            <field name="name">Advertisement Material Form</field>
+            <field name="model">sale.related.documents</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="DTP" type="object" name="btn_dtp"
+                                attrs="{'invisible': [('state','!=','material_receipt')]}"
+                                class="oe_highlight"/>
+                        <button string="Client Confirmation" type="object" name="btn_client_confirmation"
+                                attrs="{'invisible': [('state','!=','dtp')]}"
+                                class="oe_highlight"/>
+                        <button string="Till Allotted" type="object" name="btn_till_allotted"
+                                attrs="{'invisible': [('state','!=','client_confirmation')]}"
+                                class="oe_highlight"/>
+                        <button name="btn_cancel" string="Cancel" type="object"
+                                attrs="{'invisible': [('state','!=','dtp'), ('state','!=','client_confirmation'), ('state','!=','till_allotted')]}"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="material_receipt,dtp,client_confirmation,till_allotted"/>
+                    </header>
+                    <!--                    <label for="file_name"/>-->
+                    <sheet>
+                        <group>
+                            <group>
+                               {'invisible':  <field name="name" required="1"/>
+                                <field name="is_locked" invisible="1"/>
+                                <field widget="binary" name="related_document" filename="file_name"
+                                       attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                <!--                                <field name="related_document"/>-->
+                                <label for="file_name"/>
+                                <div class="o_row">
+                                    <field name="file_name" attrs="{'readonly': [('is_locked', '=', True)]}"/>
+                                    <button name="button_lock" string="Lock" type="object"
+                                            attrs="{'invisible': [('is_locked', '=', True)]}"/>
+                                    <button name="button_unlock" string="Unlock" type="object"
+                                            attrs="[('is_locked', '=', False)]}"/>
+                                </div>
+                                <field name="cio_ro_number" force_save="True"/>
+                                <field name="agent_name_id" force_save="True"/>
+                            </group>
+                            <group>
+                                <field name="publishing_date" force_save="1"/>
+                                <field name="slug_material" invisible="1"/>
+                                <field name="activity_master" invisible="1"/>
+                                <field name="is_lock" invisible="1"/>
+                                <label for="tiff_allocation"/>
+                                <div class="o_row">
+                                    <field name="tiff_allocation" attrs="{'readonly': [('is_lock', '=', True)]}"/>
+                                    <button name="button_locks" string="Lock" type="object"
+                                            attrs="{'invisible': [('is_lock', '=', True)]}"/>
+                                    <button name="button_unlocks" string="Unlock" type="object"
+                                            attrs="{'invisible': [('is_lock', '=', False)]}"/>
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="advertisement_material_tree" model="ir.ui.view">
+            <field name="name">Advertisement Material List</field>
+            <field name="model">sale.related.documents</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="related_document"/>
+                    <field name="file_name"/>
+                    <field name="cio_ro_number"/>
+                    <field name="agent_name"/>
+                    <field name="publishing_date"/>
+                    <field name="slug_material"/>
+                    <field name="activity_master"/>
+                    <field name="tiff_allocation"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_advertisement_material">
+            <field name="name">Advertisement Material</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.related.documents</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="advertisement_menu" name="AD-Material" sequence="10" action="action_advertisement_material"/>
+
+        <!--        <menuitem id="material_submenu" name="AD-Material" action="action_advertisement_material"-->
+        <!--                  parent="advertisement_menu"/>-->
+
+
+    </data>
+</odoo>

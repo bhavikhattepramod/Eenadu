@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="nomination_and_declaration_wizard" model="ir.ui.view">
+        <field name="name">nomination.and.declaration.wizard</field>
+        <field name="model">nomination.declaration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

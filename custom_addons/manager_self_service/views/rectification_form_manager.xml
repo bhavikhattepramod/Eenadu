@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="self_service_manager_rectification_tree" model="ir.ui.view">
+        <field name="name">self.service.rectification.manager.tree</field>
+        <field name="model">rectification.form</field>
+        <field name="arch" type="xml">
+            <tree string="Rectification Tree">
+                <field name="e_name_rect"/>
+                <field name="e_code_rect"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="self_service_manager_rectification_form" model="ir.ui.view">
+        <field name="name">self.service.rectification.manager.form</field>
+        <field name="model">rectification.form</field>
+        <field name="arch" type="xml">
+            <form string="Rectification Form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="submitted,approved,reject"/>
+                    <button string="Approve" type="object" name="approve_rectification_manager" class="btn-primary"/>
+                    <button string="Reject" type="object" name="reject_rectification_manager" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="e_name_rect"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"
+                                   options="{'no_open': True}"/>
+                            <field name="designation_rect"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="section_rect_emp" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style=" height: 2px;background-color:black;"/>
+                            <field name="rect_reasons"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" />
+                            <field name="date"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" />
+                        </group>
+                        <group>
+                            <field name="e_code_rect"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="department_rect"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <field name="place_rect" widget="many2many_tags"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                            <separator style="height: 2px;background-color:black;"/>
+                            <field name="day_type"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;" widget='radio' options="{'horizontal': true}"/>
+                            <field name="rect_remarks"
+                                   style=" border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;"/>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Add a Note field to the form view -->
+                        <field name="rect_note_field" widget="text" string="Note"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_service_manager_application_details_rectification_form" model="ir.actions.act_window">
+        <field name="name">Rectification Form</field>
+        <field name="res_model">rectification.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('status', 'in', ['submitted','approved','reject']),('e_name_rect.parent_id.user_id', '=', uid)]</field>
+    </record>
+
+    <record id="self_service_manager_application_details_rectification_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="self_service_manager_rectification_tree"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_rectification_form"/>
+    </record>
+
+    <record id="self_service_manager_application_details_rectification_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="self_service_manager_rectification_form"/>
+            <field name="act_window_id" ref="action_self_service_manager_application_details_rectification_form"/>
+    </record>
+
+    <menuitem id="self_service_manager_application_rectification_menu"
+          name="Rectification Form"
+          parent="menu_employee_self_service_child"
+          action="action_self_service_manager_application_details_rectification_form"
+          sequence="63"/>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template_eenadu_inventory_dashboard" xml:space="preserve">
+    <t t-name="DashboardInventoryEenadu">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+        </div>
+    </t>
+
+    <t t-name="InventoryDashboardEenadu">
+        <section class="dashboard_main" id="main_section">
+       <div class="col-sm-12 mb-4">
+           <div class="row">
+               <div class="col-12 col-sm-12 col-md-8">
+                   <h2 class="section-header">inventory Dashboard Eenadu</h2>
+               </div>
+
+               <!--      Tiles    -->
+           </div>
+       </div>
+   </section>
+    </t>
+</templates>

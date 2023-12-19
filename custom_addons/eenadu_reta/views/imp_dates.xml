@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <record id="imp_date_form_view" model="ir.ui.view">
+            <field name="name">Important Dates</field>
+            <field name="model">important.dates</field>
+            <field name="arch" type="xml">
+                <form create="0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="type"/>
+                        </group>
+                        <notebook>
+                            <page string="description">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="imp_date_tree_view" model="ir.ui.view">
+            <field name="name">Important Dates</field>
+            <field name="model">important.dates</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="imp_date_search_view" model="ir.ui.view">
+            <field name="name">Important Dates</field>
+            <field name="model">important.dates</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="type"/>
+                    <filter string="occasion" domain="[('type','=','occasion')]" name="occasion"/>
+                    <filter string="Event" domain="[('type','=','occasion')]" name="event"/>
+                    <filter string="Date" name="date" date="date"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_imp_date_menu">
+            <field name="name">Important Dates</field>
+            <field name="res_model">important.dates</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+
+        <menuitem name="Important Dates" id="menu_important_dates"
+                  parent="eenadu_reta.parent_reta_application" action="action_imp_date_menu"
+                  sequence="27"/>
+
+    </data>
+</odoo>

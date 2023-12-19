@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_physical_fitness,physical.fitness,model_physical_fitness,,1,1,1,1
+access_joining_report,joining.report,model_joining_report,,1,1,1,1
+
+

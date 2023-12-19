@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_order_form_reta_inherit" model="ir.ui.view">
+        <field name="name">sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <field name="invoice_count" invisible="1" groups="eenadu_reta.reta_accounting_group"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <field name="invoice_count" invisible="1" groups="!eenadu_reta.reta_accounting_group"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="publication_id"
+                       attrs="{'requried':['|',('reta_bool_field','=',True),('classified_bool_field','=',True)]}"/>
+                <!--                <field name="publication_id" required="1"/>-->
+                <!-- attrs="{
+                'invisible':[('reta_bool_field','!=',True)],
+                'required':[('reta_bool_field', '=', True)]
+                }"
+                /> -->
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position='after'>
+                <field name='is_fully_paid' invisible='1'/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="send_for_scheduling" type="object" class="btn-primary" string="Send for Scheduling"
+                        attrs="{'invisible': [('reta_state', 'not in', ['billing'])]}"/>
+                <button name="%(action_create_quotation_payment_view)d" type="action" class="btn-primary"
+                        string="Create Payment"
+                        attrs="{'invisible': ['|','|',('reta_state', '=', 'cancel'),('reta_bool_field', '!=', True),('is_fully_paid', '=', True)]}"/>
+            </xpath>
+            <field name='partner_id' position='after'>
+                <field name='is_schedule_done' invisible='1'/>
+                <field name='is_scheduling_cancelled' invisible='1'/>
+                <field name="classified_bool_field" invisible="1"/>
+                <field name="scheduling_date"
+                       attrs="{'requried':['|',('reta_bool_field','=',True),('classified_bool_field','=',True)]}"/>
+                <!--                <field name="scheduling_date" required="1"/>-->
+
+                <field name="specific_date" attrs="{
+                    'invisible':[('scheduling_date','!=','specific_date')],
+                    'required':[('scheduling_date', '=', 'specific_date')]
+                    }"/>
+                <field name="tracking_description" invisible="1"/>
+            </field>
+
+
+            <xpath expr="//sheet/div[@name='button_box']/button[@name='action_view_invoice']" position="before">
+                <button name="action_view_payments"
+                        string="View Payments"
+                        class="oe_stat_button"
+                        icon="fa-money"
+                        type="object"
+                        attrs="{'invisible': ['|',('cio_payment_count', '=', 0),('reta_bool_field', '!=', True)]}">
+                    <field name="cio_payment_count" widget="statinfo" string="View Payment"/>
+                </button>
+            </xpath>
+            <xpath expr="//sheet/div" position="after">
+                <div style="margin-top:0px;">
+                    <widget name="web_ribbon" text="Scheduled"
+                            attrs="{'invisible': ['|',('is_schedule_done', '=', False),('reta_state', '=', 'cancel')]}"/>
+                    <!-- <widget name="web_ribbon" text="Rejected" attrs="{'invisible': ['|',('is_scheduling_cancelled', '=', False),('reta_state', '=', 'cancel')]}"/> -->
+                    <widget name="web_ribbon" title="Published" attrs="{'invisible': [('reta_state', '!=', 'print')]}"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position='after'>
+                <field name='cio_paid_amount' readonly="1"/>
+                <field name='cio_amount_due'/>
+                <field name="agent_commission_amount" attrs="{'invisible':[('reta_bool_field','!=',True)]}"/>
+                <field name="reta_bool_field" invisible="1"/>
+                <field name="final_amount" attrs="{'invisible':[('reta_bool_field','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="before">
+                <page string="Advertisement Details" name="advertisement_details"
+                      attrs="{'invisible':[('classified_bool_field','!=',True)]}">
+                    <group>
+                        <field name="advertisement_language"/>
+                    </group>
+                    <button name="add_order_line" string="Add/Update Product" class="btn-primary" type="object"/>
+                    <field name="advertisement_line_ids"
+                           context="{'default_advertisement_language':advertisement_language}">
+                        <tree editable="bottom">
+                            <field name="product_id" required="1"/>
+                            <field name="advertisement_description" required="1"/>
+                            <field name="advertisement_description_as_per_lipi" invisible="1"/>
+                            <field name="no_of_characters" style="pointer-events: none;"/>
+                            <field name="no_of_lines" style="pointer-events: none;"/>
+                            <field name="advertisement_language" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="before">
+                <page name="publish_period" string="Publish Period"
+                      attrs="{'invisible':[('scheduling_date','!=','multiple_date')]}">
+                    <group>
+                        <group>
+                            <field name="from_date" attrs="{'required':[('scheduling_date', '=', 'multiple_date')]}"/>
+                            <field name="to_date" attrs="{'required':[('scheduling_date', '=', 'multiple_date')]}"/>
+                            <!-- <field name="publish_start_date"  attrs="{'required':[('scheduling_date', '=', 'multiple_date')]}" /> -->
+                        </group>
+                        <group>
+                            <field name="no_of_occurence"
+                                   attrs="{'required':[('scheduling_date', '=', 'multiple_date')]}"
+                                   style="pointer-events:none"/>
+                            <!-- <field name="time_interval" attrs="{'required':[('scheduling_date', '=', 'multiple_date')]}" /> -->
+                        </group>
+                        <field name="multi_publish_date">
+                            <tree editable="True">
+                                <field name="publish_date" required="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page string="Scheduling Details" name="scheduling_details" groups="eenadu_reta.reta_scheduling_group">
+                    <field name="scheduling_line_ids">
+                        <tree editable="bottom" decoration-success="scheduling_status=='approved'"
+                              decoration-danger="scheduling_status=='rejected'">
+                            <field name="product_id" readonly='1'/>
+                            <field name="name" readonly='1'/>
+                            <field name="size" readonly='1'/>
+                            <field name="publication_id" readonly='1'/>
+                            <field name="region_ids" readonly='1' widget='many2many_tags'/>
+                            <field name="page" invisible="1"/>
+                            <field name="page_no" required="1" readonly='0'/>
+                            <field name="ad_position" required="1" readonly='0'/>
+                            <field name="publish_date" required="1" readonly='1'/>
+                            <button name="action_approve_schedule" string="Approve" type="object" icon='fa-check' invisible="1"/>
+                            <button name="%(action_update_schedule_view)d" string="Update Schedule" type="action"
+                                    icon='fa-pencil-square-o' invisible="1"/>
+                            <button name="open_position_help" string='Position Help' type='object' icon='fa-info' invisible="1"/>
+                            <field name="scheduling_status" readonly='1'/>
+                            <field name="rejected_reason" readonly='1'/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Payment Informations" name="payment_info">
+                    <!-- <group>
+                        <group>
+                            <field name = "payment_mode" readonly="1"/>
+                            <field name = "payee_name" readonly="1"/>
+                            <field name = "payee_mobile" readonly="1"/>
+                            <field name = "sender_acc_no" 
+                                attrs="{'invisible':[('payment_mode', 'in', ['cash','upi'])]}" 
+                                readonly="1"/>
+                            <field name = "tnx_id" 
+                                attrs="{'invisible':[('payment_mode', 'in', ['cash','pdc'])]}" 
+                                readonly="1"/>
+                            <field name = "payment_media" 
+                                attrs="{'invisible':[('payment_mode', 'in', ['cash','bank','pdc'])]}" readonly="1"/>
+                            <field name = "acc_branch_name" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                            <field name = "cheque_no" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                            <field name = "cheque_date" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                            <field name = "siginig_authority" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                        </group>
+                        <group>
+                            <field name = "agent_name" readonly="1"/>
+                            <field name = "payment_datetime" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'cash')]}"
+                                readonly="1"/>
+                            <field name = "payment_location" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'cash')]}"
+                                readonly="1"/>
+                            <field name = "utr_no" 
+                                attrs="{'invisible':[('payment_mode', 'in', ['cash','pdc'])]}"
+                                readonly="1"/>
+                            <field name = "payment_confirmation_file"
+                                readonly="1"/>
+                            <field name = "micr_no" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                            <field name = "ifsc" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                            <field name = "cheque_expiry_date" 
+                                attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                readonly="1"/>
+                        </group>
+                    </group> -->
+                    <field name='payment_information_ids'>
+                        <tree>
+                            <field name="payment_type" readonly="1"/>
+                            <field name="payment_mode" readonly="1"/>
+                            <field name="payee_name" readonly="1"/>
+                            <field name="payee_mobile" readonly="1"/>
+                            <field name="payment_amount" readonly="1"/>
+                            <field name="payment_confirmation_file" readonly="1"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="payment_type" readonly="1"/>
+                                    <field name="payment_mode" readonly="1"/>
+                                    <field name="payee_name" readonly="1"/>
+                                    <field name="payee_mobile" readonly="1"/>
+                                    <!--                                    <field name = "sender_acc_no" -->
+                                    <!--                                        attrs="{'invisible':[('payment_mode', 'in', ['cash','upi'])]}" -->
+                                    <!--                                        readonly="1"/>-->
+                                    <field name="sender_acc_no"
+                                           attrs="{
+                                    'invisible':[('payment_mode', 'in', ['upi','cash','pdc'])],
+                                    'required':[('payment_mode', 'in', ['bank'])]}" readonly="1"/>
+                                    <field name="tnx_id"
+                                           attrs="{'invisible':[('payment_mode', 'in', ['cash','pdc'])]}"
+                                           readonly="1"/>
+                                    <field name="payment_media"
+                                           attrs="{'invisible':[('payment_mode', 'in', ['cash','bank','pdc'])]}"
+                                           readonly="1"/>
+                                    <field name="bank_name"
+                                           attrs="{
+    'invisible':[('payment_mode', '!=', 'pdc')],
+    'required':[('payment_mode', '=', 'pdc')]}" readonly="1"/>
+                                    <field name="acc_branch_name"
+                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                           readonly="1"/>
+                                    <field name="cheque_no"
+                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                           readonly="1"/>
+                                    <field name="cheque_date"
+                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                           readonly="1"/>
+                                    <!--                                    <field name="siginig_authority"-->
+                                    <!--                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"-->
+                                    <!--                                           readonly="1"/>-->
+                                </group>
+                                <group>
+                                    <field name="agent_id" readonly="1"/>
+                                    <field name="payment_amount" readonly="1"/>
+                                    <field name="payment_datetime" readonly="1"/>
+                                    <field name="payment_location" readonly="1"/>
+                                    <field name="utr_no"
+                                           attrs="{'invisible':[('payment_mode', 'in', ['cash','pdc'])]}"
+                                           readonly="1"/>
+                                    <field name="payment_confirmation_file" readonly="1"/>
+                                    <!--                                    <field name="micr_no"-->
+                                    <!--                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"-->
+                                    <!--                                           readonly="1"/>-->
+                                    <!--                                    <field name="ifsc"-->
+                                    <!--                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"-->
+                                    <!--                                           readonly="1"/>-->
+                                    <field name="cheque_expiry_date"
+                                           attrs="{'invisible':[('payment_mode', '!=', 'pdc')]}"
+                                           readonly="1"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </page>
+                <page string="Advertisement Material" name="related_documents">
+                    <field name="sale_related_document_ids">
+                        <tree>
+                            <field name="name" required="1"/>
+                            <field name="related_document"/>
+                            <field name="file_name"/>
+                            <field name="cio_ro_number"/>
+                            <field name="agent_name"/>
+                            <field name="publishing_date"/>
+                            <field name="slug_material"/>
+                            <field name="activity_master"/>
+                            <field name="tiff_allocation"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="account_move_access_group_inherit" model="ir.ui.view">
+        <field name="name">Account Move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_sent']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//button[@name='preview_invoice']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_reverse']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="after">
+                <field name="l10n_in_edi_show_cancel" invisible="1" groups="eenadu_reta.reta_accounting_group"/>
+            </xpath>
+            <xpath expr="//button[@name='button_draft']" position="after">
+                <field name="l10n_in_edi_show_cancel" invisible="1" groups="!eenadu_reta.reta_accounting_group"/>
+            </xpath>
+            <xpath expr="//page[@name='other_info']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_move_access_group_ewaybill_inherit" model="ir.ui.view">
+        <field name="name">Account Move</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_in_edi_ewaybill.invoice_form_inherit_l10n_in_edi_ewaybill"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='l10n_in_edi_ewaybill_send']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+            <xpath expr="//page[@name='l10n_in_edi_ewaybill_page']" position="attributes">
+                <attribute name="groups">eenadu_reta.reta_accounting_group</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

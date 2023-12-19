@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="nap_agent_onboarding_menu"
+              name="Agency Onboarding"
+              parent="nap.parent_nap_application"
+              sequence="5"
+    />
+    <record id="action_nap_state_draft" model="ir.actions.act_window">
+        <field name="name">Draft Agents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('state','!=','approved'),
+            ('state','!=','validated'),('state','!=','reject'),('is_nap_agent','=', True)]
+        </field>
+        <field name="context">{'default_is_nap_agent':True}</field>
+    </record>
+
+    <menuitem id="nap_agent_state_draft"
+              name="Draft Agents"
+              parent="nap_agent_onboarding_menu"
+              sequence="1"
+              action="action_nap_state_draft"/>
+
+    <record id="action_nap_filter_state" model="ir.actions.act_window">
+        <field name="name">Approved Agents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('state','=','approved'), ('is_nap_agent','=', True)]</field>
+    </record>
+
+    <menuitem id="nap_agent_filter_state"
+              name="Approved Agents"
+              parent="nap_agent_onboarding_menu"
+              sequence="3"
+              action="action_nap_filter_state"/>
+
+    <record id="action_nap_filter_state_validated" model="ir.actions.act_window">
+        <field name="name">Validated Agents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('state','=','validated'),('is_nap_agent','=', True)]</field>
+    </record>
+
+    <menuitem id="nap_agent_filter_state_validated"
+              name="Validated Agents"
+              parent="nap_agent_onboarding_menu"
+              sequence="2"
+              action="action_nap_filter_state_validated"/>
+
+    <record id="action_nap_filter_state_reject" model="ir.actions.act_window">
+        <field name="name">Rejected Agents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="domain">[('state','=','reject'), ('is_nap_agent','=', True)]</field>
+    </record>
+
+
+    <menuitem id="nap_agent_filter_state_reject"
+              name="Reject Agents"
+              parent="nap_agent_onboarding_menu"
+              sequence="4"
+              action="action_nap_filter_state_reject"/>
+
+
+</odoo>

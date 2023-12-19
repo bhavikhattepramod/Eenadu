@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template_elc" xml:space="preserve">
+    <t t-name="DashboardElc">
+        <div class="oh_dashboards">
+            <div class="container-fluid my-5 o_hr_dashboard"/>
+        </div>
+    </t>
+
+    <t t-name="DashboardEmployeeElc">
+        <section class="dashboard_main" id="main_section">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <h2 class="section-header" style="text-align:center;">Dashboard ELC</h2>
+                    </div>
+                    <div style="padding:10px;">
+                   <style>
+                    table{
+                       border-collapse: collapse;
+                       <!--                       margin:auto;-->
+                       }
+                       th{
+                       border: 3px solid black;
+                       padding: 10px;
+                       font-size : 25px;
+                       text-align : center;
+                       <!--                       Purple Monster-->
+                       color: #461B7E;
+                       }
+                       td{
+                       border: 3px solid black;
+                       padding: 10px;
+                       font-size : 20px;
+                       text-align : center;
+                       cursor: pointer;
+                       }
+                    </style>
+                        <table>
+                        <tr>
+                            <th>Transaction Type</th>
+                            <th>Pending for Approval</th>
+                            <th>Approved</th>
+                            <th>Total</th>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(20, 143, 119 );">Trainees to Probation</td>
+                                <td class="elc_tran_prob" style="color:rgb(20, 143, 119 );"><div id="initial_no_tran_prob"/></td>
+                                <td class="elc_tran_prob_app" style="color:rgb(20, 143, 119 );"><div id="final_no_tran_prob"/></td>
+                                <td style="color:rgb(20, 143, 119 );"><div id="total_no_tran_prob"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(110, 44, 0);">Probation to Confirmation</td>
+                                <td class="elc_prob_to_conf" style="color:rgb(110, 44, 0);"><div id="initial_no_prob_to_conf"/></td>
+                                <td class="elc_prob_to_conf_app" style="color:rgb(110, 44, 0);"><div id="final_no_prob_to_conf"/></td>
+                                <td style="color:rgb(110, 44, 0);"><div id="total_no_prob_to_conf"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(24, 106, 59);">Probation Extension</td>
+                                <td class="elc_prob_ext" style="color:rgb(24, 106, 59);"><div id="initial_no_prob_ext"/></td>
+                                <td class="elc_prob_ext_app" style="color:rgb(24, 106, 59);"><div id="final_no_prob_ext"/></td>
+                                <td style="color:rgb(24, 106, 59);"><div id="total_no_prob_ext"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:mediumblue;">Transfers</td>
+                                <td class="elc_transfers" style="color:mediumblue;"><div id="initial_no_transfers"/></td>
+                                <td class="elc_transfers_app" style="color:mediumblue;"><div id="final_no_transfers"/></td>
+                                <td style="color:mediumblue;"><div id="total_no_transfers"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:Purple;">Promotions</td>
+                                <td class="elc_promotion" style="color:Purple;"><div id="initial_no_promotion"/></td>
+                                <td class="elc_promotion_app" style="color:Purple;"><div id="final_no_promotion"/></td>
+                                <td style="color:Purple;"><div id="total_no_promotion"/></td>
+                        </tr>
+                            <!--                       #FF5F1F  bright orange-->
+                            <tr>
+                            <td style="color:#FF5F1F;">Increments</td>
+                                <td class="elc_increments" style="color:#FF5F1F;"><div id="initial_no_increments"/></td>
+                                <td class="elc_increments_app" cstyle="color:#FF5F1F;"><div id="final_no_increments"/></td>
+                                <td style="color:#FF5F1F;"><div id="total_no_increments"/></td>
+                        </tr>
+                            <!--                       #00BFFF deepskyblue-->
+                            <tr>
+                            <td style="color:#00BFFF;">Re-Designation</td>
+                                <td class="elc_re_designation" style="color:#00BFFF;"><div id="initial_no_re_designation"/></td>
+                                <td class="elc_re_designation_app" style="color:#00BFFF;"><div id="final_no_re_designation"/></td>
+                                <td style="color:#00BFFF;"><div id="total_no_re_designation"/></td>
+                        </tr>
+                   </table>
+               </div>
+
+                </div>
+                <div class="col">
+                    <div>
+                        <h2 class="section-header" style="text-align:center;">Dashboard Disciplinary Management</h2>
+                    </div>
+                    <div style="padding:10px;">
+                   <style>
+                    table{
+                       border-collapse: collapse;
+                       margin:auto;
+                    }
+                    th{
+                       border: 3px solid #915F6D;
+                       padding: 10px;
+                       font-size : 25px;
+                       text-align : center;
+                    }
+                   td{
+                       border: 3px solid #C36241;
+                       padding: 10px;
+                       font-size : 20px;
+                       text-align : center;
+                    }
+                    </style>
+                        <table>
+                        <tr>
+                            <th>Incidents</th>
+                            <th>Total</th>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(20, 143, 119);">Number of Incidents Reported</td>
+                                <td class="disp_emp_incident" style="color:rgb(20, 143, 119);"><div id="total_no_incident"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(110, 44, 0);">Incidents Pending for Inquiry</td>
+                                <td class="disp_emp_man_incident_pen" style="color:rgb(110, 44, 0);"><div id="total_no_incident_progress"/></td>
+                        </tr>
+                            <tr>
+                            <td style="color:rgb(24, 106, 59);">Incidents Closed</td>
+                                <td class="disp_emp_man_incident_close" style="color:rgb(24, 106, 59);"><div id="total_no_incident_approved"/></td>
+                        </tr>
+                   </table>
+               </div>
+                    <div>
+                         <div id="select_option" style="width:200px; padding:35px;display:inline-block;"></div>
+                          <div style="width:150px; padding:35px;display:inline-block;"></div>
+                        <div id="select_option3" style="width:200px; padding:35px;display:inline-block;"></div>
+                    </div>
+                    <div style="position:relative; top:-20px;">
+<!--                    style="position:relative;top:-84px;right:-180px;background-color:rgba(245,47,70,0.7);width:150px;padding:10px;text-align:center;border-radius:10px;font-weight:bolder;"-->
+                        <div style="background-color:rgba(245,47,70,0.7);width:150px;padding:10px;height:80px; margin:10px 30px;text-align:center;border-radius:10px;font-weight:bolder; display:inline-block;">
+                 <p>Unit Count</p>
+                            <p id="unit_count"></p>
+             </div>
+
+
+
+
+                        <div style="background-color:rgba(245,47,70,0.7);width:150px;padding:10px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                 <p>Unit Job count</p>
+                            <p id="unit_job_count"></p>
+             </div>
+                        <div style="background-color:rgba(245,47,70,0.7);width:150px;padding:10px;height:80px;margin:10px 20px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                 <p>job count</p>
+                            <p id="job_count"></p>
+             </div>
+
+
+                        </div>
+                    <div style="position:relative; top:-30px;">
+                         <div >
+                        <div style="width:190px; padding:35px;margin-left:-20px;display:inline-block;">
+                            <select id="select_gender">
+                                 <option value="select">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+
+                            </select>
+
+
+                        </div>
+                        <div style="width:190px; padding:35px;display:inline-block;">
+                            <select id="select_age">
+                                 <option value="select">Select Age Range</option>
+                                <option value="20,25">20 - 25</option>
+                                <option value="26,30">26 - 30</option>
+                                <option value="31,35">31 - 35</option>
+                                <option value="36,40">36 - 40 </option>
+                                <option value="41,45">41 - 45 </option>
+                                <option value="46,50">46 - 50 </option>
+                                <option value="51,55">51 - 55 </option>
+                                <option value="56,60">56 - 60 </option>
+                                <option value="61,65">61 - 65 </option>
+                                <option value="66,70">66 - 70 </option>
+                                <option value="71,75">71 - 75 </option>
+                                <option value="76,80">76 - 80 </option>
+
+                            </select>
+
+
+                        </div>
+                        <div style="width:190px; padding:35px;display:inline-block;" id="select_general_cat">
+                        </div>
+
+
+
+                    </div>
+                        <div style="position:relative; top:-20px;">
+
+                                                     <div style="background-color:rgba(245,47,70,0.7);width:150px;margin:10px 15px;height:80px;text-align:center;border-radius:10px;font-weight:bolder; display:inline-block;">
+                             <p>Gender Count</p>
+                             <p id="gender_count"></p>
+                        </div>
+
+                        <div style="background-color:rgba(245,47,70,0.7);width:150px;height:80px;margin:10px 15px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                            <p>Age Count</p>
+                            <p id="age_count"></p>
+                         </div>
+                         <div style="background-color:rgba(245,47,70,0.7);width:150px;height:80px;margin:10px 15px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                            <p>Category Count</p>
+                            <p id="cat_count"></p>
+                         </div>
+
+
+
+                        </div>
+                        <div style="position:relative; top:-35px;">
+
+
+
+                             <div style="width:200px; padding:35px;display:inline-block;">
+                            <select id="employment_type">
+                                 <option value="select">Select Type</option>
+                                <option value="employee">Employee</option>
+                                <option value="student">Student</option>
+                                <option value="trainee">Trainee</option>
+                                <option value="contractor">Contractor</option>
+                                <option value="freelance">Freelancer</option>
+
+                            </select>
+                        </div>
+                                                   <div id="select_option2" style="width:200px; padding:35px;display:inline-block;"></div>
+
+                        </div>
+
+
+                        <div style="position:relative; top:-55px;">
+                              <div style="background-color:rgba(245,47,70,0.7);width:150px;height:80px;margin:10px 25px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                            <p>Employee Type Count</p>
+                            <p id="emp_count"></p>
+                         </div>
+                              <div style="background-color:rgba(245,47,70,0.7);width:150px;padding:10px;height:80px;margin:10px 25px;text-align:center;border-radius:10px;font-weight:bolder;display:inline-block;">
+                 <p>Dept count</p>
+                            <p id="dept_count"></p>
+             </div>
+                    </div>
+                        </div>
+
+                </div>
+
+                    </div>
+                    <div>
+
+
+            </div>
+   </section>
+    </t>
+
+</templates>

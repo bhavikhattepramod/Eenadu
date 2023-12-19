@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transport_routes,access_transport_routes,model_transport_routes,,1,1,1,1
+access_transporter_routes,access_transporter_routes,model_transporter_routes,,1,1,1,1
+access_transport_routes_lines,access_transport_routes_lines,model_transport_routes_lines,,1,1,1,1
+access_transport_vehicle,access_transport_vehicle,model_transport_vehicle,,1,1,1,1
+access_transport_vehicle_line,access_transport_vehicle_line,model_transport_vehicle_line,,1,1,1,1
+access_vehicle_type,access_vehicle_type,model_vehicle_type,,1,1,1,1
+access_transport_entry_details,access_transport_entry_details,model_transport_entry_details,,1,1,1,1
+access_wizard_picking_entry,access_wizard_picking_entry,model_wizard_picking_entry,,1,1,1,1
+access_driver_tracker,access_driver_tracker,model_driver_tracker,,1,1,1,1
+access_driver_tracker_line,access_driver_tracker_line,model_driver_tracker_line,,1,1,1,1
+access_wizard_picking_entry_dup,access_wizard_picking_entry_dup,model_wizard_picking_entry_dup,,1,1,1,1
+

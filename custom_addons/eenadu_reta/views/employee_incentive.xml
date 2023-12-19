@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_employee_incentive" name="Employee Incentive" customize_show="True"
+              inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Employee Incentive</t>
+                <t t-set="url" t-value="'/employee_incentive'"/>
+                <t t-set="placeholder_count" t-value="'employee_incentive'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_deposits" inherit_id="portal.portal_breadcrumbs" name="Employee Incentive">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'employee_incentive'" class="breadcrumb-item">Employee Incentive</li>
+        </xpath>
+    </template>
+
+    <template id="employee_incentive" name="Employee Incentive">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Employee Incentive</t>
+            </t>
+            <t t-call="portal.portal_table">
+                <tr class="active" style="background-color: #20ACD4; color: white;">
+                    <th class="text-center">Unit Name</th>
+                    <th class="text-center">From Date</th>
+                    <th class="text-center">To Date</th>
+                    <th class="text-center">Employee Name</th>
+                    <th class="text-center">Target Amount</th>
+                    <th class="text-center">SO Total Value</th>
+                    <th class="text-center">Received Payment</th>
+                    <th class="text-center">Incentive Amount</th>
+                </tr>
+
+                <tr t-foreach="incentives" t-as="incentive">
+                    <td class="text-center">
+                        <t t-esc="incentive['unit_name']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['from_date']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['to_date']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['employee_id']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['target_amount']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['so_total_amt']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['recieved_payment']"/>
+                    </td>
+                    <td class="text-center">
+                        <t t-esc="incentive['incentive_amt']"/>
+                    </td>
+                </tr>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

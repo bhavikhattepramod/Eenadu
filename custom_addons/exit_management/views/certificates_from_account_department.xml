@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="certificates_from_account_department_wizard" model="ir.ui.view">
+        <field name="name">certificates.from.account.department.wizard</field>
+        <field name="model">certificates.account.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_certificates_from_account_department" model="ir.actions.act_window">
+        <field name="name">Certificates From Account Department</field>
+        <field name="res_model">certificates.account.department</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="certificates_from_account_department_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="certificates_from_different_departments_menu"
+              name="Certificates From Different Department"
+              parent="superannuation_reporting" sequence="32"/>
+
+    <menuitem id="certificates_from_account_department_menu"
+              name="Account Department"
+              parent="certificates_from_different_departments_menu"
+              action="action_certificates_from_account_department"/>
+</odoo>

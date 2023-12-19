@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_joining_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_service_extension_wizards" model="ir.actions.report">
+        <field name="name">Service Extension</field>
+        <field name="model">service.extensions</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.report_service_extension</field>
+        <field name="report_file">employee_life_cycle.report_service_extension</field>
+        <field name="binding_model_id" ref="model_service_extensions"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_joining_report"/>
+    </record>
+    <data>
+        <template id="report_service_extension">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <div class="page" style="text-align:justify; font-size:135%;">
+                                <div style="text-align:right; ">
+                                    <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                                    <br/>
+                                </div>
+                                <br/>
+                                <div style="text-align:left;">
+                                    Mr/Miss
+                                    <span t-field="doc.service_id.emp_code"/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p style="padding-left:70px; padding-right:70px;">
+                                        <span>
+                                            <span t-field="doc.service_id.emp_code.street_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.street2_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.city_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.state_id_emp"/>
+                                        </span>
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    Dear Mr/Miss
+                                    <span t-field="doc.service_id.emp_code"/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <p>As per our records, you have attained the age of superannuation i.e.
+                                    <b>
+                                        <span t-field="doc.service_id.company.retire_age"/>
+                                    </b>
+                                    years on
+                                    <b>
+                                        <span t-field="doc.service_id.emp_code.retired_age"/>
+                                    </b>
+                                    .
+                                    The Management is pleased to inform you that your services are extended for a period of <b><span t-field="doc.service_id.no_of_months_extension_service"/></b> with effect from
+                                    <b><span t-field="doc.service_id.extension_start_date_ex"/></b>after your superannuation on
+                                    <b>
+                                        <span t-field="doc.service_id.transaction_date_ex_sr"/>
+                                    </b>
+                                    .
+                                </p>
+                                <br/>
+                                <br/>
+                                <p>The other Terms and Conditions of your letter of Employment shall
+                                    remain same as specified in your Letter of Employment - Confirmation dated
+                                    <b>
+                                        <span t-field="doc.service_id.emp_code.appointment_date"/>
+                                    </b>
+                                </p>
+                                <br/>
+                                <br/>
+                                <p style="text-align:left;">with best wishes</p>
+                                <br/>
+                                <br/>
+                                <p style="text-align:left;">
+                                    <b>Authorised By:
+                                        <br/>
+                                        <span t-field="doc.service_id.company.director_id"/>
+                                    </b>
+                                </p>
+                            </div>
+                            <br/>
+                            <p style="page-break-before:always"/>
+                            <div class="page" style="text-align:justify; font-size:135%;">
+                                <div style="text-align:right;">
+                                    <span t-esc="doc.current_date.strftime('%d, %B, %Y')"/>
+                                </div>
+                                <div style="text-align:left;">
+                                    Mr/Miss
+                                    <span t-field="doc.service_id.emp_code"/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <p style="padding-left:70px; padding-right:70px;">
+                                        <span>
+                                            <span t-field="doc.service_id.emp_code.street_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.street2_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.city_emp"/>
+                                            <br></br>
+                                            <span t-field="doc.service_id.emp_code.state_id_emp"/>
+                                        </span>
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    Dear Mr/Miss
+                                    <span t-field="doc.service_id.emp_code"/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </div>
+                                <p>The Management is pleased to inform you that, your services are extended for another
+                                    <b><span t-field="doc.service_id.no_of_months_extension_service"/></b>
+                                    with effect from <b><span t-field="doc.service_id.extension_start_date_ex"/></b>.
+                                </p>
+                                <br/>
+                                <br/>
+                                <p>The other Terms and Conditions, as laid down in your Letter of Employment -
+                                    Confirmation dated
+                                    <b>
+                                        <span t-field="doc.service_id.emp_code.appointment_date"/>
+                                    </b>
+                                    will remain same.
+                                </p>
+                                <p style="text-align:left;">with best wishes</p>
+                                <br/>
+                                <br/>
+                                <p style="text-align:left;">
+                                    <b>Authorised By:
+                                        <br/>
+                                        <span t-field="doc.service_id.company.director_id"/>
+                                    </b>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

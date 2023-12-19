@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_cron_pass_values_to_ads_type" model="ir.cron">
+        <field name="name">Capturing The Repetitive Ads</field>
+        <field name="model_id" ref="model_ads_type"/>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="code">model.get_repetitive_details()</field>
+    </record>
+    <record id="form_ads_type_view" model="ir.ui.view">
+        <field name="name">Ads Type</field>
+        <field name="model">ads.type</field>
+        <field name="arch" type="xml">
+            <form>
+<!--                <header>-->
+<!--                    <button name="create_activities" string="Create Activities" class="oe_highlight" type="object"/>-->
+<!--                </header>-->
+                <sheet>
+                    <group>
+                        <field name='ad_name'/>
+                        <field name='name'/>
+                        <field name='agent_name'/>
+                        <field name='category_name'/>
+                        <field name='category_type'/>
+                        <field name='published_date'/>
+                        <field name="remainder_duration"/>
+                        <field name="date_extract"/>
+                        <field name="notification_date"/>
+                        <field name="duration"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="tree_ads_type_view" model="ir.ui.view">
+        <field name="name">Ads Type</field>
+        <field name="model">ads.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='ad_name'/>
+                <field name='name'/>
+                <field name='agent_name'/>
+                <field name='category_name'/>
+                <field name='category_type'/>
+                <field name='published_date'/>
+                <field name="remainder_duration"/>
+                <field name="date_extract"/>
+                <field name="notification_date"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ads_type_report" model="ir.actions.act_window">
+        <field name="name">Ads Type</field>
+        <field name="res_model">ads.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Ads Type"
+              id="menu_ads_type"
+              parent="sales_person_target.menu_reta_configuration_scheme"
+              action="action_ads_type_report" sequence="20"/>
+</odoo>

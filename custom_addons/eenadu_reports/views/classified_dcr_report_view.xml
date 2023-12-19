@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="dcr_report_tree_view" model="ir.ui.view">
+        <field name="name">dcr.report.tree.view</field>
+        <field name="model">dcr.report</field>
+        <field name="arch" type="xml">
+            <tree create="0">
+<!--                <field name='ref' widget="many2one_click"/>-->
+<!--                <field name='ref'/>-->
+                <field name='id'/>
+                <field name='rcp_no'/>
+                <field name='ro_cio_no'/>
+                <field name='pu_name'/>
+                <field name='no_of_lines'/>
+                <field name='amount_total' sum="amount_total"/>
+                <field name='agent_commission_amount' sum="amount_total"/>
+                <field name='final_amount' sum="amount_total"/>
+                <field name='cio_paid_amount' sum="amount_total"/>
+                <field name='payment_mode'/>
+                <field name='payee_mobile'/>
+                <field name='payment_datetime'/>
+                <field name='payment_amount' sum="amount_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_dcr_report" model="ir.actions.act_window">
+        <field name="name">Classified DCR Report</field>
+        <field name="res_model">dcr.report</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Reports" id="eenadu_reports_main" sequence="20"/>
+
+    <menuitem name="Classified DCR" id="dcr_report_menu"
+              parent="eenadu_reports_main"
+              action="action_dcr_report" sequence="1"/>
+
+
+
+</odoo>

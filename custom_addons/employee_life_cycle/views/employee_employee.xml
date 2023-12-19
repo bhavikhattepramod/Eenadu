@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="employee_letter_form_view" model="ir.ui.view">
+            <field name="name">Employee Letter form</field>
+            <field name="model">letter.of.employment.probationary</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name_id" required="1"/>
+                            <field name="date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions window-->
+
+        <record id="letter_of_employment_probationary" model="ir.actions.act_window">
+            <field name="name">Letter of Employment Direct Probationary</field>
+            <field name="res_model">letter.of.employment.probationary</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="employee_letter_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- menu items-->
+        <menuitem id="letter_of_employment_report"
+              name="Letter Of Employment Direct Probationary"
+              parent="hr.hr_menu_hr_reports"
+              action="letter_of_employment_probationary"
+              sequence="30"/>
+    </data>
+</odoo>

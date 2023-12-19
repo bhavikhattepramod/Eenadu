@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="action_ins_region_view" model="ir.actions.act_window">
+        <field name="name">INS Region</field>
+        <field name="res_model">ins.region</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="tree_ins_region_view" model="ir.ui.view">
+        <field name="name">INS Region</field>
+        <field name="model">ins.region</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name='name'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="form_ins_region_view" model="ir.ui.view">
+        <field name="name">INS Region</field>
+        <field name="model">ins.region</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name='name' required = "1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem name="INS Region" id="menu_ins_region"
+              parent="sales_person_target.menu_reta_configuration_scheme"
+              action="action_ins_region_view" sequence="20"/>
+</odoo>

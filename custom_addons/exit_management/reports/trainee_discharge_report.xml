@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="trainee_discharge_report">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+
+                    <div class="page">
+                        <div style="padding-top:100px; padding-left:60px;">
+                            <strong>
+                                <span t-field="doc.name_id.employee_id.street_emp"/>
+                            <br></br>
+                            <span t-field="doc.name_id.employee_id.city_emp"/>
+                            <br></br>
+                            <span t-field="doc.name_id.employee_id.state_id_emp"/>
+                            <br></br>
+                            </strong>
+                        </div>
+
+                        <div class="date" style="padding-top:50px; padding-left:570px; font-size:18px;">
+                            <span t-field="doc.cur_date"/>
+                        </div>
+                        <br></br>
+                        <div style="padding-left:55px; font-size:19px">
+                            Mr/Ms
+                            <span t-field="doc.name_id.employee_id"/>
+                            <br></br>
+                            Management Trainee
+                            <br></br>
+                            <br></br>
+
+                            Dear Mr/Ms
+                            <span t-field="doc.name_id.employee_id"/>
+                        </div>
+
+                        <br></br>
+                        <br></br>
+
+                        <div style="padding-left:50px; padding-right:145px;">
+                            <span class="line-break" style="font-size:18px;">
+                                This &#160;&#160; has &#160;&#160;reference &#160;to &#160;your &#160;Letter &#160;of
+                                &#160;&#160;Apprenticeship &#160;&#160;Training &#160;&#160;dated&#160;&#160; 28th
+                                January, &#160;2019 &#160;and &#160;subsequent&#160; &#160;Letter &#160;of&#160;&#160;
+                                Extension&#160; of&#160; &#160;Training&#160; dated &#160;&#160;27th
+                                January, &#160;&#160;2020.&#160;&#160; In&#160; pursuance &#160;of &#160;Clause-9&#160;&#160;
+                                of &#160;your&#160; Letter &#160;&#160;of &#160;&#160;Apprenticeship
+                                Training dated &#160;28.01.2019, &#160;you are hereby discharged from training with
+                                effect
+                                from today i.e. 30th April, 2020 after the close of working hours.
+
+                                <br></br>
+                                <br></br>
+                                The Accounts Department has been advised to settle your account.
+                            </span>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+
+                        <div style="padding-left:55px;">
+                            <strong>
+                                <b>
+                                    <span t-field="doc.name_id.company_id.director_id"/>
+                                    <br></br>
+                                    MANAGING DIRECTOR
+                                </b>
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="paperformat_trainee_discharge" model="report.paperformat">
+        <field name="name">A4 Life</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="trainee_discharge_report_action" model="ir.actions.report">
+        <field name="name">Trainee Discharge</field>
+        <field name="model">trainee.discharge</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">exit_management.trainee_discharge_report</field>
+        <field name="report_file">exit_management.trainee_discharge_report</field>
+        <field name="paperformat_id" ref="paperformat_trainee_discharge"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+<!--    template for Nomination form report-->
+
+        <template id="nomination_form_report_wizard_view">
+             <t t-foreach="docs" t-as="o">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <div class="header"/>
+                        <div class="text-center">
+                            <h5>
+                                <span>
+                                    <strong style="color:black; font-size:19px;">FORM - F : NOMINATION</strong>
+                                </span>
+                                <br/>
+                                <span>
+                                    <strong style="color:black;font-size:19px;">[Vide rule 6(1) of A.P Payments of
+                                        Gratuity Rules &amp;
+                                        Payments of Gratuity (Central) Rules. 1972]
+                                    </strong>
+                                </span>
+                            </h5>
+                        </div>
+
+<!--                       ## table for 'To Addess'-->
+
+                        <table class="table table-condensed"
+                               style="width:30%; border-collapse: collapse; border: 1px solid white;">
+                            <tr style="text-align:left;">
+                                <td>To,</td>
+                            </tr>
+                            <tr style=" border:none;">
+                                <td style="border-bottom: 1px dotted black;"></td>
+                            </tr>
+                            <tr style=" border:none;">
+                                <td style="border-bottom: 1px dotted black;"></td>
+                            </tr>
+                            <tr style=" border:none;">
+                                <td style="border-bottom: 1px dotted black;"></td>
+                            </tr>
+                            <tr style=" border:none;">
+                                <td style="border-bottom: 1px dotted black;"></td>
+                            </tr>
+                            <tr style=" border:none;">
+                                <td style="border-bottom: 1px dotted black;"></td>
+                            </tr>
+                        </table>
+
+                        <ol class="bracket-list">
+                            <li>I, Shri / Shrimati / Kumari
+                                <b>
+                                    <span t-esc="o.name.name"/>
+                                </b>
+                                those particulars are given in the
+                                statement below, hereby Nominate the person(s) mentioned below to receive the Gratuity
+                                Payable after my death
+                                as also Gratuity standing to my credit in the event of my death before that amount has
+                                become payable or
+                                having become has not been paid and direct that the said amount of Gratuity shall be
+                                paid in Proportion indicated
+                                against the name(s) of the Nominee(s).
+                            </li>
+                            <br/>
+                            <li>I hereby Certified that the person(s) mentioned is / are member of my family with in the
+                                meaning of
+                                clause(h) of section 2 of the payment of Gratuity Act 1972.
+                            </li>
+                            <br/>
+                            <li>I hereby declare that I have no family with in the meaning of Clause(h) of section (2)
+                                of the said Act.
+                            </li>
+                            <br/>
+                            <li>(a)My Father / Mother / Parents is / are not dependent on me.
+                                (b)My Husband's Father/Mother/Parents is/are not dependent on my husband
+                            </li>
+                            <br/>
+                            <li>I have excluded my husband from my family by a notice dated the
+                                <b>
+                                    <span t-esc=""/>
+                                </b>
+                                To the Controlling
+                                Authority in terms of the Proviso to Clause(h) of section 2 of the said Act.
+                            </li>
+                            <br/>
+                            <li>Nomination made herein invalidities my previous nomination.
+                            </li>
+                            <br/>
+                        </ol>
+
+                        <style>
+                            ol {
+                            list-style-type: none;
+                            counter-reset: my-counter;
+                            }
+                            li:before {
+                            content: counter(my-counter) ")";
+                            counter-increment: my-counter;
+                            margin-right: 5px;
+                            }
+                        </style>
+
+<!--                       ## table for nominee's detailes-->
+
+                        <table class="table table-condensed"
+                               style="  border: 1px solid black;">
+                           <tr>
+                               <th class="border-right">Name in full with full address of nominee(s)</th>
+                               <th class="border-right">Relationship with the employee</th>
+                               <th class="border-right">Age of Nominee</th>
+                               <th class="border-right">Proportion by which the Gratuity will be shared</th>
+                           </tr>
+                          <tr style=" border:none; height:450px;">
+                               <td class="border-right"> <span></span></td>
+                               <td class="border-right"><span></span></td>
+                               <td class="border-right"><span></span></td>
+                               <td class="border-right"><span></span></td>
+                           </tr>
+
+                        </table>
+
+
+                        <p>Give here the name or description of the establishment with full address.</p>
+                        <p> Name in full here.</p>
+                        <div style="page-break-before:always;"></div>
+                        <div class="text-center">
+                            <h5>STATEMENT</h5>
+
+<!--                          ## table for employee detailes -->
+
+                            <table class="table table-condensed"
+                                   style=" border-collapse: collapse; border: 1px solid white; width:100%;border-top:1px dashed black;">
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%; border-bottom:none;border-right:none;border-top:none;">Name of the Employee in full</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Sex</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Religion</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Whether Unmarried / Married / Widow / Widower</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Department / Branch / Section where employed</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Post held with Ticket or Serial No. If any</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Date of Appointment</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                                <tr style=" border:none;text-align:left;">
+                                    <td style="width:50%;border-bottom:none;border-right:none;border-top:none;">Permanent Address</td>
+                                    <td style="width:50%;border-left:none;"><span></span></td>
+                                </tr>
+                            </table>
+
+<!--                         ## table for Address of the employee-->
+
+                             <table class="table table-condensed"
+                                   style=" border-collapse: collapse; border: 1px dotted white; width:100%;border-bottom:1px dashed black;">
+                                  <tr style=" border:none;text-align:left; width:100%;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;">Village</td>
+                                    <td style="border-left:none;border-right:none;border-top:none;border-bottom:1px dotted black;"><span></span></td>
+                                      <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;">Thana </td>
+                                    <td style="border-left:none;border-right:none;border-top:none;border-bottom:1px dotted black;width:16.66%;"><span></span></td>
+                                      <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;">Sub Division</td>
+                                    <td style="border-left:none;border-right:none;border-top:none;border-bottom:1px dotted black;width:16.66%;"><span></span></td>
+
+                                </tr>
+
+                                  <tr style=" border:none;text-align:right; width:100%;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">Post Office </td>
+                                    <td style="border-bottom:1px dotted black;border-right:none;border-top:1px dotted black;border-left:none;width:16.66%;"><span></span></td>
+                                      <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;">District</td>
+                                    <td style="border-left:none;border-right:none;border-top:1px dotted black;border-left:none;border-bottom:1px dotted black;width:16.66%;"><span></span></td>
+                                      <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;">State</td>
+                                    <td style="border-left:none;border-right:none;border-top:1px dotted black;border-bottom:1px dotted black;width:16.66%;"><span></span></td>
+
+                                </tr>
+                                  <tr style="text-align:left;border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                </tr>
+                             </table>
+
+<!--                     ## table for declaration by witnesses-->
+
+                            <table class="table table-condensed"
+                                    style=" border-collapse: collapse; border: 1px dotted white; width:100%;border-bottom:1px dashed black; text-align:left;">
+                                 <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"></td>
+                                </tr>
+
+                                <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span>Place :</span> <br/><span>Date :</span><br/><span>impression :</span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">Signature / Thumb</td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom; text-align:center;" colspan="2"><b>DECLARATION BY WITNESSES</b></td>
+                                </tr>
+                                <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span>Nomination signed / thumb impressed before me</span><br/><span>Name in full address of witness</span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;text-align:center;"><span></span><br/><span>Signature of Witness</span></td>
+                                </tr>
+                                <tr style="text-align:left;border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">1.</td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">1.</td>
+                                </tr>
+                                 <tr style="text-align:left;border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">2.</td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;">2.</td>
+                                </tr>
+                                <tr style="text-align:left;border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span>Place :</span> <br/><span>Date :</span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                </tr>
+                                <tr style="text-align:left;border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;"><span></span></td>
+                                </tr>
+                            </table>
+
+<!--                         ## table for certified by employee-->
+
+                             <table class="table table-condensed"
+                                    style=" border-collapse: collapse; border: 1px dotted white; width:100%;border-bottom:1px dashed black; text-align:left;">
+                                  <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;text-align:center;" colspan="2" ><b>CERTIFIED BY EMPLOYER</b></td>
+                                </tr>
+                                 <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;" colspan="2">
+                                        Certified that the particulars of the above nomination have been verified and recorded in this establishment
+                                    </td>
+                                </tr>
+                                 <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;" >Employer's Reference No. if any</td>
+                                </tr>
+                                 <tr style="border:none; ">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;text-align:left;" ><span></span><br/><span><b>Date :</b></span><br/><span></span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;padding-left:190px;" >
+                                        <span>Signature of the Employer / Officer authorised </span><br/>
+                                        <span>Designation.....................................................</span><br/>
+                                        <span>Name and address of the establishment or </span><br/>
+                                        <span>Rabber stamp there of...........................................</span>
+                                    </td>
+                                </tr>
+                             </table>
+
+<!--                table  for acknoledgement by employee-->
+
+                            <table class="table table-condensed" style=" border-collapse: collapse; border: 1px dotted white; text-align:left;">
+                                  <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;text-align:center;" colspan="2" ><b>ACKNOWLEDGEMENT BY THE EMPLOYEE</b></td>
+                                </tr>
+                                 <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;position:bottom;" colspan="2" > Received the duplicate copy of the Nomination in Form 'F' filled by me and duly certified by the Employer.</td>
+                                </tr>
+                                <br/>
+
+
+
+                                <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:left;"></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:left;"><span></span><span>Date :</span></td>
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;text-align:right;"><span></span><span>Signature of the employee </span></td>
+                                </tr>
+                                 <tr style="border:none;">
+                                    <td style="border-bottom:none;border-right:none;border-top:none;border-left:none;width:16.66%;" > Note : Strike out the words / paragraph not applicable.</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <style>
+                        .border-right{
+                        border-right:1px solid black;
+                        }
+                    </style>
+
+                     </t>
+                </t>
+            </t>
+        </template>
+    </data>
+    <record id="nomination_form_report_wizard" model="ir.actions.report">
+        <field name="name">Nomination form report</field>
+        <field name="model">nomination.formwizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hrms_nomination_form_report.nomination_form_report_wizard_view</field>
+        <field name="report_file">hrms_nomination_form_report.nomination_form_report_wizard_view</field>
+        <field name="binding_model_id" ref="model_nomination_formwizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--    <data>-->
+<!--        <record id="hr_employee_updating_records" model="ir.cron">-->
+<!--            <field name="name">Hr Employee Records Post</field>-->
+<!--            <field name="model_id" ref="model_employee_life_cycle"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">model.record_post()</field>-->
+<!--            <field name="user_id" ref="base.user_root" />-->
+<!--            <field name="interval_number">1</field>-->
+<!--            <field name="interval_type">minutes</field>-->
+<!--            <field name="numbercall">-1</field>-->
+<!--        </record>-->
+<!--    </data>-->
+</odoo>

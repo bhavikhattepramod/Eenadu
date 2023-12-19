@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="page_info_form_view" model="ir.ui.view">
+        <field name="name">page info</field>
+        <field name="model">page.info</field>
+        <field name="arch" type="xml">
+            <form string=" Page Info">
+                <sheet>
+                    <group>
+                        <field name='page_number' required="1"/>
+                        <field name='page_name' required="1"/>
+                        <field name='page_height' required="1"/>
+                        <field name='page_width' required="1"/>
+                    </group>
+                    <group>
+                        <field name='total'/>
+                        <field name='reserved'/>
+                        <field name='remaining'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_page_info_view" model="ir.actions.act_window">
+        <field name="name">Page info</field>
+        <field name="res_model">page.info</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Page Info" id="menu_page_info" parent="eenadu_reta.menu_page_master_details" action="action_page_info_view" sequence="24"/>
+</odoo>

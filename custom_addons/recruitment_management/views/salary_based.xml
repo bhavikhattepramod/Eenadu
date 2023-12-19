@@ -1,0 +1,15 @@
+<odoo>
+    <record id="salary_based_form" model="ir.ui.view">
+        <field name="name">salary_based_inherit_form</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//field[@name='type_id']" position="after">-->
+<!--                <field name="authorized_id"/>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='type_id']" position="after">
+                <field name="cur_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="paper_format_joining_report" model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">18</field>
+        <field name="margin_bottom">12</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_letter_wizards" model="ir.actions.report">
+        <field name="name">Apprenticeship Report</field>
+        <field name="model">letter.apprenticeship</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.report_joining_report</field>
+        <field name="report_file">employee_life_cycle.report_joining_report</field>
+        <field name="binding_model_id" ref="model_letter_apprenticeship"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paper_format_joining_report"/>
+    </record>
+    <data>
+        <template id="report_joining_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <t class="page">
+                            <div class="page" style="text-align:justify;">
+                                <head>
+                                    <style>
+                                        #border_remove {
+                                        border-collapse: collapse;
+                                        border:none;
+                                        }
+
+                                        .tab{
+                                        border:none;
+                                        padding:5px;
+                                        }
+                                    </style>
+                                </head>
+                                <body>
+                                    <table id="border_remove" style="width:100%; padding:5px; border:1px solid white;">
+                                        <td class="tab" style="font-size:100%;  width:70%; text-align:left; ">
+                                            Mr/Miss
+                                            <span t-field="doc.name.name"/>
+                                            <br/>
+                                            <span t-field="doc.name.son_dot_of"></span>
+                                            <br/>
+                                            <span t-field="doc.name.street_emp"/>
+                                            <br/>
+                                            <span t-field="doc.name.street2_emp"/>
+                                            <br/>
+                                            <span t-field="doc.name.city_emp"/>
+                                            <br/>
+                                            <span t-field="doc.name.state_id_emp"/>
+                                            <br/>
+                                            <span t-field="doc.name.zip_emp"/>
+                                            <br/>
+                                            <span t-field="doc.name.country_id_emp"/>
+                                            <br/>
+                                            Mr/Miss
+                                            <span t-field="doc.name.name"/>
+
+
+                                        </td>
+
+                                        <td class="tab"
+                                            style="font-size:100%; width:30%; text-align:center; padding:5px; margin-right:650px; ">
+                                            <span t-field="doc.current_date"/>
+                                        </td>
+
+                                    </table>
+                                </body>
+
+                                <h4 style="text-align:center; text-decoration:underline;">
+                                    <b>LETTER OF APPRENTICESHIP TRAINING</b>
+                                </h4>
+                                <br/>
+                                <p>With reference to your application and the subsequent interview you had with us, the
+                                    Management
+                                    is pleased to inform you that you are selected as Trainee on the following terms and
+                                    conditions:
+                                </p>
+
+                                <p>1. You are taken on Apprenticeship Training as
+                                    <b>
+                                        <span t-field="doc.name.job_id"/>
+                                    </b>
+                                    and your training
+                                    will take effect from the date of your joining i.e.
+                                    <b>1st June, 2022.</b>
+                                </p>
+
+                                <p>2. The initial period of training shall be for ONE YEAR and you will be imparted
+                                    initial training at our
+                                    <b>Eenadu Corporate Office, Ramoji Film City.</b>
+                                </p>
+
+                                <p>3. You will be paid a Consolidated Stipend of Rs.<b>______</b>(Rupees
+                                    <b>________________</b>
+                                    only) per month and would not be entitled for any other allowances, which
+                                    would be applicable to the regular employees of the Company.
+                                </p>
+
+                                <p>4. It must be clearly understood that the expression ‘Trainee' is synonymous with
+                                    that of an ‘apprentice’ or 'learner' and not an employee within the meaning of the
+                                    Service
+                                    Rules or Standing Orders of the Company and you are not entitled to any other
+                                    benefit /
+                                    privilege available to the regular employees of the Company.
+                                </p>
+
+                                <p>5.During the period of your training you will be given a course related instructions
+                                    with a view to give you such theoretical and practical knowledge, enabling you to
+                                    become fully
+                                    qualified to meet the requirements of the job.
+                                </p>
+
+                                <p>6.You shall faithfully and diligently learn the job as detailed by the Company or
+                                    any other person nominated by the Company in this behalf and should carryout all
+                                    orders given in the course of instructions in the establishment.
+                                </p>
+
+                                <p>7. The Company shall assess your aptitude, general attitude and competency on the job
+                                    during the initial training period. Where you show lack of aptitude,
+                                    disinterestedness to learn the job or where you have displayed gross negligence or
+                                    slackness in
+                                    performance or no improvement in performance, your training is liable to be
+                                    discontinued at any time
+                                    during the training period or extended period of training without any notice or
+                                    payment of
+                                    stipend in lieu thereof.
+                                </p>
+
+                                <p>8. Where you have displayed sufficient aptitude and general attitude but not up to
+                                    the expected standards, the Company at its sole discretion will decide to continue
+                                    you as trainee
+                                    for further training and the period or periods as applicable will be advised to you
+                                    in writing
+                                    from time to time.
+                                </p>
+
+                                <p>9. Your training shall automatically come to an end either at the end of training
+                                    period originally fixed or subsequently extended without any further notice unless
+                                    training is
+                                    extended for further period in writing. Even if you are continued beyond the
+                                    training period, you will
+                                    still be considered as Trainee till further intimation in this regard and you can be
+                                    discharged at any time without any notice or assigning any reason thereof.
+                                </p>
+
+
+                                <p>10. You will be imparted training in any department/ branch/ office/ section/ job /
+                                    division of the Company whether existing or which may come into existence in future
+                                    at any place in
+                                    India, so that you may be equipped with required skills for various types of jobs.
+                                </p>
+
+                                <p>11. During the training period, you shall be governed by the Company rules and
+                                    regulations that are in force from time to time. You should maintain good conduct,
+                                    be regular and
+                                    punctual for your training and should not indulge in any acts of the indiscipline.
+                                    At any time,
+                                    if it comes to the knowledge or notice of Management about your indiscipline
+                                    activities, you are liable
+                                    to be discharged from training without any notice.
+                                </p>
+
+                                <p>12. You will be entitled to such Leave / Holiday with pay as may be prescribed by the
+                                    rules and orders for the time being in force.
+                                </p>
+
+                                <p>13. You should devote your whole time and efforts to learn the job and you should not
+                                    work or write for any other Television Channel/News Paper/ Journal/ Publication or
+                                    participate in
+                                    any TV Program or simultaneously take up any similar type of trade, business,
+                                    occupation or
+                                    employment during the tenure of your training. Contravention of any one or all of
+                                    these rules would render you liable for immediate discontinuation from training
+                                    program without
+                                    notice or assigning any reason thereof.
+                                </p>
+
+                                <p>14. You shall not have any lien on the job for which you are being trained nor shall
+                                    you have any claim to be appointed against probationary / regular employment. Upon
+                                    successful
+                                    completion of training, you will be considered for probationary employment, subject
+                                    to
+                                    availability of vacancy. In such event, further employment with the Company will be
+                                    entirely
+                                    governed by an appropriate fresh letter of Employment - Probationary. Till such time
+                                    you are
+                                    advised in writing,
+                                    you will continue to be a Trainee only.
+                                </p>
+
+                                <p>15. The Company may terminate your training at any time during your training period
+                                    or extended period of training without any notice or assigning any reasons thereof.
+                                </p>
+
+
+                                <p>16. You will be responsible for safe-keeping and return in good condition and order
+                                    of all the Company's property which may be in your use, custody and charge at the
+                                    time of
+                                    leaving the Company.
+                                </p>
+
+
+                                <p>17. a) Any notice, order, charge sheet, communication or intimation sent to the
+                                    postal addresses / e-mail id furnished by you in your application / service record
+                                    shall be deemed to
+                                    have been served on you and received for all purposes of service of such
+                                    notice/communication
+                                    etc. If any change takes place in your addresses or e-mail id, it shall be intimated
+                                    to the
+                                    office immediately.
+                                </p>
+
+
+                                <p>b) In respect of this clause, a registered letter sent to you along with a copy of
+                                    the same under certificate of posting shall be deemed to be sufficient that the
+                                    Company has served
+                                    the contents thereof on you. In the same way, if any communication sent to you
+                                    through your
+                                    e-mail id is deemed to be delivered to you until and unless we receive the message
+                                    of web server
+                                    as “Subject-Mail failure domain”.
+                                </p>
+
+
+                                <p>If the above terms and conditions are acceptable to you, please report to The H R
+                                    Department, Eenadu Corporate Office, Ramoji Film City, Anajpur (V), Abdullapurmet
+                                    (M) on 1**
+                                    June, 2022 at 9.00 A.M along with the signed duplicate copy of this ‘Letter of
+                                    Apprenticeship
+                                    Training’ enclosed herewith in acceptance of the offer, failing which the offer of
+                                    Apprenticeship
+                                    Training will stand automatically cancelled on the expiry of the date mentioned
+                                    above.
+                                </p>
+                                <span>
+                                    <b>for USHODAYA ENTERPRISES PRIVATE LTD</b>
+                                </span>
+                                <br/>
+
+                                <div style="font-size:100%; width:100%; text-align:right; border:1px solid white; padding:8px; margin-right:1000px;">
+                                    <p style="text-align:right; text-decoration:underline;">ACCEPTANCE</p>
+                                    <p style="text-align:right;">I accept the terms and<br/>conditions setout above.
+                                    </p>
+                                </div>
+                                 <table style="width:100%; border:1px solid white;">
+                                     <tr>
+                                         <td class="tab" style="font-size:100%; width:40%; text-align:left;">
+                                             <b>AUTHORIZE BY:  <span t-field="doc.name.authorized_by"/> </b>
+                                         </td>
+                                     </tr>
+                                 </table>
+
+
+                            </div>
+
+
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_section_master_tree" model="ir.ui.view">
+        <field name="name">section.master.tree</field>
+        <field name="model">section.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="section_code"/>
+                <field name="name"/>
+                <field name="section_incharge1"/>
+                <field name="section_incharge2"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_section_master_form" model="ir.ui.view">
+        <field name="name">section.master.form</field>
+        <field name="model">section.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="section_code"/>
+                        <field name="name"/>
+                        <field name="section_incharge1"/>
+                        <field name="section_incharge2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_section_master" model="ir.actions.act_window">
+        <field name="name">Section Master</field>
+        <field name="res_model">section.master</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="menu_view_section_master"
+            name="Section Master"
+            action="action_section_master"
+            parent="hr.menu_config_employee"
+            sequence="17"/>
+</odoo>

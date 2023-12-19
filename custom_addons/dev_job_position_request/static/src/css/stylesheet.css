@@ -1,0 +1,91 @@
+.common_margin{
+    margin-bottom:2px;
+}
+.hrm_card{
+	background: #efefef;
+	padding: 10px 5px 10px 5px;
+	cursor: pointer;
+}
+.hrm_card_value{
+	font-size: 20px;
+	font-weight: bold;
+}
+.spacer_row{
+    padding:10px;
+}
+.common_card{
+    background: #fff;
+    color: #585454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 2px 2px #EFEFEA;
+    border-bottom: 1px solid #ccc;
+    border: 2px solid #efefef !important;
+}
+.card_header{
+    padding: 8px;
+    margin-bottom: 5px;
+    background: #efefef;
+    font-weight:bold !important;
+    font-size:15px;
+    margin: 0px auto;
+    width: 100%;
+    color:#FFF !important;
+    float: left;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+
+}
+.card_header_left{
+    text-align: left;
+    float: left;
+    padding-left: 7px;
+}
+
+.card_header_right{
+    text-align: left;
+    float: right;
+    padding-right: 7px;
+    font-size:15px;
+}
+.hdr1_bg_color{
+    /*background:#FAD223 !important;*/
+    background-image: linear-gradient(to right, #8e2de2, #4a00e0) !important;
+}
+
+.hdr2_bg_color{
+
+    /*background:#BE0701 !important;*/
+    background-image: linear-gradient(to right, #00b4db, #0083b0)!important;
+}
+.hdr3_bg_color{
+
+    /*background:#FF9B85 !important;*/
+    background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e)!important;
+}
+.hdr4_bg_color{
+
+    /*background:#02314D !important;*/
+    background-image: linear-gradient(to right, #870000, #190a05)!important;
+}
+.hdr5_bg_color{
+
+    /*background:#CA0C28 !important;*/
+    background-image: linear-gradient(to right, #ff512f, #f09819)!important;
+}
+.hdr6_bg_color{
+
+    /*background:#EF97B5 !important;*/
+    background-image: linear-gradient(to right, #141e30, #243b55)!important;
+}
+.hdr7_bg_color{
+
+    background-image: linear-gradient(to right, #a8c0ff, #3f2b96) !important; /*background:#a10a1e*/
+}
+.hdr8_bg_color{
+
+    /*background:#dc3545!important;*/
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(34,34,79,1) 35%, rgba(23,110,128,1) 100%) !important;
+}

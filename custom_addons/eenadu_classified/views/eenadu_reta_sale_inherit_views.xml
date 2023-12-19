@@ -1,0 +1,86 @@
+<odoo>
+
+	<record id="view_order_form_reta_inherit_classifieds" model="ir.ui.view">
+        <field name="name">sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="eenadu_reta.view_order_form_reta_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='cio_paid_amount']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='cio_amount_due']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='scheduling_date']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)]
+                    }
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='publication_id']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)],
+                    'required':[('reta_bool_field', '=', True),('classified_bool_field', '=', True)]
+                    }
+                </attribute>
+            </xpath>
+        	<xpath expr="//field[@name='specific_date']" position="attributes">
+        		<attribute  name="attrs">{
+                    'invisible':['|',('reta_bool_field', '!=', True),('classified_bool_field', '!=', True),('scheduling_date','!=','specific_date')],
+                    'required':[('scheduling_date', '=', 'specific_date')]
+                    }
+        		</attribute>
+        	</xpath>
+        	<xpath expr="//page[@name='publish_period']" position="attributes">
+        		<attribute  name="attrs">{
+                    'invisible':['|',('reta_bool_field', '!=', True),('classified_bool_field', '!=', True),('scheduling_date','!=','multiple_date')],
+                    'required':[('scheduling_date', '=', 'multiple_date')]
+                    }
+        		</attribute>
+        	</xpath>
+        	<xpath expr="//page[@name='scheduling_details']" position="attributes">
+        		<attribute  name="attrs">{
+                    'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)],
+                    'required':[('reta_bool_field', '=', True),('classified_bool_field', '=', True)]
+                    }
+        		</attribute>
+        	</xpath>
+        	<xpath expr="//page[@name='related_documents']" position="attributes">
+        		<attribute  name="attrs">
+        			{'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True)]}
+        		</attribute>
+        	</xpath>
+        	<!-- <xpath expr="//page[@name='advertisement_details']" position="attributes">
+        		<attribute  name="attrs">
+        			{'invisible':[('reta_bool_field', '=', True)]}
+        		</attribute>
+        	</xpath> -->
+            <xpath expr="//button[@name='send_for_scheduling']" position="attributes">
+                <attribute  name="attrs">
+                    {'invisible':['|', '&amp;', '|',('classified_bool_field', '!=', True),('reta_bool_field', '!=', True),('reta_state', '!=', 'draft'),('classified_state', '!=', 'draft')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
+                <attribute  name="attrs">
+                    {'invisible':[('reta_bool_field', '!=', True),('classified_bool_field', '!=', True),('sale_order_duplicating','!=',True)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_reta_inherit_classifieds_sftp" model="ir.ui.view">
+        <field name="name">sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="eenadu_reta.view_order_form_reta_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='add_order_line']" position="after">
+                <button name="print_word_file" type="object" string="Send File" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

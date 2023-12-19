@@ -1,0 +1,114 @@
+<odoo>
+    <data>
+        <record id="paperformat_training_extension" model="report.paperformat">
+            <field name="name">Custom Paper</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">30</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">20</field>
+            <field name="margin_right">20</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">45</field>
+            <field name="dpi">125</field>
+        </record>
+        <record id="extension_training_factory_form" model="ir.actions.report">
+            <field name="name">Extension of Training Factory</field>
+            <field name="model">extension.of.training.factory</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">employee_life_cycle.extension_training_factory_report</field>
+            <field name="report_file">employee_life_cycle.extension_training_factory_report</field>
+            <!--        <field name="binding_model_id" ref="model_letter_of_employment_probationary"/>-->
+            <field name="paperformat_id" ref="employee_life_cycle.paperformat_training_extension"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="extension_training_factory_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify;">
+                            <head>
+                                <style>
+
+                                    h3{
+                                    text-align:center;
+                                    line-height:4.0;
+                                    }
+                                    table
+                                    {
+                                    border: 1px solid white;
+                                    line-height:4.0;
+                                    font-size:20px;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <table width="100%" style="font-size:25px;">
+                                    <tr>
+                                        <td width="35%">Mr.
+                                            <span t-field="doc.names_id.emp_code"/>
+                                        </td>
+                                        <td width="65%" style="text-align:right;">
+                                            <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div><p style="line-height:2.0;font-size:25px;"><b><span t-field="doc.names_id.emp_code.job_id"/></b></p></div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <center>
+                                    <h1>
+                                        <b>
+                                            <u>EXTENSION OF TRAINING</u>
+                                        </b>
+                                    </h1>
+                                </center>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div style="line-height:2.0;font-size:25px;">
+                                    <p>This refers to your letter of appointment dated <span t-field="doc.names_id.emp_code.appointment_date"/> appointing you as <b><span t-field="doc.names_id.emp_code.job_id"/></b>  for an initial period of <b>Six Months</b>. We have assessed and reviewed your performance during the initial training period and found that you are yet to acquire the knowledge of technical skills involved in your job.</p>
+                                    <br/>
+                                    <p>
+                                        In view of the above, it has been decided to impart you further training for
+                                        another period of <b><span t-field="doc.names_id.no_of_months_extension"/></b> with effect from
+                                       <b><span t-field="doc.names_id.extension_start_date_tr"/></b>
+                                        which is in accordance
+                                        with Clause-6 of your letter of appointment.
+
+                                    </p>
+                                    <br/>
+                                    <p>
+                                        You are advised to make best use of the opportunity given to you and show
+                                        definite improvement in your work performance during the extended period of
+                                        training.
+                                    </p>
+                                </div>
+                                <br> </br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <footer>
+                                    <div style="line-height: 1.6;font-size:25px;">
+                                        <br/>
+                                        <br/>
+                                        <h4>
+                                            <b>Authorized By: </b><br></br>
+                                            <b><span t-field="doc.names_id.company.director_id"/></b>
+                                        </h4>
+                                    </div>
+                                </footer>
+                            </body>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

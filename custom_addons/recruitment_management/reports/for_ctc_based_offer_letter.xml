@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_ctc_based_offer_letter" model="report.paperformat">
+        <field name="name">employee report</field>
+        <field name="default" eval="False"/>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">18</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="report_ctc_based_offer_letter_menu" model="ir.actions.report">
+        <field name="name">CTC Offer Letter</field>
+        <field name="model">hr.applicant</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">recruitment_management.ctc_based_offer_letter_template</field>
+        <field name="report_file">recruitment_management.ctc_based_offer_letter_template</field>
+        <field name="print_report_name">('Offer letter_%s' %(object.partner_name)+'_' +(object.job_id.name)+'_'
+            +time.strftime('%Y-%m-%d'))
+        </field>
+        <field name="paperformat_id" ref="recruitment_management.paperformat_ctc_based_offer_letter"/>
+        <field name="binding_model_id" ref="model_hr_applicant"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="ctc_based_offer_letter_template">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="text-align:justify;">
+
+                        <div style="text-align:right">
+                            <span t-esc="doc.cur_date.strftime('%d %B, %Y')"/>
+                        </div>
+                        <br/>
+                        <br/>
+                        <b>
+                            <span>
+                                <span t-field="doc.location"/>
+                            </span>
+                        </b>
+                        <br/>
+
+
+                        <br/>
+                        <br/>
+                        Dear
+                        <b>
+                            <span t-field="doc.partner_name"/>
+                        </b>
+                        <br/>
+                        <br/>
+                        <p>
+                            We are happy to inform that you are selected for the position of
+                            <b>____________________</b>
+                            and you will be based at our <b>RFC Corporate Office.</b> Your CTC will be around &#8377;
+                            __________________/-<b>(Rupees_______________________________
+                            only) per annum.
+                        </b> The breakup of the emoluments and formal letter of employment will be
+                            arranged to you at the time of joining.
+                        </p>
+                        <br/>
+                        <p>You are requested to report to the HR Department, Eenadu Corporate Office, Ramoji Film City,
+                            Rangareddy District on
+                            <b>before
+                                <span t-esc="doc.offer_letter_validity"/>
+                                at 9 AM.
+                            </b>
+                        </p>
+                        <br/>
+                        <p>
+                            You are required to bring Photostat copies of all your Certificates in support of your
+                            Educational Qualifications and Experience, PAN Card, Aadhar Card, Four recent passport size
+                            color photographs and also get the Physical Fitness Certificate in the enclosed format
+                            issued by any Regd. Medical Practitioner when you report to duty
+                        </p>
+                        <br/>
+                        <p>
+                            We welcome you as a member of our organization and look forward to a long and mutually
+                            beneficial association.
+                        </p>
+                        <br/>
+                        <p>
+                            Please confirm your acceptance of this offer.
+                        </p>
+                        <br/>
+                        <p>
+                            With best wishes
+                        </p>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <b></b>
+                        <br/>
+                        <b>
+                            <span t-field="doc.company_id.director_id"></span>
+                        </b>
+
+
+                    </div>
+                    <div class="page2" style="text-align:justify;margin-top:400px;">
+                        <div style="text-align:right">
+                            <span t-esc="doc.cur_date.strftime('%d  %B, %Y')"/>
+                        </div>
+                        <br/>
+                        <br/>
+                        <b>
+                            <span>
+                                <span t-field="doc.location"/>
+                            </span>
+                        </b>
+                        <br/>
+
+                        <br/>
+                        <br/>
+                        Dear
+                        <b>
+                            <span t-field="doc.partner_name"/>
+                        </b>
+                        <br/>
+                        <br/>
+                        <p>
+                            We are happy to inform that you are selected for the position of and you will be based at
+                            our <b>
+                            R
+                            F C Corporate Office.
+                        </b> Your salary will be around &#8377;___________ /- <b>
+                            (Rupees_____________________________________ only) per month.
+                        </b> The formal letter of
+                            appointment will be arranged to you at the time of
+                            joining.
+                        </p>
+                        <br/>
+                        <p>
+                            You are requested to report to the HR Department, Eenadu Corporate Office, Ramoji Film City,
+                            Rangareddy District on
+                            <b>before
+                                <span t-esc="doc.offer_letter_validity"/>
+                                at 9 AM.
+                            </b>
+                        </p>
+                        <br/>
+                        <p>
+                            You are required to bring Photostat copies of all your Certificates in support of your
+                            Educational Qualifications and Experience, PAN Card, Aadhar Card, Four recent passport size
+                            color photographs and also get the Physical Fitness Certificate in the enclosed format
+                            issued by
+                            any Regd. Medical Practitioner when you report to duty.
+
+                        </p>
+                        <br/>
+                        <p>
+                            We welcome you as a member of our organization and looking forward to a long and mutually
+                            beneficial association.
+                        </p>
+                        <br/>
+                        <p>
+                            With best wishes
+                        </p>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <b></b>
+                        <br/>
+                        <b>
+                            <span t-field="doc.company_id.director_id"/>
+                        </b>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

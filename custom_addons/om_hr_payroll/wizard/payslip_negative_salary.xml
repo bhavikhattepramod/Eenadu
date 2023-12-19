@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="payroll_summary_negative_salary_form" model="ir.ui.view">
+        <field name="name">payslip.negative.salary.form</field>
+        <field name="model">payslip.negative.salary</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Summary">
+                <sheet>
+                    <group>
+                        <field name="date_from_payslip"/>
+                        <field name="date_to_payslip"/>
+                    </group>
+                    <footer>
+                        <button string="Generate Report" name="print_list" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="payroll_summary_negative_salary_final_form" model="ir.ui.view">
+        <field name="name">payslip.negative.salary.form</field>
+        <field name="model">payslip.negative.salary.final</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Summary">
+                <sheet>
+                    <group>
+                        <field name="date_from_payslip_final"/>
+                        <field name="date_to_payslip_final"/>
+                        <field name="company_id"/>
+                    </group>
+                    <footer>
+                        <button string="Generate Report" name="print_final_list" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

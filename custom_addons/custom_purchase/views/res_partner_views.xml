@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_res_partner_agents_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_newsprint_agent" attrs="{'invisible': [('is_clearing_agent', '=', True)],'readonly':[('is_newsprint_agent','=',True)]}" groups="eenadu_reta.reta_Head_group"/>
+                <field name = "is_clearing_agent" attrs="{'invisible': [('is_newsprint_agent', '=', True)]}" groups="eenadu_reta.reta_Head_group"/>
+           </xpath>
+        </field>
+    </record>
+
+    <record id="action_agents_view" model="ir.actions.act_window">
+        <field name="name">Newsprint Agents</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_newsprint_agent','=',True)]</field>
+    </record>
+
+    <record id="action_agents_view_2" model="ir.actions.act_window">
+        <field name="name">Newsprint Agents</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_newsprint_agent','=',True)]</field>
+        <field name="context">{'default_is_newsprint_agent' :True}</field>
+    </record>
+
+
+    <menuitem name="Newsprint Agents" id="menu_agents" parent="purchase.menu_procurement_management" action="action_agents_view" groups='custom_purchase.group_newsprint_purchase_manager' sequence="19"/>
+    <menuitem name="Agents" id="menu_agents_new" parent="contacts.menu_contacts" action="action_agents_view_2"  sequence="2"/>
+
+    <record id="action_clearing_agents_view" model="ir.actions.act_window">
+        <field name="name">Clearing Agents</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_clearing_agent','=',True)]</field>
+    </record>
+
+
+    <menuitem name="Clearing Agents" id="menu_clearing_agents" parent="purchase.menu_procurement_management" action="action_clearing_agents_view" groups='custom_purchase.group_newsprint_purchase_manager' sequence="19"/>
+
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tree_education_qualification" model="ir.ui.view">
+        <field name="name">tree.education.qualification</field>
+        <field name="model">hr.education.type</field>
+        <field name="arch" type="xml">
+            <tree string="Education Type" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_education_tree_view_action" model="ir.actions.act_window">
+        <field name="name">Education type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.education.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_education_action" action="hr_education_tree_view_action" name="Education type"
+              parent="hr_recruitment.menu_hr_recruitment_configuration"/>
+</odoo>

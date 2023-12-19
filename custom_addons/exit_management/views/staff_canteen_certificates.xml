@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_staff_canteen_certificates_wizard_form" model="ir.ui.view">
+        <field name="name">Staff Canteen Certificates Form</field>
+        <field name="model">staff.canteen.certificate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_id" required="1"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="staff_canteen_certificates" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_staff_canteen_certificates_wizard" model="ir.actions.act_window">
+        <field name="name"> Staff Canteen Certificates</field>
+        <field name="res_model">staff.canteen.certificate</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_staff_canteen_certificates_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+   <menuitem id="staff_canteen_certificates_sub_menu"
+              name="Staff Canteen Certificates"
+              parent="certificates_from_different_departments_menu"
+              action="action_staff_canteen_certificates_wizard"
+              sequence="100"/>
+</odoo>

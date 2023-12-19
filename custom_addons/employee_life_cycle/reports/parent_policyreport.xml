@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <template id="parents_policy_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .table2{
+                            border:1px solid black;
+                            }
+
+                        </style>
+                        <div class="page" style="text-align:justify;">
+
+                            <center>
+                                <h3>
+                                    <b>
+                                        <u>PARENTS POLICY
+                                        </u>
+                                    </b>
+                                </h3>
+                            </center>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <table width="100%" style="border:1px solid white;font-size:20px;">
+                                <tr>
+                                    <td>To
+                                        <br/>
+                                        <br/>
+                                        HR DEPT
+                                    </td>
+                                    <td align="right">Date:
+                                        <b>
+                                            <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                                        </b>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br/>
+                            <br/>
+                            <p style="font-size:20px;">Sir</p>
+                            <p style="font-size:20px;">I Ms/Mr
+                                <b>
+                                    <span t-field="doc.name.name"/>
+                                </b>
+                                Emp Code
+                                <b>
+                                    <span t-field="doc.name.identification_id"/>
+                                </b>
+                                Department/Desk
+                                <b>
+                                    <span t-field="doc.name.department_id"/>
+                                </b>
+                                willing to renew/take Group Floater Medi claim Policy
+                                2023-24 of <b>M/s National Insurance Co. Ltd.</b> You are requested to deduct the
+                                installments from my salary with
+                                premium of Rs.______________________
+                                in_________________
+                                effect from <b>XXXXX, 2023</b>for the sum insured of Rs._________________
+                                and send the same to the insurance company.
+                            </p>
+                            <br/>
+                            <br/>
+
+                            <p style="font-size:20px;">I will abide by the rules and regulations framed by the
+                                insurance
+                                company
+                                from time to time.
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div style="float:left;font-size:20px;">
+                                Thanking you
+
+
+                            </div>
+                            <br/>
+                            <div style="padding-left:300px;">
+                                <table width="100%" class="table2">
+                                    <tr class="table2">
+                                        <td width="15%" height="45px;" style="padding-top:15px;padding-left:15px;"
+                                            class="table2">
+                                            <b>CELL NO:</b>
+                                        </td>
+                                        <td width="35%" height="45px;" class="table2">
+
+
+                                        </td>
+
+                                    </tr>
+                                    <tr class="table2">
+                                        <td width="15%" height="45px;" style="padding-top:15px;padding-left:15px;"
+                                            class="table2">
+                                            <b>E-MAIL ID:</b>
+                                        </td>
+                                        <td width="35%" height="45px;" class="table2">
+
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <br/>
+                                <br/>
+
+                            </div>
+                            <div style="float:left;font-size:20px;">Employee's Signature</div>
+                            <br/>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="paper_format_parents_policy" model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">15</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="report_parents_policy_wizards" model="ir.actions.report">
+            <field name="name">Parents Policy</field>
+            <field name="model">parents.policy</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">employee_life_cycle.parents_policy_report</field>
+            <field name="report_file">employee_life_cycle.parents_policy_report</field>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="paper_format_parents_policy"/>
+        </record>
+    </data>
+</odoo>

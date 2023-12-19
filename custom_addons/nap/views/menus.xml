@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="product_menu_catalog_nap"
+              name="Products"
+              parent="parent_nap_application"
+              sequence="30"/>
+
+    <menuitem id="menu_product_template_action_nap"
+              action="sale.product_template_action"
+              parent="product_menu_catalog_nap"
+              sequence="10"/>
+
+    <menuitem id="menu_products_nap"
+              action="product.product_normal_action_sell"
+              parent="product_menu_catalog_nap"
+              sequence="20"/>
+
+    <menuitem id="menu_product_pricelist_main_nap"
+              name="Pricelists"
+              action="product.product_pricelist_action2"
+              parent="product_menu_catalog_nap"
+              sequence="30"/>
+
+    <!--    <menuitem name="Position Details" id="menu_position_details_nap" parent="parent_nap_application"-->
+    <!--              action="eenadu_reta.action_scheduling_position_details_view" sequence="20"/>-->
+
+    <record id="action_reta_payment_information_nap" model="ir.actions.act_window">
+        <field name="name">Payment Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payment.informations</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="eenadu_reta.reta_payment_info_tree_view"/>
+        <field name="context">{}</field>
+        <field name="domain">[("payment_information_id.nap_bool_field","=",True)]</field>
+    </record>
+
+    <menuitem id="paymnt_information_menu_reta_nap"
+              name="Payment Information"
+              parent="parent_nap_application"
+              action="action_reta_payment_information_nap"
+              sequence="89"/>
+
+    <menuitem id="configuration_nap"
+              name="Configuration"
+              parent="parent_nap_application"
+              sequence="100"/>
+
+    <menuitem name="Position" id="menu_advertisement_position_nap"
+              parent="configuration_nap" action="eenadu_reta.action_advertisement_position_view"
+              sequence="20"/>
+
+    <menuitem name="Agent Type" id="menu_agent_type_nap"
+              parent="configuration_nap"
+              action="eenadu_reta.action_agent_type_view" sequence="20"/>
+
+    <menuitem name="Category Discount" id="menu_category_discount_nap"
+              parent="configuration_nap"
+              action="eenadu_reta.action_category_discount_view" sequence="20"/>
+
+    <menuitem name="INS Region" id="menu_ins_region_nap"
+              parent="configuration_nap"
+              action="eenadu_reta.action_ins_region_view" sequence="20"/>
+
+    <menuitem name="Page" id="menu_newspaper_page_details_nap" parent="configuration_nap"
+              action="eenadu_reta.action_newspaper_page_details_view" sequence="20"/>
+
+    <menuitem name="Publications" id="menu_publication_details_nap"
+              parent="configuration_nap" action="eenadu_reta.action_publication_details_view"
+              sequence="20"/>
+
+    <menuitem name="Publication Regions" id="menu_reta_regions_nap" parent="configuration_nap"
+              action="eenadu_reta.action_reta_region_view" sequence="20"/>
+
+    <menuitem name="Sale Document Type" id="menu_sale_document_type_nap"
+              parent="configuration_nap" action="eenadu_reta.action_sale_document_type_view"
+              sequence="20"/>
+
+    <menuitem name="Multi Discount" id="menu_multi_discount_nap" parent="configuration_nap"
+              action="eenadu_reta.action_multi_discount_view" sequence="20"/>
+
+    <menuitem name="NAP Scheduling Details" id="menu_nap_scheduling_details"
+              parent="parent_nap_application"
+              action="eenadu_reta.action_nap_scheduling_details" sequence="12"/>
+
+</odoo>

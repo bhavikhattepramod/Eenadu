@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="nomination_contract_apprenticeship_report">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.html_container">
+                    <t t-call="web.basic_layout">
+                        <style>
+                            .bottom{
+                            padding-top:200px;
+                            }
+                            .page_gap{
+                            padding-top:150px;
+                            }
+                        </style>
+                        <div class="page" style="text-align:justify;">
+                            <p align="right" class="bottom" style="padding-left:50px; padding-right:50px;">
+                                <span t-esc="doc.date.strftime('%d, %B, %Y')"/>
+                            </p>
+                            <p style="padding-left:50px;">
+                                <span>
+                                    Mr&#160;<span t-field="doc.name_id.name"/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.son_dot_of"/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.street_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.street2_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.city_emp"/>
+                                    <br></br>
+                                    <span t-field="doc.name_id.state_id_emp"/>
+                                </span>
+                            </p>
+                            <p style="padding-top:30px;padding-left:50px;">
+                                <span>Dear Mr&#160;<span t-field="doc.name_id.name"/>
+                                </span>
+                            </p>
+                            <p style="padding-top:20px; font-size:20px;" align="middle">
+                                <u>
+                                    <b>CONTRACT OF APPRENTICESHIP</b>
+                                </u>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span>
+                                    With reference to your application and the subsequent interview you had with us for
+                                    Apprenticeship Training, the Management is pleased to engage you as 'APPRENTICE' in
+                                    the
+                                    trade of <b>DOMESTIC DATA ENTRY OPERATOR V2.0</b> under the Apprentices Act, 1961
+                                    w.e.f.
+                                    <b>1st
+                                        July, 2022.
+                                    </b>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                1.
+                                <span style="padding-left:20px;">
+                                    Your Apprenticeship Training will be for a period of One year.
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                2.
+                                <span style="padding-left:20px;">
+                                    During the Apprenticeship Training you will be paid a consolidated stipend of
+                                    <b>Rs.14000/-</b>
+                                    (Rupees
+                                    <span style="padding-left:36px;">Fourteen Thousand only) per month.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                3.
+                                <span style="padding-left:20px;">
+                                    You shall be governed by the rules and regulations laid down in the Apprentices Act
+                                    1961
+                                    and the
+                                    <span style="padding-left:36px;">Company's Certified Standing Orders.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                4.
+                                <span style="padding-left:20px;">
+                                    During the course of apprenticeship training you will be imparted the theoretical
+                                    and
+                                    practical
+                                    <span style="padding-left:38px;">knowledge in the relevant trade offered to you.
+                                    </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                5.
+                                <span style="padding-left:20px;">
+                                    You shall faithfully and diligently learn the work as detailed by the Company or any
+                                    other person
+                                    <span style="padding-left:37px;">nominated by the Company in this behalf
+                                        and carryout all orders given in
+                                        the course of instructions
+                                    </span>
+                                    <span style="padding-left:37px;">in the establishment.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                6.
+                                <span style="padding-left:20px;">
+                                    Where you show lack of attitude, disinterestedness to learn during the
+                                    apprenticeship
+                                    training or
+                                    <span style="padding-left:37px;">where you have displayed gross negligence
+                                        or slackness in performance, your
+                                        apprenticeship is
+                                    </span>
+                                    <span style="padding-left:37px;">liable to be discontinued at any time during the
+                                        apprenticeship
+                                        training.
+                                    </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                7.
+                                <span style="padding-left:20px;">
+                                    This Contract of Apprenticeship shall automatically come to an end on the expiry of
+                                    your
+                                    <span style="padding-left:39px;">Apprenticeship Training.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                8.
+                                <span style="padding-left:20px;">
+                                    There is no obligation on the part of the Management to offer you employment after
+                                    the
+                                    completion
+                                    <span style="padding-left:35px;">of your Apprenticeship Training.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;" class="page_gap">
+                                9.
+                                <span style="padding-left:20px;">
+                                    You shall not enter into any other Contract of Apprenticeship/Employment with
+                                    any other Company
+                                    <span style="padding-left:34px;">during the period of your Apprenticeship Training.
+                                    </span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                10.
+                                <span style="padding-left:7px;">
+                                    Any notice, order, communication or intimation sent to the address furnished by you
+                                    in
+                                    your
+                                    <span style="padding-left:37px;">application shall be deemed to have been served on
+                                        you and received for all
+                                        purposes of service
+                                    </span>
+                                    <span style="padding-left:37px;">of notice, communication etc. Any change in your
+                                        address shall be
+                                        intimated to the Office
+                                    </span>
+                                    <span style="padding-left:37px;">immediately.</span>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-right:50px;">
+                                <span>
+                                    This offer of appointment is being issued to you in duplicate and we request you to
+                                    return the duplicate copy of the same after duly signed by you, if the terms and
+                                    conditions setout above are acceptable to you. You may report to The Undersigned,
+                                    Eenadu
+                                    Corporate Office, Ramoji Film City, Anajpur (V), Abdullapurmet (M), Ranga Reddy Dist
+                                    on
+                                    <b>1st July, 2022</b>
+                                    at 9.00 A.M.
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-top:10px;">
+                                <span>
+                                    For
+                                    <b>USHODAYA ENTERPRISES PVT LTD</b>
+                                </span>
+                            </p>
+                            <p style="padding-left:50px; padding-top:70px;">
+                                <span>
+
+                                    <b>
+                                        Authorised by :
+                                        <br></br>
+                                        <span t-field="doc.name_id.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+
+    <record id="paperformat_contract_apprenticeship" model="report.paperformat">
+        <field name="name">Contract of Apprenticeship</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="contract_report_action" model="ir.actions.report">
+        <field name="name">Contract of Apprenticeship</field>
+        <field name="model">contract.apprenticeship</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.nomination_contract_apprenticeship_report</field>
+        <field name="report_file">employee_life_cycle.nomination_contract_apprenticeship_report</field>
+        <field name="paperformat_id" ref="paperformat_contract_apprenticeship"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
+

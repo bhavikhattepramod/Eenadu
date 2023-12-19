@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="employee_letter_form" model="ir.ui.view">
+            <field name="name">Employee Letter form</field>
+            <field name="model">employee.letter</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="date" invisible="1"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="action_print_report" string="Print" class="btn-primary" type="object"/>
+                            <button string="Cancel" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions window-->
+
+        <record id="employee_letter_action" model="ir.actions.act_window">
+            <field name="name">Letter of Employment Confirmation</field>
+            <field name="res_model">employee.letter</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="employee_letter_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- menu items-->
+        <menuitem id="employee_letter_menu"
+                  name="Letter of Employment Confirmation"
+                  parent="employee_life_cycle_menu"
+                  action="employee_letter_action"
+                  sequence="100"/>
+
+    </data>
+</odoo>

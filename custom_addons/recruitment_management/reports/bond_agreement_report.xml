@@ -1,0 +1,212 @@
+<odoo>
+    <data>
+        <template id="bond_agreement_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <div class="page" style="text-align:justify;">
+                            <style>
+                                .font{
+                                font-size:20px;
+                                }
+                            </style>
+                            <center>
+                                <h4 style="padding:25px;">
+                                    <b>
+                                        <u>OFFER LTR FOR BOND AGREEMENT</u>
+                                    </b>
+                                </h4>
+                            </center>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="margin-left:550px;font-size:20px;">
+                                <span t-esc="doc.cur_date.strftime('%d,%B,%Y')"/>
+                            </p>
+                            <br/>
+                            <br/>
+                            <span style="font-size:20px;">Mr
+                                <span t-field="doc.partner_name"/>
+                            </span>
+                            <br/>
+                            <span class="font">
+                                <span t-field="doc.location"/>
+                            </span>
+                            <br/>
+                            <span class="font">
+                                <span t-field="doc.location"/>
+                            </span>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <span style="font-size:20px;">Dear
+                                <span t-field="doc.partner_name"/>
+                            </span>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="font-size:20px;">This refers to your application and the subsequent interview you
+                                had with us. The
+                                Management is pleased to inform that you are selected for the post
+                                of ________________________________________
+                                .You
+                                will be under training for a period of One Year from the date of your joining and will
+                                be paid a
+                                consolidated stipend of <b>&#8377;</b>__________/-
+                                <b>(Rupees______________________________________Only)</b>
+                                per month. You will be given
+                                initial training at our Eenadu Corporate Office,
+                                Ramoji Film City and after that you will be posted to undergo further training at one of
+                                our units located in Andhra Pradesh / Telangana.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p style="font-size:20px;">You are required to bring the following documents when you report
+                                for training.
+                            </p>
+                            <p style="padding-left:40px;font-size:20px;">
+                                <span>&#x2022; Xerox copies of all your certificates
+                                    (along with
+                                    originals
+                                    for verification) in
+                                    <span style="padding-left:20px;">support
+                                        of your qualifications and experience.
+                                    </span>
+                                </span>
+                                <br/>
+                                <span>&#x2022;<span style="padding-left:7px;">Relieving letter issued by the
+                                    previous employer
+                                </span>
+                                </span>
+                                <br/>
+                                <span>&#x2022;<span style="padding-left:7px;">Six recent colour photographs of
+                                </span>size 2.5 x 3 ems.
+                                </span>
+                                <br/>
+                                <span>&#x2022; Physical fitness certificate in the enclosed format issued by the
+                                    Registered
+                                    <span style="padding-left:21px;">Medical Practitioner</span>
+                                </span>
+                                <br/>
+                                <span>&#x2022; Three post card size family photographs (If unmarried - self and
+                                    dependent
+                                    <span style="padding-left:21px;">parents
+                                        and If married - spouse, children and dependent parents) for your
+                                    </span>
+                                    <span style="padding-left:21px;">registration under
+                                        ESI scheme.
+                                    </span>
+                                </span>
+                                <br/>
+                                <span>&#x2022; Any one of the Identity proof like Ration CardNoter Identity Card/PAN
+                                    <span style="padding-left:21px;">Card/Driving license/ Aadhar Card/ Passport or
+                                        Postal Identity Card.
+                                    </span>
+                                </span>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="font-size:20px;">
+                                <span>You are required to execute an
+                                    undertaking/service agreement to serve the organization
+                                    for a minimum period of 2 (Two) years as a pre condition of employment and the
+                                    guidelines for execution of service agreement are furnished hereunder:
+                                </span>
+                                <br/>
+                                <br/>
+                                <span style="padding-left:40px;font-size:20px;">&#x2022; The Surety should be a
+                                    Government
+                                    Servant only
+                                    and having a minimum
+                                </span>
+                                <span style="padding-left:72px;">of 5 years left over
+                                    service. He/She shall present copies of his/her
+                                </span>
+
+                                <span style="padding-left:72px;">credentials like
+                                    Appointment Letter, Identity Card, Pay Slip, his/her
+                                </span>
+                                <span style="padding-left:72px;">salary
+                                    disbursement officer's name with designation, Residential Proof,
+                                </span>
+                                <span style="padding-left:72px;">Ration Card,
+                                    Certified Bank Transactions etc.
+                                    <b>Originals of the same
+                                        should
+                                    </b>
+                                </span>
+                                <span style="padding-left:72px;">
+                                    <b>also be
+                                        brought for verification.
+                                    </b>
+                                </span>
+                                <br/>
+                            </p>
+                            <p style="font-size:20px;">You are advised to report to the HR Department, Eenadu Corporate
+                                office, Ramoji Film
+                                City, Ranga Reddy District - 501512 on 3rd June, 2022 at 9 A.M along with your surety
+                                person to execute Service Agreement.
+                            </p>
+                            <div class="font">
+                                <span>Please acknowledge the receipt and confirm your date of joining</span>
+                                <span>We welcome you to join as a member of our organization.</span>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>With best wishes</p>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <span class="font" style="padding-top:80px;">
+                                    <b>
+                                        Authorised By :
+                                    </b>
+                                    <br/>
+                                    <b>
+                                        <span t-field="doc.company_id.director_id"/>
+                                    </b>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_bond_agreement" model="report.paperformat">
+            <field name="name">Bond Agreement</field>
+            <field name="default" eval="False"/>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">15</field>
+            <field name="margin_right">15</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <record id="report_bond_agreement_menu" model="ir.actions.report">
+            <field name="name">Bond Agreement</field>
+            <field name="model">hr.applicant</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">recruitment_management.bond_agreement_template</field>
+            <field name="report_file">recruitment_management.bond_agreement_template</field>
+            <field name="paperformat_id" ref="recruitment_management.paperformat_bond_agreement"/>
+            <field name="binding_model_id" ref="model_hr_applicant"/>
+            <!--        <field name="groups_id" eval="[(6, 0, [ref('hr.group_hr_user')])]"/>-->
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

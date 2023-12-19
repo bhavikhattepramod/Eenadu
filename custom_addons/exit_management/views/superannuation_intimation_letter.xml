@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_superannuation_intimation_letter_wizard_form" model="ir.ui.view">
+        <field name="name">Superannuation Intimation Letter Form</field>
+        <field name="model">superannuation.intimation.letter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="resignation_id" required="1"/>
+                            <field name="current_date" invisible="1"/>
+                        </group>
+                        <footer>
+                            <button string="Print" name="superannuation_intimation_letter_print" type="object" class="btn-primary"/>
+                            <button string="Cancel" special="cancel" class="btn-secondary"/>
+                        </footer>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_superannuation_letter_report_wizard" model="ir.actions.act_window">
+        <field name="name">Superannuation Intimation Letter</field>
+        <field name="res_model">superannuation.intimation.letter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_superannuation_intimation_letter_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+   <menuitem id="exit_management_reporting_report_sub_menu"
+              name="Superannuation Intimation Letter"
+              parent="superannuation_reporting"
+              action="action_superannuation_letter_report_wizard"
+              sequence="100"/>
+</odoo>

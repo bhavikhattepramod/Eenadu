@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="life_cycle_report">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+
+
+                    <div class="page" style="padding-left:70px; padding-right:70px;" align="text-align:justify">
+                        <div class="date" align="right" style="padding-button:2px;  padding-top:100px;">
+                            Date:
+                            <span t-esc="doc.date.strftime('%d,%B,%Y')"/>
+                            <!--                            <span t-field="doc.cur_date"/>-->
+                        </div>
+                        <p>
+                            Mr.
+                            <span t-field="doc.names_id.emp_code"/>
+                            <br></br>
+                            <span t-field="doc.names_id.emp_code.street_emp"/>
+                            <br></br>
+                            <span t-field="doc.names_id.emp_code.city_emp"/>
+                            <br></br>
+                            <span t-field="doc.names_id.emp_code.state_id_emp"/>
+                            <br></br>
+                        </p>
+                        <center>
+                            <h5>
+                                <u>
+                                    <b>
+                                        TRANSFER ORDER
+                                    </b>
+                                </u>
+                            </h5>
+                        </center>
+                        <br></br>
+                        <div class="text" style=" font-size: 18px;" align="text-align:justify;">
+
+                            <p>
+                                This refers &#160;&#160;to your letter dated &#160;&#160;<b>
+                                <span t-field="doc.names_id.transaction_date_tr"/>
+                            </b>&#160;&#160;
+                                requesting &#160; us &#160; to &#160; transfer you to our
+                                <b>
+                                    <span t-field="doc.names_id.to_unit_emp"/>
+                                </b> &#160;Unit. &#160;
+                                Under&#160; the&#160; instructions &#160; of&#160; the &#160; Managing &#160;&#160;Director,
+                                &#160;you &#160; are &#160; hereby
+                                transferred and posted
+                                to
+                                work
+                                at our Guntur Unit with effect from
+                                <b>
+                                    <span t-field="doc.names_id.transfer_effective_date"/>
+                                </b>
+                                .
+
+                            </p>
+
+                            <p>
+                                You &#160;will &#160;be &#160;relieved&#160; of &#160;your&#160; duties &#160;&#160;at&#160;&#160;
+                                our&#160;
+                                <b>
+                                    <span t-field="doc.names_id.from_unit_elc"/>
+                                </b> &#160;&#160;Unit&#160; on &#160;&#160;15.06.2023 &#160;&#160;after
+                                &#160;the
+                                close of working &#160;hours.
+                            </p>
+
+
+                            <p>
+                                You &#160;&#160; are&#160;&#160; advised&#160; &#160;to &#160;report&#160; to&#160; Mr
+                                &#160;&#160;K &#160;&#160;Venkatesulu, &#160;&#160;
+                                Senior &#160;&#160; Executive, &#160;&#160; Eenadu
+                                Building, &#160;&#160;Pothuru &#160;&#160;Village,&#160; Guntur&#160; &#160;Mandal&#160;&#160;
+                                &amp;&#160; &#160;District &#160; on&#160; &#160;<b>
+                                <span t-field="doc.names_id.transfer_effective_date"/>
+                            </b>&#160; &#160;at&#160;&#160; 9
+                                A.M.
+                                Since &#160;&#160;your&#160;&#160; transfer&#160;&#160; is &#160;&#160;on
+                                your&#160;&#160; request&#160;&#160; you &#160;&#160;will &#160;&#160;not&#160;&#160; be&#160;&#160;
+                                entitled &#160;to&#160;&#160; claim &#160;&#160;any
+                                travelling expenses.
+
+
+                            </p>
+                        </div>
+
+                        <br></br>
+                        <br></br>
+                        <p>
+                            <b>
+                                Authorised By :
+                            </b>
+                            <br></br>
+                            <b>
+                                <span t-field="doc.names_id.company.director_id"/>
+                            </b>
+                        </p>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </template>
+    <record id="paperformat_life_cycle" model="report.paperformat">
+        <field name="name">A4 Life</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="life_cycle_report_action" model="ir.actions.report">
+        <field name="name">Transfer Order</field>
+        <field name="model">life.cycle</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_life_cycle.life_cycle_report</field>
+        <field name="report_file">employee_life_cycle.life_cycle_report</field>
+        <field name="paperformat_id" ref="paperformat_life_cycle"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

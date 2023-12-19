@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id="seq_ad_details" model="ir.sequence">
+		<field name="name">Advertisement ID</field>
+		<field name="code">ads.position.id</field>
+		<field name="prefix">ADV</field>
+		<field name="padding">5</field>
+		<field name="company_id" eval="False"/>
+	</record>
+
+	<record id="scheduling_position_details_form_view" model="ir.ui.view">
+		<field name="name">scheduling.position.details.form</field>
+		<field name="model">scheduling.position.details</field>
+		<field name="arch" type="xml">
+			<form string="Scheduling Position Details">
+				<header>
+                    <field name="state" widget="statusbar" />
+                </header>
+				<sheet>
+					<div class="oe_title">
+						<span class="o_form_label">Advertisements</span>
+						<h1>
+							<field name="ad_sequence" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name = 'product_id' />
+							<field name = 'size' placeholder='lengthXwidth'/>
+							<field name = 'publish_date'/>
+							<field name = 'publication_id'/>
+							<field name = 'region_ids' widget='many2many_tags'/>
+						</group>
+						<group>
+							<field name = 'name' />
+							<field name = 'page'/>
+							<field name = 'ad_position' />
+							<field name = 'paper_number' />
+							<field name = 'edition_type' />
+							<field name = 'dummy_chart_position' />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="scheduling_position_details_tree_view" model="ir.ui.view">
+		<field name="name">scheduling.position.details.tree</field>
+		<field name="model">scheduling.position.details</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name = 'ad_sequence' />
+				<field name = 'product_id' />
+				<field name = 'name' />
+				<field name = 'publication_id' />
+				<field name = 'region_ids' widget='many2many_tags'/>
+				<field name = 'publish_date' />
+				<field name = 'size' />
+				<field name = 'page'/>
+				<field name = 'ad_position' />
+				<field name = 'state' />
+			</tree>
+		</field>
+	</record>
+
+	<record id="action_scheduling_position_details_view" model="ir.actions.act_window">
+		<field name="name">Scheduling Position Details</field>
+		<field name="res_model">scheduling.position.details</field>
+		<field name="domain">[('is_reta','=',True)]</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem name="Position Details" id="menu_position_details" parent="parent_reta_application" action="action_scheduling_position_details_view" sequence="20"/>
+
+	
+
+</odoo>

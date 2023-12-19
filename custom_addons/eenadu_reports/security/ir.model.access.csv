@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dcr_report,dcr_report_base_user,model_dcr_report,,1,1,1,0
+access_reta_dcr_report,reta_dcr_report_base_user,model_reta_dcr_report,,1,1,1,0

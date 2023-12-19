@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="wizard_classified_report_action" model="ir.actions.act_window">
+        <field name="name">Classified Report</field>
+        <field name="res_model">classified.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+    <record id="wizard_classified_report_from" model="ir.ui.view">
+        <field name="name">Classified Report</field>
+        <field name="model">classified.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="specific_date"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="print_classified_report" string="Print Report" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- <menuitem id="classified_report" parent="eenadu_report_main" name="Classified Report" action="wizard_classified_report_action" sequence="2"/> -->
+
+</odoo>
